@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Image} from '../../shared/entities/image';
 import {Observable} from 'rxjs';
 import {FileService} from '../../shared/service/file.service';
 import {switchMap} from 'rxjs/operators';
@@ -16,7 +15,6 @@ export class AddproductComponent implements OnInit {
   imageChangedEvent: any = '';
   private fileToUpload: File;
   productFormGroup: FormGroup;
-  image: Image;
   croppedImage: any = '';
   products: Observable<any>;
   constructor (
