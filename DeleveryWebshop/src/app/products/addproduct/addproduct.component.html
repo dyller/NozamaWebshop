@@ -3,7 +3,11 @@
 
   <label>
     Name
-    <input type="text" formControlName="message">
+    <input type="text" formControlName="name">
+  </label>
+  <label>
+    price
+    <input type="number" formControlName="price">
   </label>
 
   <input type="file" (change)="uploadFile($event)" accept="image/*">
