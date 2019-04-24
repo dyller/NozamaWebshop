@@ -1,0 +1,17 @@
+
+<form [formGroup]="productFormGroup" (ngSubmit)="addProduct()">
+
+  <label>
+    Name
+    <input type="text" formControlName="message">
+  </label>
+
+  <input type="file" (change)="uploadFile($event)" accept="image/*">
+
+  <button type="submit">Add</button>
+</form>
+<image-cropper
+  [imageChangedEvent]="imageChangedEvent"
+  format="png"
+  (imageCropped)="imageCropped($event)"
+></image-cropper>
