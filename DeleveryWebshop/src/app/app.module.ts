@@ -13,13 +13,17 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {MomentModule} from 'angular2-moment';
 import { NvbarComponent } from './shared/nvbar/nvbar.component';
+import { ShowUsersComponent } from './User/show-users/show-users.component';
+import { AddUserComponent } from './User/add-user/add-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShowproductComponent,
     AddproductComponent,
-    NvbarComponent
+    NvbarComponent,
+    ShowUsersComponent,
+    AddUserComponent
   ],
   imports: [
     ReactiveFormsModule,
