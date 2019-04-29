@@ -15,6 +15,7 @@ import {MomentModule} from 'angular2-moment';
 import { NvbarComponent } from './shared/nvbar/nvbar.component';
 import { ShowUsersComponent } from './User/show-users/show-users.component';
 import { AddUserComponent } from './User/add-user/add-user.component';
+import {AngularFireAuthModule} from "@angular/fire/auth";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AddUserComponent } from './User/add-user/add-user.component';
     MomentModule,
     AppRoutingModule,
     AngularFireStorageModule,
-    ImageCropperModule
+    ImageCropperModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

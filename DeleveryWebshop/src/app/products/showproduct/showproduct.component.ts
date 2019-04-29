@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Component, OnInit, Provider} from '@angular/core';
+import {Observable, of} from 'rxjs';
 import {Product} from '../../shared/entities/product';
 import {FileService} from '../../shared/service/file.service';
 import {ProductService} from '../../shared/service/product.service';
-import {tap} from 'rxjs/operators';
+import {switchMap, tap} from 'rxjs/operators';
+import {User} from '../../shared/entities/user';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {Router} from '@angular/router';
+import {auth} from "firebase";
 
 @Component({
   selector: 'app-showproduct',
@@ -13,8 +18,13 @@ import {tap} from 'rxjs/operators';
 export class ShowproductComponent implements OnInit {
   products: Observable<Product[]>;
   constructor(private ps: ProductService,
-              private fs: FileService) {
+              private fs: FileService,
+              private afAuth: AngularFireAuth,
+              private afs: AngularFirestore,
+              private router: Router) {
   }
+
+
 
   ngOnInit() {
     this.products = this.ps.getProducts()

@@ -3,7 +3,6 @@ import {from, Observable} from 'rxjs';
 import {first, map, switchMap, tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Product} from "../entities/product";
 const collection_path = 'user';
 @Injectable({
   providedIn: 'root'
@@ -12,21 +11,13 @@ export class UserService {
 
   constructor(private db: AngularFirestore) { }
 
-  addUser(userData: User): Observable<User> {
-    return from(
-      this.db.collection(collection_path).add(
+  addUser(userData: User) {
+        this.db.collection(collection_path).doc(userData.id).set(
         {
           username: userData.username,
-          password: userData.password,
           address: userData.address
         }
-      )
-    ).pipe(
-      map(productRef => {
-        userData.id = productRef.id;
-        return userData;
-      })
-    );
+      );
   }
 
   getUsers(): Observable<User[]> {
@@ -43,7 +34,8 @@ export class UserService {
               id: action.payload.doc.id,
               username: data.username,
               password: data.password,
-              address: data.address
+              address: data.address,
+              email: data.email
             };
           });
         })

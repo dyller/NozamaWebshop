@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from "../../shared/service/product.service";
 import {ImageMetadata} from "../../shared/entities/image-metadata";
 import {ImageCroppedEvent} from "ngx-image-cropper";
-import {UserService} from "../../shared/service/user.service";
+import {UserService} from '../../shared/service/user.service';
+import * as firebase from "firebase";
+import {auth} from "firebase";
 
 @Component({
   selector: 'app-add-user',
@@ -21,24 +23,37 @@ export class AddUserComponent implements OnInit {
     this.userFormGroup = new FormGroup({
       username: new FormControl(''),
       password: new FormControl(''),
-      address: new FormControl('')
+      address: new FormControl(''),
+      email: new FormControl('')
     });
   }
 
+
   ngOnInit() {
+  }
+  googleLogin() {
+
   }
   addUser() {
     const userData = this.userFormGroup.value;
-    this.us.addUser(
-      userData
-    ).subscribe(product => {
-        this.router.navigate(['../'],
-          {relativeTo: this.activatedRoute});
-      },
-      error1 => {
-        window.alert('Bad stuff happened: was not able to add user ' + error1);
-      });
+    firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).
+    then((credential) => {
+        userData.id = credential.user.uid;
+      console.log(userData.id)
+      this.us.addUser(userData);
+      this.router.navigate(['../'],
+        {relativeTo: this.activatedRoute});
+      })
+      .catch(function(error) {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(userData.email);
+      console.log(errorCode);
+      console.log(errorMessage);
+      this.router.navigate(['../'],
+        {relativeTo: this.activatedRoute});
+      // ...
+    });
   }
-
-
 }
