@@ -1,0 +1,19 @@
+
+<form [formGroup]="userFormGroup" (ngSubmit)="Login()">
+
+  <label>
+    Email
+    <input type="text" formControlName="email">
+  </label>
+  <label>
+    Password
+    <input type="password" formControlName="password">
+  </label>
+
+  <button type="submit">Login</button>
+</form>
+<div>
+  <label >
+    {{userId}}
+  </label>
+</div>

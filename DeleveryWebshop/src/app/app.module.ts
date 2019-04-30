@@ -16,6 +16,7 @@ import { NvbarComponent } from './shared/nvbar/nvbar.component';
 import { ShowUsersComponent } from './User/show-users/show-users.component';
 import { AddUserComponent } from './User/add-user/add-user.component';
 import {AngularFireAuthModule} from "@angular/fire/auth";
+import { LoginComponent } from './User/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {AngularFireAuthModule} from "@angular/fire/auth";
     AddproductComponent,
     NvbarComponent,
     ShowUsersComponent,
-    AddUserComponent
+    AddUserComponent,
+    LoginComponent
   ],
   imports: [
     ReactiveFormsModule,
