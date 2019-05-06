@@ -5,6 +5,7 @@ import {Product} from '../entities/product';
 import {ImageMetadata} from '../entities/image-metadata';
 import {from, Observable, throwError} from 'rxjs';
 import {catchError, first, map, switchMap, tap} from 'rxjs/operators';
+import {User} from "../entities/user";
 const collection_path = 'products';
 
 @Injectable({
@@ -48,6 +49,40 @@ export class ProductService {
         return product;
       })
     );
+  }
+
+  updateProduct(prodData: Product) {
+    this.db.collection(collection_path).doc(prodData.id).update(
+      {
+        productName: prodData.name
+      }
+    );
+  }
+
+  getProductById(id: string): Observable<Product> {
+    return this.db.doc<Product>(collection_path + '/' + id)
+      .get()
+      .pipe(
+        first(),
+        tap(() => {
+        }),
+        switchMap(productDocument => {
+          if (!productDocument || !productDocument.data()) {
+            throw new Error('Product not found');
+          } else {
+            return from(
+              this.db.doc<Product>(collection_path + '/' + id)
+                .get()
+            ).pipe(
+              map(() => {
+                const data = productDocument.data() as Product;
+                data.id = productDocument.id;
+                return data;
+              })
+            );
+          }
+        })
+      );
   }
 
   getProducts(): Observable<Product[]> {

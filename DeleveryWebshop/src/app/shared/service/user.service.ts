@@ -3,7 +3,7 @@ import {from, Observable} from 'rxjs';
 import {first, map, switchMap, tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 import {AngularFirestore} from '@angular/fire/firestore';
-const collection_path = 'user';
+const   collection_path = 'user';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +18,14 @@ export class UserService {
           address: userData.address
         }
       );
+  }
+
+  updateUser(userData: User) {
+    this.db.collection(collection_path).doc(userData.id).update(
+      {
+        username: userData.username
+      }
+    );
   }
 
   getUsers(): Observable<User[]> {
@@ -38,6 +46,32 @@ export class UserService {
               email: data.email
             };
           });
+        })
+      );
+  }
+
+  getUserById(id: string): Observable<User> {
+    return this.db.doc<User>(collection_path + '/' + id)
+      .get()
+      .pipe(
+        first(),
+        tap(productDocument => {
+        }),
+        switchMap(productDocument => {
+          if (!productDocument || !productDocument.data()) {
+            throw new Error('User not found');
+          } else {
+            return from(
+              this.db.doc<User>(collection_path + '/' + id)
+                .get()
+            ).pipe(
+              map(() => {
+                const data = productDocument.data() as User;
+                data.id = productDocument.id;
+                return data;
+              })
+            );
+          }
         })
       );
   }
