@@ -6,7 +6,6 @@ import {ImageMetadata} from "../../shared/entities/image-metadata";
 import {ImageCroppedEvent} from "ngx-image-cropper";
 import {UserService} from '../../shared/service/user.service';
 import * as firebase from "firebase";
-import {auth} from "firebase";
 
 @Component({
   selector: 'app-add-user',

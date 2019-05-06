@@ -9,6 +9,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import {auth} from "firebase";
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-showproduct',
@@ -49,5 +50,9 @@ export class ShowproductComponent implements OnInit {
     }, error1 => {
       window.alert('product not found id: ' + product.id);
     });
+  }
+
+  logut() {
+    firebase.auth().signOut();
   }
 }

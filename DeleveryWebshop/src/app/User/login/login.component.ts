@@ -27,10 +27,12 @@ export class LoginComponent implements OnInit {
 
   Login() {
     const userData = this.userFormGroup.value;
-    firebase.auth().signInWithEmailAndPassword(userData.email, userData.password)
-      .then((credential) => {
-        console.log(credential.user.uid);
-      this.userId = credential.user.uid;
-      });
+   firebase.auth().signInWithEmailAndPassword(userData.email, userData.password)
+        .then((credential) => {
+          /*  console.log(credential.user.uid);
+          this.userId = credential.user.uid;*/
+        }).catch(error =>
+        window.alert('Bad stuff happened: ' + error)
+      );
   }
 }
