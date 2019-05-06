@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Product} from '../entities/product';
 import {Observable, Subject} from "rxjs";
-const key = 'cart';
+import {environment} from "../../../environments/environment";
+const key = environment.localhostKey;
 @Injectable({
   providedIn: 'root'
 })

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  localhostKey: 'deleveryWebshopCart',
   firebase: {
     apiKey: "AIzaSyDu2p2lhx40XLlhcGGnP9H3FosXM4M_WN8",
     authDomain: "nozamaeasv.firebaseapp.com",
