@@ -1,7 +1,7 @@
 <form [formGroup]="userFormGroup" (ngSubmit)="updateUser()">
 
   <label>
-    <div *ngIf="User!==null">
+    <div *ngIf="user!==null">
       Username
       <input class="form-control" formControlName="username">
     </div>

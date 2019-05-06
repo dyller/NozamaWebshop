@@ -1,8 +1,11 @@
 <form [formGroup]="productFormGroup" (ngSubmit)="updateProduct()">
 
   <label>
-      Username
-      <input class="form-control" formControlName="prodName">
-    <button class="btn-light" type="submit">Save</button>
+    <div *ngIf="products">
+     <img [src]="products.url" *ngIf="products.url" style="width: 24px; height: 24px;">
+      Product name
+      <input class="form-control" formControlName="name">
+      <button class="btn-light" type="submit">Save</button>
+    </div>
   </label>
 </form>
