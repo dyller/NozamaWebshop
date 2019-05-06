@@ -28,4 +28,8 @@ export class CartService {
   watchStorage(): Observable<any> {
     return this.storageSub.asObservable();
   }
+
+  getAllProduts(): Array<Product> {
+    return JSON.parse(localStorage.getItem(environment.localhostKey));
+  }
 }

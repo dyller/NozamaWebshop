@@ -8,6 +8,7 @@ import {AddUserComponent} from './User/add-user/add-user.component';
 import {LoginComponent} from './User/login/login.component';
 import {UpdateUserComponent} from './User/update-user/update-user.component';
 import {UpdateProductsComponent} from "./products/update-products/update-products.component";
+import {OrderComponent} from "./order/order/order.component";
 
 const routes: Routes = [
   {path: '', component: ShowproductComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'show-users/update-user/:id', component: UpdateUserComponent},
   {path: 'login', component: LoginComponent},
   {path: 'update-products/:id', component: UpdateProductsComponent},
-  {path: 'show-users', component: ShowUsersComponent}];
+  {path: 'show-users', component: ShowUsersComponent},
+  {path: 'order', component: OrderComponent}];
 
 
 @NgModule({
