@@ -1,0 +1,10 @@
+<form [formGroup]="userFormGroup" (ngSubmit)="updateUser()">
+
+  <label>
+    <div *ngIf="User!==null">
+      Username
+      <input class="form-control" formControlName="username">
+    </div>
+    <button class="btn-light" type="submit">Save</button>
+  </label>
+</form>

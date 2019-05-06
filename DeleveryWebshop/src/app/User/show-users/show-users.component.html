@@ -4,5 +4,6 @@
   <li class="text" *ngFor="let user of users | async">
     {{user.username}} -- {{user.id}} -- {{user.password}}
     <button (click)="deleteProduct(user)">Delete</button>
+    <button routerLink="update-user/{{user.id}}">Update</button>
   </li>
 </ul>

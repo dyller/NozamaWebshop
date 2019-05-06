@@ -15,9 +15,14 @@ import {MomentModule} from 'angular2-moment';
 import { NvbarComponent } from './shared/nvbar/nvbar.component';
 import { ShowUsersComponent } from './User/show-users/show-users.component';
 import { AddUserComponent } from './User/add-user/add-user.component';
-import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './User/login/login.component';
+
 import { OrderComponent } from './order/order/order.component';
+
+import { UpdateUserComponent } from './User/update-user/update-user.component';
+import {UpdateProductsComponent} from "./products/update-products/update-products.component";
+
 
 @NgModule({
   declarations: [
@@ -28,7 +33,9 @@ import { OrderComponent } from './order/order/order.component';
     ShowUsersComponent,
     AddUserComponent,
     LoginComponent,
-    OrderComponent
+    OrderComponent,
+    UpdateUserComponent,
+    UpdateProductsComponent
   ],
   imports: [
     ReactiveFormsModule,

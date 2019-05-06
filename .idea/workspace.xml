@@ -1,7 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="451f6f1f-315e-4300-a7b9-0fafbf042a3c" name="Default Changelist" comment="" />
+    <list default="true" id="451f6f1f-315e-4300-a7b9-0fafbf042a3c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/src/app/User/add-user/add-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/src/app/User/add-user/add-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/src/app/User/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/src/app/User/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/src/app/User/show-users/show-users.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/src/app/User/show-users/show-users.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/src/app/products/showproduct/showproduct.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/src/app/products/showproduct/showproduct.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeleveryWebshop/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/DeleveryWebshop/src/environments/environment.ts" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -74,8 +87,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/products/showproduct/showproduct.component.html">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="119">
               <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+
+            <state relative-caret-position="307">
+              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/products/update-products/update-products.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
+              </folding>
+
             </state>
           </provider>
         </entry>
@@ -104,6 +132,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/nvbar/nvbar.component.html">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="170">
               <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
               <folding>
@@ -111,15 +140,40 @@
                 <element signature="n#style#0;n#li#5;n#ul#0;n#!!top" expanded="true" />
                 <element signature="n#style#1;n#li#5;n#ul#0;n#!!top" expanded="true" />
               </folding>
-            </state>
+
+            <state relative-caret-position="102">
+              <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+
+        <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/update-user/update-user.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="24" column="14" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+
+          </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/nvbar/nvbar.component.spec.ts">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="136">
               <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+
+            <state relative-caret-position="17">
+              <caret line="7" column="5" selection-start-line="7" selection-end-line="7" selection-end-column="5" />
+
+        <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/user.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="76" column="3" lean-forward="true" selection-start-line="52" selection-start-column="2" selection-end-line="76" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+
             </state>
           </provider>
         </entry>
@@ -139,8 +193,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/cart.service.ts">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="85">
               <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+
+            <state relative-caret-position="102">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/product.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="85" column="3" selection-start-line="85" selection-start-column="3" selection-end-line="85" selection-end-column="3" />
+
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -151,8 +214,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/app.component.html">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="34">
               <caret line="2" selection-start-line="2" selection-end-line="2" />
+
+            <state relative-caret-position="204">
+              <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+        <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/update-user/update-user.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+
             </state>
           </provider>
         </entry>
@@ -173,7 +245,15 @@
               <caret line="4" column="24" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="24" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-              </folding>
+
+            <state relative-caret-position="102">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/products/update-products/update-products.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="57" lean-forward="true" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
+
             </state>
           </provider>
         </entry>
@@ -198,16 +278,17 @@
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/nvbar/nvbar.component.css" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/entities/product.ts" />
+
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/product.service.ts" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/products/addproduct/addproduct.component.html" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/products/addproduct/addproduct.component.css" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/user.service.ts" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/User/show-users/show-users.component.html" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/products/showproduct/showproduct.component.ts" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/entities/user.ts" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/User/add-user/add-user.component.html" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/User/show-users/show-users.component.ts" />
-        <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/app-routing.module.ts" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/User/login/login.component.html" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/User/add-user/add-user.component.ts" />
         <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/User/login/login.component.ts" />
@@ -250,6 +331,20 @@
     <option name="x" value="-7" />
     <option name="width" value="697" />
     <option name="height" value="735" />
+        <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/products/showproduct/showproduct.component.html" />
+        <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/product.service.ts" />
+        <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/products/update-products/update-products.component.html" />
+        <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/User/update-user/update-user.component.ts" />
+        <option value="$PROJECT_DIR$/DeleveryWebshop/src/app/products/update-products/update-products.component.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-5" />
+    <option name="width" value="1000" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -304,6 +399,15 @@
               <item name="DeleveryWebshop" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="products" type="462c0819:PsiDirectoryNode" />
+              <item name="update-products" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NozamaWebshop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NozamaWebshop" type="462c0819:PsiDirectoryNode" />
+              <item name="DeleveryWebshop" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -339,6 +443,29 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="environments" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="NozamaWebshop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NozamaWebshop" type="462c0819:PsiDirectoryNode" />
+              <item name="DeleveryWebshop" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+              <item name="update-user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NozamaWebshop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NozamaWebshop" type="462c0819:PsiDirectoryNode" />
+              <item name="DeleveryWebshop" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NozamaWebshop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NozamaWebshop" type="462c0819:PsiDirectoryNode" />
+              <item name="DeleveryWebshop" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="environments" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -348,7 +475,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../study/Github/CantinaAngular" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="C:\Users\jacob\Desktop\exam\NozamaWebshop\DeleveryWebshop\node_modules\tslint" />
@@ -356,6 +484,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.tslint" />
     <property name="ts.external.directory.path" value="C:\Users\jacob\Desktop\exam\NozamaWebshop\DeleveryWebshop\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="W:\Skóli\4Önn\NozamaWebshop\DeleveryWebshop\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -392,12 +521,24 @@
       <workItem from="1556553326296" duration="7429000" />
       <workItem from="1556646195420" duration="1053000" />
       <workItem from="1556731933957" duration="1950000" />
+
       <workItem from="1557068894494" duration="10747000" />
+
+      <workItem from="1557068894494" duration="9796000" />
+      <workItem from="1556553326296" duration="5411000" />
+      <workItem from="1557054626695" duration="1254000" />
+      <workItem from="1557137512798" duration="2627000" />
+
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+
     <option name="totallyTimeSpent" value="37772000" />
+
+    <option name="totallyTimeSpent" value="33388000" />
+    <option name="totallyTimeSpent" value="22452000" />
+
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -409,10 +550,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26934522" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25842696" />
+
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -425,7 +570,11 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.3289689" />
+
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.31587562" />
+
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24713585" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.25354108" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -434,14 +583,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/DeleveryWebshop/node_modules/karma/config.tpl.js" />
-      </list>
-    </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/entities/product/product.module.ts" />
@@ -484,6 +625,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/login/login.component.ts">
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/products/addproduct/addproduct.component.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
@@ -506,6 +648,8 @@
           <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/product.service.spec.ts">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/entities/user.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -529,6 +673,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/show-users/show-users.component.ts">
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/products/showproduct/showproduct.component.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
@@ -573,6 +718,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/node_modules/rxjs/src/internal/observable/from.ts" />
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/login/login.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/login/login.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="49" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/login/login.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/nvbar/nvbar.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/nvbar/nvbar.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+
         </state>
       </provider>
     </entry>
@@ -587,6 +774,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="44" column="8" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/tslint.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="18" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="26" column="24" lean-forward="true" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -594,6 +796,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="44" column="12" selection-start-line="44" selection-start-column="2" selection-end-line="44" selection-end-column="12" />
+
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/add-user/add-user.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+
         </state>
       </provider>
     </entry>
@@ -601,6 +814,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="307">
           <caret line="55" selection-start-line="55" selection-end-line="55" />
+
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/add-user/add-user.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/add-user/add-user.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+
         </state>
       </provider>
     </entry>
@@ -736,8 +968,82 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/cart.service.ts">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="85">
           <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+
+        <state relative-caret-position="187">
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/nvbar/nvbar.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/show-users/show-users.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="7" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/products/addproduct/addproduct.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/show-users/show-users.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/user.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="76" column="3" lean-forward="true" selection-start-line="52" selection-start-column="2" selection-end-line="76" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/products/showproduct/showproduct.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/shared/service/product.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="85" column="3" selection-start-line="85" selection-start-column="3" selection-end-line="85" selection-end-column="3" />
+
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
@@ -765,6 +1071,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+
+        <state relative-caret-position="239">
+          <caret line="61" column="2" selection-start-line="61" selection-start-column="2" selection-end-line="61" selection-end-column="2" />
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/update-user/update-user.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/products/update-products/update-products.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="57" lean-forward="true" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/User/update-user/update-user.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DeleveryWebshop/src/app/products/update-products/update-products.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+
           <folding>
             <element signature="n#style#0;n#li#5;n#ul#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#5;n#ul#0;n#!!top" expanded="true" />
