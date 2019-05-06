@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Product} from '../entities/product';
+import {Observable, Subject} from "rxjs";
 const key = 'cart';
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class CartService {
 
   constructor() { }
 
-
+  private storageSub = new Subject<boolean>();
   add(product: Product) {
     if (localStorage.getItem(key) == null) {
       const products = [
@@ -20,6 +21,10 @@ export class CartService {
       products.push(product);
       localStorage.setItem(key, JSON.stringify(products));
     }
+    this.storageSub.next(true);
+  }
 
+  watchStorage(): Observable<any> {
+    return this.storageSub.asObservable();
   }
 }
