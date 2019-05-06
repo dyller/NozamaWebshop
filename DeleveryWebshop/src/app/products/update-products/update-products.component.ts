@@ -4,6 +4,9 @@ import {Observable} from "rxjs";
 import {Product} from "../../shared/entities/product";
 import {ProductService} from "../../shared/service/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {tap} from 'rxjs/operators';
+import {FileService} from '../../shared/service/file.service';
+import {AngularFirestore} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-update-products',
@@ -14,10 +17,12 @@ export class UpdateProductsComponent implements OnInit {
 
   productFormGroup: FormGroup;
   id: string;
+  products: Observable<Product>;
 
-  constructor(private router: Router, private prodService: ProductService, private actRouter: ActivatedRoute) {
+  constructor(private router: Router, private prodService: ProductService, private actRouter: ActivatedRoute,
+              private fs: FileService, private db: AngularFirestore) {
     this.productFormGroup = new FormGroup( {
-      prodName: new FormControl('')
+      name: new FormControl('')
     });
   }
 
@@ -26,9 +31,21 @@ export class UpdateProductsComponent implements OnInit {
     this.prodService.getProductById(this.id)
       .subscribe(prd => {
         this.productFormGroup.patchValue({
-          prodName: prd.name
+          name: prd.name
         });
       });
+
+    this.products = this.prodService.getProductById(this.id)
+      .pipe(
+        tap(products => {
+          if (products.pictureId) {
+            this.fs.getFileUrl(products.pictureId)
+              .subscribe(url => {
+                products.url = url;
+              });
+          }
+        }));
+
   }
 
   updateProduct()

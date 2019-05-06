@@ -5,7 +5,6 @@ import {Product} from '../entities/product';
 import {ImageMetadata} from '../entities/image-metadata';
 import {from, Observable, throwError} from 'rxjs';
 import {catchError, first, map, switchMap, tap} from 'rxjs/operators';
-import {User} from "../entities/user";
 const collection_path = 'products';
 
 @Injectable({
@@ -54,7 +53,7 @@ export class ProductService {
   updateProduct(prodData: Product) {
     this.db.collection(collection_path).doc(prodData.id).update(
       {
-        productName: prodData.name
+        name: prodData.name
       }
     );
   }

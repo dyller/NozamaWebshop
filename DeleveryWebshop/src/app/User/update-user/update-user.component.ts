@@ -15,7 +15,7 @@ export class UpdateUserComponent implements OnInit {
 
   userFormGroup: FormGroup;
   id: string;
-  
+  user: User;
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute,
