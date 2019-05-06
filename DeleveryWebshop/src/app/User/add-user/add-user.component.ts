@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from "../../shared/service/product.service";
-import {ImageMetadata} from "../../shared/entities/image-metadata";
-import {ImageCroppedEvent} from "ngx-image-cropper";
+import {ImageMetadata} from '../../shared/entities/image-metadata';
+import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {UserService} from '../../shared/service/user.service';
-import * as firebase from "firebase";
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-add-user',

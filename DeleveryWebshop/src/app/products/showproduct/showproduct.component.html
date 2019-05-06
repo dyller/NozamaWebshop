@@ -6,6 +6,7 @@
     {{product.name}} -- {{product.id}} -- {{product.price}}
     <button (click)="deleteProduct(product)">Delete</button>
     <button (click)="productToCart(product)">Add to cart</button>
+    <button routerLink="update-products/{{product.id}}">Update</button>
   </li>
 </ul>
 <button (click)="logut()">logout</button>
