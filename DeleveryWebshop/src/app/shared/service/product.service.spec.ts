@@ -1,12 +1,55 @@
-import { TestBed } from '@angular/core/testing';
+import {getTestBed, TestBed} from '@angular/core/testing';
 
 import { ProductService } from './product.service';
+import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {of} from "rxjs";
+import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/firestore";
+import {FileService} from "./file.service";
 
 describe('ProductService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let angularFirestoreMock: any;
+  let fileServiceMock: any;
+  let fsCollectionMock: any;
+  let httpMock: HttpTestingController;
+  let service: ProductService;
+  beforeEach(() => {
+    angularFirestoreMock = jasmine.createSpyObj('AngularFirestore', ['collection']);
+    fsCollectionMock = jasmine.createSpyObj('collection', ['snapshotChanges', 'valueChanges']);
+    angularFirestoreMock.collection.and.returnValue(fsCollectionMock);
+    fsCollectionMock.snapshotChanges.and.returnValue(of([]));
+    fileServiceMock = jasmine.createSpyObj('FileService', ['getFileUrl', 'upload']);
 
+    TestBed.configureTestingModule({
+      imports: [
+        AngularFirestoreModule,
+        HttpClientTestingModule
+      ],
+      providers: [
+        {provide: AngularFirestore, useValue: angularFirestoreMock},
+        {provide: FileService, useValue: fileServiceMock}
+      ]
+    });
+    httpMock = getTestBed().get(HttpTestingController);
+    service = TestBed.get(ProductService);
+  });
   it('should be created', () => {
-    const service: ProductService = TestBed.get(ProductService);
     expect(service).toBeTruthy();
+  });
+  describe('getProductsCalls', () => {
+    beforeEach(() => {
+      service.getProducts();
+    });
+
+    it('should call collection 1 time on AngularFirestore service', () => {
+      expect(angularFirestoreMock.collection).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call collection with "products" as param', () => {
+      expect(angularFirestoreMock.collection).toHaveBeenCalledWith('products');
+    });
+
+    it('should call snapshotChanges 1 time on AngularFirestore service', () => {
+      expect(fsCollectionMock.snapshotChanges).toHaveBeenCalledTimes(1);
+    });
   });
 });
