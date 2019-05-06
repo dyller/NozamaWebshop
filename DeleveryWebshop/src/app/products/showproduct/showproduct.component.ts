@@ -10,6 +10,7 @@ import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestor
 import {Router} from '@angular/router';
 import {auth} from "firebase";
 import * as firebase from "firebase";
+import {CartService} from "../../shared/service/cart.service";
 
 @Component({
   selector: 'app-showproduct',
@@ -22,7 +23,8 @@ export class ShowproductComponent implements OnInit {
               private fs: FileService,
               private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
-              private router: Router) {
+              private router: Router,
+              private cart: CartService) {
   }
 
 
@@ -54,5 +56,10 @@ export class ShowproductComponent implements OnInit {
 
   logut() {
     firebase.auth().signOut();
+  }
+
+  productToCart(product) {
+  this.cart.add(product);
+
   }
 }
