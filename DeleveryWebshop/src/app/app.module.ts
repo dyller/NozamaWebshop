@@ -22,6 +22,7 @@ import { OrderComponent } from './order/order/order.component';
 
 import { UpdateUserComponent } from './User/update-user/update-user.component';
 import {UpdateProductsComponent} from "./products/update-products/update-products.component";
+import {AuthService} from "./shared/core/auth.service";
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import {UpdateProductsComponent} from "./products/update-products/update-product
     ImageCropperModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

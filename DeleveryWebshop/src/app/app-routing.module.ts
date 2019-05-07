@@ -7,12 +7,13 @@ import {ShowUsersComponent} from './User/show-users/show-users.component';
 import {AddUserComponent} from './User/add-user/add-user.component';
 import {LoginComponent} from './User/login/login.component';
 import {UpdateUserComponent} from './User/update-user/update-user.component';
-import {UpdateProductsComponent} from "./products/update-products/update-products.component";
-import {OrderComponent} from "./order/order/order.component";
+import {UpdateProductsComponent} from './products/update-products/update-products.component';
+import {OrderComponent} from './order/order/order.component';
+import {AuthGuard} from './shared/core/auth.guard';
 
 const routes: Routes = [
   {path: '', component: ShowproductComponent},
-  {path: 'add-product', component: AddproductComponent},
+  {path: 'add-product', component: AddproductComponent, canActivate: [AuthGuard]},
   {path: 'add-user', component: AddUserComponent},
   {path: 'show-users/update-user/:id', component: UpdateUserComponent},
   {path: 'login', component: LoginComponent},

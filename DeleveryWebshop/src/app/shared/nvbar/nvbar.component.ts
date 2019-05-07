@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {Product} from '../entities/product';
-import {environment} from "../../../environments/environment";
-import {CartService} from "../service/cart.service";
+import {environment} from '../../../environments/environment';
+import {CartService} from '../service/cart.service';
 @Component({
   selector: 'app-nvbar',
   templateUrl: './nvbar.component.html',
