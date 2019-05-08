@@ -7,6 +7,8 @@ import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../../shared/service/product.service";
 import {ImageMetadata} from "../../shared/entities/image-metadata";
+import { Store } from '@ngxs/store';
+
 
 @Component({
   selector: 'app-addproduct',

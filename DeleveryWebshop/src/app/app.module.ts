@@ -19,10 +19,12 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './User/login/login.component';
 
 import { OrderComponent } from './order/order/order.component';
-
+import { NgxsModule } from '@ngxs/store';
 import { UpdateUserComponent } from './User/update-user/update-user.component';
 import {UpdateProductsComponent} from "./products/update-products/update-products.component";
 import {AuthService} from "./shared/core/auth.service";
+import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
+import {UserState} from "./action/product.state";
 
 
 @NgModule({
@@ -48,7 +50,11 @@ import {AuthService} from "./shared/core/auth.service";
     AppRoutingModule,
     AngularFireStorageModule,
     ImageCropperModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxsModule.forRoot(
+      [UserState]
+    ),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
