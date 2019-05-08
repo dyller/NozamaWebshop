@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProductService} from "../../shared/service/product.service";
 import {ImageMetadata} from '../../shared/entities/image-metadata';
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {UserService} from '../../shared/service/user.service';
@@ -23,7 +22,8 @@ export class AddUserComponent implements OnInit {
       username: new FormControl(''),
       password: new FormControl(''),
       address: new FormControl(''),
-      email: new FormControl('')
+      email: new FormControl(''),
+      phonenumber: new FormControl('')
     });
   }
 
@@ -40,8 +40,8 @@ export class AddUserComponent implements OnInit {
         userData.id = credential.user.uid;
       console.log(userData.id)
       this.us.addUser(userData);
-      this.router.navigate(['../'],
-        {relativeTo: this.activatedRoute});
+      //this.router.navigate(['../'],
+       // {relativeTo: this.activatedRoute});
       })
       .catch(function(error) {
       // Handle Errors here.
@@ -50,8 +50,8 @@ export class AddUserComponent implements OnInit {
       console.log(userData.email);
       console.log(errorCode);
       console.log(errorMessage);
-      this.router.navigate(['../'],
-        {relativeTo: this.activatedRoute});
+      //this.router.navigate(['../'],
+        //{relativeTo: this.activatedRoute});
       // ...
     });
   }

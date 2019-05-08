@@ -14,4 +14,8 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
   }
 
+  buyProducts(product) {
+    
+    this.cart.addToFB(product);
+  }
 }

@@ -6,6 +6,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {User} from '../entities/user';
 import {map} from 'rxjs/operators';
 import * as firebase from 'firebase';
+import {debug} from "util";
 const key = environment.localhostKey;
 
 @Injectable({
@@ -32,15 +33,27 @@ export class CartService {
 
     // We add the userid and productId to order table
     // We also need to check if the user is currently logged in
-    if (firebase.auth().currentUser.uid === null) {
+
+  }
+
+  addToFB(product: Product) {
+    if (firebase.auth().currentUser.uid !== null) {
+      const products = JSON.parse(sessionStorage.getItem(key));
+      for (const prod of products) {
+        console.log(prod);
+        this.db.collection('orders').doc(firebase.auth().currentUser.uid).set(
+          {
+            productId: [ {prodId: prod.id}],
+            userId: firebase.auth().currentUser.uid
+          }, {merge: true}
+        );
+      }
 
     } else {
       this.db.collection('orders').add(
         {
-          productId: product.id,
-          userId: firebase.auth().currentUser.uid
-        }
-      );
+          productId: [product.id]
+        });
     }
   }
 

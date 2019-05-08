@@ -7,7 +7,7 @@ import {UserService} from '../service/user.service';
 import * as firebase from 'firebase';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {FirebaseAuth} from '@angular/fire';
-import {User} from "../entities/user";
+import {User} from '../entities/user';
 @Component({
   selector: 'app-nvbar',
   templateUrl: './nvbar.component.html',
@@ -21,7 +21,8 @@ export class NvbarComponent implements OnInit {
               private user: UserService ) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-      this.user.getUserById(user.uid).subscribe(couldStoreUser => {
+      console.log('User: ' + user.uid);
+        this.user.getUserById(user.uid).subscribe(couldStoreUser => {
         this.currentUser = couldStoreUser;
       });
     } else {
