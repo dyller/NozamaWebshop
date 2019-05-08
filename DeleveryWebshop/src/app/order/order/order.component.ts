@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../../shared/entities/product";
-import {CartService} from "../../shared/service/cart.service";
+import {Product} from '../../shared/entities/product';
+import {CartService} from '../../shared/service/cart.service';
 
 @Component({
   selector: 'app-order',

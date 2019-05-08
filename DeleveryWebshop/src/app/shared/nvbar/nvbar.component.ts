@@ -19,7 +19,7 @@ export class NvbarComponent implements OnInit {
     this.cart.watchStorage().subscribe((data: string) => {
       this.cartSize = this.cart.getAllProduts();
       // this will call whenever your localStorage data changes
-// use localStorage code here and set your data here for ngFor
+      // use localStorage code here and set your data here for ngFor
     });
 
 

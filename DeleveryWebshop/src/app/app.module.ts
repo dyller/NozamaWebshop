@@ -17,11 +17,11 @@ import { ShowUsersComponent } from './User/show-users/show-users.component';
 import { AddUserComponent } from './User/add-user/add-user.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './User/login/login.component';
-
-import { OrderComponent } from './order/order/order.component';
-
 import { UpdateUserComponent } from './User/update-user/update-user.component';
-import {UpdateProductsComponent} from "./products/update-products/update-products.component";
+import {UpdateProductsComponent} from './products/update-products/update-products.component';
+import {OrderComponent} from './order/order/order.component';
+import {MatButtonModule, MatTooltipModule} from "@angular/material";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -47,7 +47,12 @@ import {UpdateProductsComponent} from "./products/update-products/update-product
     AppRoutingModule,
     AngularFireStorageModule,
     ImageCropperModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatTooltipModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
