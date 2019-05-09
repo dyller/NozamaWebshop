@@ -15,6 +15,7 @@ import {User} from '../entities/user';
 })
 export class NvbarComponent implements OnInit {
   cartSize: Array<Product> = this.cart.getAllProduts();
+  itemsNumber: number = this.countItems();
  currentUser: User;
 
   constructor(private cart: CartService,
@@ -33,11 +34,20 @@ export class NvbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.cart.watchStorage().
     this.cart.watchStorage().subscribe((data: string) => {
       this.cartSize = this.cart.getAllProduts();
-      // this will call whenever your localStorage data changes
+      this.itemsNumber = this.countItems();
+     // this will call whenever your localStorage data changes
       // use localStorage code here and set your data here for ngFor
     });
+  }
+  countItems(): number {
+    let count = 0 ;
+    this.cartSize.forEach(value => {
+      count = count + value.amount;
+    });
+    return count;
   }
 
 }

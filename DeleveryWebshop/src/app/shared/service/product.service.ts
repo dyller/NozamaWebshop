@@ -98,6 +98,7 @@ export class ProductService {
               id: action.payload.doc.id,
               price: data.price,
               name: data.name,
+              amount: data.amount,
               pictureId: data.pictureId
             };
           });

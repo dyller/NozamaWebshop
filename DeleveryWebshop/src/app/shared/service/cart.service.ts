@@ -7,27 +7,38 @@ import {User} from '../entities/user';
 import {map} from 'rxjs/operators';
 import * as firebase from 'firebase';
 import {debug} from "util";
+import {forwardRefResolver} from "@angular/compiler-cli/src/ngtsc/annotations/src/util";
+import {forEach} from "@angular/router/src/utils/collection";
 const key = environment.localhostKey;
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+  products: Array<Product> ;
   constructor(private db: AngularFirestore) { }
 
   private storageSub = new Subject<boolean>();
 
   add(product: Product) {
+    product.amount = 1 ;
     if (sessionStorage.getItem(key) == null) {
       const products = [
       product
     ];
       sessionStorage.setItem(key, JSON.stringify(products));
-    } else {
-      const products = JSON.parse(sessionStorage.getItem(key));
-      products.push(product);
-      sessionStorage.setItem(key, JSON.stringify(products));
+    } else  {
+       this.products = JSON.parse(sessionStorage.getItem(key));
+      for (let i = 0; i < this.products.length ; i++) {
+        if (this.products[i].name === product.name) {
+          this.products[i].amount = this.products[i].amount + 1;
+          sessionStorage.setItem(key, JSON.stringify(this.products));
+          return;
+        }
+      }
+
+      this.products.push(product);
+      sessionStorage.setItem(key, JSON.stringify(this.products));
     }
     this.storageSub.next(true);
 

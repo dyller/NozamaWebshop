@@ -24,10 +24,7 @@ export class ShowproductComponent implements OnInit {
               private router: Router,
               private cart: CartService) {
   }
-
-
-
-  ngOnInit() {
+ ngOnInit() {
     this.products = this.ps.getProducts()
       .pipe(
         tap(products => {
