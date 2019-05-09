@@ -34,7 +34,6 @@ export class NvbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cart.watchStorage().
     this.cart.watchStorage().subscribe((data: string) => {
       this.cartSize = this.cart.getAllProduts();
       this.itemsNumber = this.countItems();
