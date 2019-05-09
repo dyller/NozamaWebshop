@@ -23,7 +23,8 @@ import {MatButtonModule, MatTooltipModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UpdateProductsComponent} from './products/update-products/update-products.component';
 import {AuthService} from './shared/core/auth.service';
-
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,8 @@ import {AuthService} from './shared/core/auth.service';
     MatTooltipModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

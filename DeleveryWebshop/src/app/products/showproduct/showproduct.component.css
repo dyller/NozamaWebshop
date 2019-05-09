@@ -1,0 +1,13 @@
+.example-card {
+  max-width: 250px;
+}
+mat-card {
+  background: lightblue;
+}
+mat-grid-tile :hover {
+  background: red;
+}
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
