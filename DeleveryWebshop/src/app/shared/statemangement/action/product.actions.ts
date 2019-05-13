@@ -1,5 +1,5 @@
 
-import {User} from "../shared/entities/user";
+import {User} from "../../entities/user";
 
 export class AddUser {
   static readonly type = '[User] Add';

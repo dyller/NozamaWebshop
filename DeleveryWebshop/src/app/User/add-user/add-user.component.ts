@@ -7,7 +7,8 @@ import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {UserService} from '../../shared/service/user.service';
 import * as firebase from 'firebase';
 import {Store} from "@ngxs/store";
-import {AddUser} from "../../action/product.actions";
+import {AddUser} from "../../shared/statemangement/action/product.actions";
+import {AuthService} from "../../shared/core/auth.service";
 
 @Component({
   selector: 'app-add-user',
@@ -20,7 +21,7 @@ export class AddUserComponent implements OnInit {
   constructor (private router: Router,
                private activatedRoute: ActivatedRoute,
                private us: UserService,
-               private store: Store) {
+               private authServer: AuthService) {
 
     this.userFormGroup = new FormGroup({
       username: new FormControl(''),
@@ -38,7 +39,8 @@ export class AddUserComponent implements OnInit {
   }
   addUser() {
     const userData = this.userFormGroup.value;
-    this.store.dispatch(new AddUser(userData));
+    debugger;
+    this.authServer.createUser(userData);
    /* firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).
     then((credential) => {
         userData.id = credential.user.uid;
