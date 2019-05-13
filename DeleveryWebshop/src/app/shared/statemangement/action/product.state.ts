@@ -42,18 +42,14 @@ export class UserState {
     this.router.navigate([''],
       {relativeTo: this.activatedRoute});
 
-  /*  state.user.id = firbaseUser.user.uid;
-      console.log(state.user.id);
-      this.us.addUser(state.user);
-      this.router.navigate([''],
-        {relativeTo: this.activatedRoute});*/
   }
 
   @Action(RemoveUser)
-  remove({getState, patchState }: StateContext<UserStateModel>, { payload }: RemoveUser) {
-    patchState({
-      // user: getState().user.filter(a => a.name !== payload)
-    });
+  remove({getState }: StateContext<UserStateModel>, { payload }: RemoveUser) {
+    const state = getState();
+    this.us.removeUser(payload);
+
+
   }
 
 }

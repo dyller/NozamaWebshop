@@ -3,6 +3,7 @@ import {from, Observable} from 'rxjs';
 import {first, map, switchMap, tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Product} from "../entities/product";
 const   collection_path = 'user';
 @Injectable({
   providedIn: 'root'
@@ -101,5 +102,10 @@ export class UserService {
           }
         })
       );
+  }
+
+  removeUser(id: string) {
+    this.db.doc<User>(collection_path + '/' + id)
+      .delete();
   }
 }

@@ -4,6 +4,7 @@
   <li><a routerLink="/add-user">Add User</a></li>
   <li><a routerLink="/show-users">Show user</a></li>
  <li><a routerLink="/order" >Order</a></li>
+  <li *ngIf="currentUser != null"><a (click)="deleteAccount()" >Delete Account</a></li>
   <li *ngIf="currentUser != null"><a style="color: red">{{currentUser.username}}</a></li>
   <li *ngIf="currentUser == null"><a style="color: red">Guest</a></li>
   <li routerLink="/order" style="float:right"><a><img src="https://img.icons8.com/plasticine/30/000000/shopping-cart.png"></a></li>

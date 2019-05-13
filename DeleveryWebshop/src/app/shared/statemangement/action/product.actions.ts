@@ -1,5 +1,6 @@
 
 import {User} from "../../entities/user";
+import * as firebase from "firebase";
 
 export class AddUser {
   static readonly type = '[User] Add';

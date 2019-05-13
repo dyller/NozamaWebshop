@@ -6,7 +6,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import * as firebase from 'firebase';
-import {AddUser} from '../statemangement/action/product.actions';
+import {AddUser, RemoveUser} from '../statemangement/action/product.actions';
 import {Store} from '@ngxs/store';
 
 @Injectable({
@@ -38,5 +38,14 @@ export class AuthService {
           {relativeTo: this.activatedRoute});
         // ...
       });
+  }
+  deleteAccount(currentUser: firebase.User) {
+    currentUser.delete().then(function() {
+      // User deleted.
+    }).then(() => {
+        this.store.dispatch(new RemoveUser(currentUser.uid));
+      }).catch(function(error) {
+      window.alert('user not removed: ' + error);
+    });
   }
 }

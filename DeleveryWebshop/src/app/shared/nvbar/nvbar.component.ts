@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {FirebaseAuth} from '@angular/fire';
 import {User} from "../entities/user";
+import {AuthService} from "../core/auth.service";
 @Component({
   selector: 'app-nvbar',
   templateUrl: './nvbar.component.html',
@@ -18,7 +19,8 @@ export class NvbarComponent implements OnInit {
  currentUser: User;
 
   constructor(private cart: CartService,
-              private user: UserService ) {
+              private user: UserService,
+              private authService: AuthService) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
       this.user.getUserById(user.uid).subscribe(couldStoreUser => {
@@ -39,4 +41,7 @@ export class NvbarComponent implements OnInit {
     });
   }
 
+  deleteAccount() {
+    this.authService.deleteAccount(firebase.auth().currentUser);
+  }
 }

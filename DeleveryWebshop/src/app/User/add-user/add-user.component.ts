@@ -39,7 +39,6 @@ export class AddUserComponent implements OnInit {
   }
   addUser() {
     const userData = this.userFormGroup.value;
-    debugger;
     this.authServer.createUser(userData);
    /* firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).
     then((credential) => {
