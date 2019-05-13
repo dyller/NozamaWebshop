@@ -42,44 +42,6 @@ export class UpdateProductsComponent implements OnInit {
           name: prd.name
         });
       });
-/*debugger
-    this.products = this.prodService.getProductById(this.id)
-      .pipe(
-         tap(products => {
-           console.log(products);
-          if (products.pictureId) {
-            this.fs.getFileUrl(products.pictureId)
-              .subscribe(url => {
-                console.log(url);
-                products.url = url;
-              });
-          }
-
-        }));*/
-
-    /*this.productsobs = this.prodService.getProductById(this.id)
-      .pipe(
-        tap(products => {
-          if (products != null) {
-            if (products.pictureId) {
-              this.fs.getFileUrl(products.pictureId)
-                .subscribe(url => {
-                  products.url = url;
-                });
-            }
-          }})
-      );
-*/
-    /*this.prodService.getProductById(this.id)
-       .subscribe(product => {
-         if (product.pictureId) {
-           this.fs.getFileUrl(product.pictureId)
-             .subscribe(url => {
-               console.log(url);
-               product.url = url;
-               this.products = product;
-             });
-       }});*/
   }
 
   updateProduct() {

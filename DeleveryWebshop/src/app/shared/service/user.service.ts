@@ -4,7 +4,7 @@ import {first, map, switchMap, tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Product} from "../entities/product";
-const   collection_path = 'user';
+const   collection_path = 'users';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +16,8 @@ export class UserService {
         this.db.collection(collection_path).doc(userData.id).set(
         {
           username: userData.username,
-          address: userData.address
+          address: userData.address,
+          phonenumber: userData.phonenumber
         }
       );
 
@@ -45,6 +46,7 @@ export class UserService {
               username: data.username,
               password: data.password,
               address: data.address,
+              phonenumber: data.phonenumber,
               email: data.email
             };
           });
@@ -57,7 +59,7 @@ export class UserService {
       .get()
       .pipe(
         first(),
-        tap(productDocument => {
+        tap(() => {
         }),
         switchMap(productDocument => {
           if (!productDocument || !productDocument.data()) {

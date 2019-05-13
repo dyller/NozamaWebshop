@@ -32,7 +32,9 @@ export class AddproductComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
+
   addProduct() {
     const productData = this.productFormGroup.value;
     this.ps.addProductWithImage(

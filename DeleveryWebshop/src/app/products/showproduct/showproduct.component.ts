@@ -4,13 +4,11 @@ import {Product} from '../../shared/entities/product';
 import {FileService} from '../../shared/service/file.service';
 import {ProductService} from '../../shared/service/product.service';
 import {switchMap, tap} from 'rxjs/operators';
-import {User} from '../../shared/entities/user';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
-import {auth} from "firebase";
-import * as firebase from "firebase";
-import {CartService} from "../../shared/service/cart.service";
+import * as firebase from 'firebase';
+import {CartService} from '../../shared/service/cart.service';
 
 @Component({
   selector: 'app-showproduct',
@@ -26,10 +24,7 @@ export class ShowproductComponent implements OnInit {
               private router: Router,
               private cart: CartService) {
   }
-
-
-
-  ngOnInit() {
+ ngOnInit() {
     this.products = this.ps.getProducts()
       .pipe(
         tap(products => {
@@ -59,7 +54,6 @@ export class ShowproductComponent implements OnInit {
   }
 
   productToCart(product) {
-  this.cart.add(product);
-
+    this.cart.add(product);
   }
 }

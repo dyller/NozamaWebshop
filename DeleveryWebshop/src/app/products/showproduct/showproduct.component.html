@@ -1,12 +1,37 @@
 <h2>List all Products</h2>
 <button routerLink="add-product">+</button>
-<ul>
-  <li class="text" *ngFor="let product of products | async">
-    <img [src]="product.url" *ngIf="product.url" style="width: 24px; height: 24px;">
+
+    <mat-grid-list cols="4" rowHeight="500px">
+      <mat-grid-tile
+        *ngFor="let product of products | async"
+        [colspan]="1"
+        [rowspan]="1">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{product.name}}</mat-card-title>
+            <mat-card-subtitle>{{product.price}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="product.url" *ngIf="product.url" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+
+            <button mat-button (click)="productToCart(product)">Add to cart</button>
+            <p>
+              HEY KRISTOFÉR
+            </p>
+
+          </mat-card-content>
+          <mat-card-actions>
+            <button  mat-button (click)="deleteProduct(product)">Delete</button>
+            <button mat-button routerLink="update-products/{{product.id}}">Update</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  <!--  <img [src]="product.url" *ngIf="product.url" style="width: 24px; height: 24px;">
     {{product.name}} -- {{product.id}} -- {{product.price}}
     <button (click)="deleteProduct(product)">Delete</button>
     <button (click)="productToCart(product)">Add to cart</button>
-    <button routerLink="update-products/{{product.id}}">Update</button>
-  </li>
-</ul>
+    <button routerLink="update-products/{{product.id}}">Update</button>-->
 <button (click)="logut()">logout</button>

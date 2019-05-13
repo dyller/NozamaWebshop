@@ -1,28 +1,75 @@
 import { Injectable } from '@angular/core';
 import {Product} from '../entities/product';
-import {Observable, Subject} from "rxjs";
-import {environment} from "../../../environments/environment";
+import {from, Observable, Subject} from 'rxjs';
+import {environment} from '../../../environments/environment';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {User} from '../entities/user';
+import {map} from 'rxjs/operators';
+import * as firebase from 'firebase';
+import {debug} from 'util';
+import {forwardRefResolver} from '@angular/compiler-cli/src/ngtsc/annotations/src/util';
+import {forEach} from '@angular/router/src/utils/collection';
 const key = environment.localhostKey;
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
-  constructor() { }
+  products: Array<Product> ;
+  constructor(private db: AngularFirestore) { }
 
   private storageSub = new Subject<boolean>();
+
   add(product: Product) {
-    if (localStorage.getItem(key) == null) {
+    product.amount = 1 ;
+    if (sessionStorage.getItem(key) == null) {
       const products = [
       product
     ];
-      localStorage.setItem(key, JSON.stringify(products));
-    } else {
-      const products = JSON.parse(localStorage.getItem(key));
-      products.push(product);
-      localStorage.setItem(key, JSON.stringify(products));
+      sessionStorage.setItem(key, JSON.stringify(products));
+    } else  {
+       this.products = JSON.parse(sessionStorage.getItem(key));
+      for (let i = 0; i < this.products.length ; i++) {
+        if (this.products[i].name === product.name) {
+          this.products[i].amount = this.products[i].amount + 1;
+          sessionStorage.setItem(key, JSON.stringify(this.products));
+          return;
+        }
+      }
+
+      this.products.push(product);
+      sessionStorage.setItem(key, JSON.stringify(this.products));
     }
     this.storageSub.next(true);
+
+    // We add the userid and productId to order table
+    // We also need to check if the user is currently logged in
+
+  }
+
+  addToFB(product: Product[]) {
+    if (firebase.auth().currentUser.uid !== null) {
+      const products = JSON.parse(sessionStorage.getItem(key));
+      for (const prod of products) {
+        console.log(prod);
+        this.db.collection('orders').doc(firebase.auth().currentUser.uid).set(
+          {
+            productId: [ {prodId: prod.id}],
+            userId: firebase.auth().currentUser.uid
+          }, {merge: true}
+        );
+      }
+
+    } else {
+      const products = JSON.parse(sessionStorage.getItem(key));
+      for (const prod of products) {
+        this.db.collection('orders').add(
+          {
+            productId: [prod.id]
+          });
+      }
+
+    }
   }
 
   watchStorage(): Observable<any> {
@@ -30,6 +77,6 @@ export class CartService {
   }
 
   getAllProduts(): Array<Product> {
-    return JSON.parse(localStorage.getItem(environment.localhostKey));
+    return JSON.parse(sessionStorage.getItem(environment.localhostKey));
   }
 }
