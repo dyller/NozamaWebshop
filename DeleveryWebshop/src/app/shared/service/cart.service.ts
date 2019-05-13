@@ -6,9 +6,9 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {User} from '../entities/user';
 import {map} from 'rxjs/operators';
 import * as firebase from 'firebase';
-import {debug} from "util";
-import {forwardRefResolver} from "@angular/compiler-cli/src/ngtsc/annotations/src/util";
-import {forEach} from "@angular/router/src/utils/collection";
+import {debug} from 'util';
+import {forwardRefResolver} from '@angular/compiler-cli/src/ngtsc/annotations/src/util';
+import {forEach} from '@angular/router/src/utils/collection';
 const key = environment.localhostKey;
 
 @Injectable({
@@ -47,7 +47,7 @@ export class CartService {
 
   }
 
-  addToFB(product: Product) {
+  addToFB(product: Product[]) {
     if (firebase.auth().currentUser.uid !== null) {
       const products = JSON.parse(sessionStorage.getItem(key));
       for (const prod of products) {
@@ -61,10 +61,14 @@ export class CartService {
       }
 
     } else {
-      this.db.collection('orders').add(
-        {
-          productId: [product.id]
-        });
+      const products = JSON.parse(sessionStorage.getItem(key));
+      for (const prod of products) {
+        this.db.collection('orders').add(
+          {
+            productId: [prod.id]
+          });
+      }
+
     }
   }
 
