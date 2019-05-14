@@ -5,7 +5,7 @@ import * as corsModule from 'cors';
 const cors = corsModule(
   {origin:'https://us-central1-nozamaandroid.cloudfunctions.net/products'});
 
-exports.orders = functions.https.onRequest(
+exports.products = functions.https.onRequest(
   (request, response) => {
     cors(request, response, async () => {
       if(request.method === 'GET') {
