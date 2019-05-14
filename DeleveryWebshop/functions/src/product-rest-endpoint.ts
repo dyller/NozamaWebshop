@@ -1,6 +1,6 @@
-/*import * as express from 'express';
+//import * as express from 'express';
 
-const app = express();
+/*const app = express();
 
 // View a contact
 app.get('/:productId', (req, res) => {
@@ -25,4 +25,6 @@ app.put('/:productId', (req, res) => {
 // Delete a contact
 app.delete('/:productId', (req, res) => {
   res.send('Document deleted');
-})*/
+})
+
+export = app;*/

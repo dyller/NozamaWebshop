@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 import * as corsModule from 'cors';
 
 const cors = corsModule(
-  {origin:'https://us-central1-nozamaandroid.cloudfunctions.net/products'});
+  {origin: true});
 
 exports.products = functions.https.onRequest(
   (request, response) => {
@@ -11,9 +11,9 @@ exports.products = functions.https.onRequest(
       if(request.method === 'GET') {
         admin.firestore().collection('products')
           .get()
-          .then(pruducts => {
+          .then(products => {
             const listOfProducts: any = [];
-            pruducts.forEach(product => {
+            products.forEach(product => {
               const prod = product.data();
               prod.id = product.id;
               listOfProducts.push(prod);
@@ -48,17 +48,17 @@ exports.products = functions.https.onRequest(
             }).then();
           //Save Product metadata to firestore
           product.pictureId = value.id;
-          const ord = await admin.firestore().collection('products')
+          const prod = await admin.firestore().collection('products')
             .add(product)
             .then();
-          product.id = ord.id;
+          product.id = prod.id;
           response.json(product);
         } catch (err) {
           response.send(err)
         }
       } else {
         console.log('Method: ' + request.method);
-        response.send("Not support request, try GET and POSTer")
+        response.send("Not support request, try GET and POST")
       }
     });
   });

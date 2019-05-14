@@ -1,11 +1,11 @@
 import {Product} from '../../entities/product';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import {User} from '../../entities/user';
-import {AddUser, ReadAllUser, RemoveUser, UpdateUser} from './user.actions';
+import {AddUser,  RemoveUser} from './user.actions';
 import * as firebase from 'firebase';
 import {UserService} from '../../service/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from "../../core/auth.service";
+import {AuthService} from '../../core/auth.service';
 export class UserStateModel {
   user: User;
 
