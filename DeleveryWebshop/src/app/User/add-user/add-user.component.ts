@@ -6,7 +6,7 @@ import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {UserService} from '../../shared/service/user.service';
 import * as firebase from 'firebase';
 import {Store} from "@ngxs/store";
-import {AddUser} from "../../shared/statemangement/action/product.actions";
+import {AddUser} from "../../shared/statemangement/action/user.actions";
 import {AuthService} from "../../shared/core/auth.service";
 
 @Component({
