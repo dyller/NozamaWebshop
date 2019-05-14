@@ -1,7 +1,7 @@
 import {Product} from '../../entities/product';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import {User} from '../../entities/user';
-import {AddUser, ReadAllUser, RemoveUser, UpdateUser} from './product.actions';
+import {AddUser, ReadAllUser, RemoveUser, UpdateUser} from './user.actions';
 import * as firebase from 'firebase';
 import {UserService} from '../../service/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
