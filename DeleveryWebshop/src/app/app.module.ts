@@ -18,9 +18,8 @@ import { AddUserComponent } from './User/add-user/add-user.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './User/login/login.component';
 
-import {UserState} from './shared/statemangement/action/product.state';
+import {UserState} from './shared/statemangement/action/user.state';
 
-import { UpdateUserComponent } from './User/update-user/update-user.component';
 import {OrderComponent} from './order/order/order.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UpdateProductsComponent} from './products/update-products/update-products.component';
@@ -39,7 +38,6 @@ import {HttpClientModule} from '@angular/common/http';
     AddUserComponent,
     LoginComponent,
     OrderComponent,
-    UpdateUserComponent,
     UpdateProductsComponent
   ],
   imports: [
