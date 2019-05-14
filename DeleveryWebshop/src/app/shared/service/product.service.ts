@@ -5,6 +5,8 @@ import {Product} from '../entities/product';
 import {ImageMetadata} from '../entities/image-metadata';
 import {from, Observable, throwError} from 'rxjs';
 import {catchError, first, map, switchMap, tap} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+
 const collection_path = 'products';
 
 @Injectable({
@@ -13,23 +15,25 @@ const collection_path = 'products';
 export class ProductService {
 
   constructor(private db: AngularFirestore,
-              private fs: FileService) {}
+              private fs: FileService,
+              private http: HttpClient) {}
 
   addProductWithImage(product: Product, imageMeta: ImageMetadata)
     : Observable<Product> {
     if (imageMeta && imageMeta.fileMeta
       && imageMeta.fileMeta.name && imageMeta.fileMeta.type &&
       (imageMeta.imageBlob || imageMeta.base64Image)) {
-      return this.fs.uploadImage(imageMeta)
-        .pipe(
-          switchMap(metadata => {
-            product.pictureId = metadata.id;
-            return this.addProduct(product);
-          }),
-          catchError((err, caught) => {
-            return throwError(err);
-          })
-        );
+        const endPoint = 'https://us-central1-nozamaandroid.cloudfunctions.net/products';
+        const productToSend: any = {
+          name: product.name,
+          image: {
+            base64: imageMeta.base64Image,
+            name: imageMeta.fileMeta.name,
+            type: imageMeta.fileMeta.type,
+            size: imageMeta.fileMeta.size
+          }
+        };
+        return this.http.post<Product>(endPoint, productToSend);
     } else {
       return throwError('You need better metadata');
     }

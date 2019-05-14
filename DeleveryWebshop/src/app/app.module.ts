@@ -18,8 +18,6 @@ import { AddUserComponent } from './User/add-user/add-user.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './User/login/login.component';
 
-import { NgxsModule } from '@ngxs/store';
-
 import {UserState} from './shared/statemangement/action/user.state';
 
 import {OrderComponent} from './order/order/order.component';
@@ -27,6 +25,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UpdateProductsComponent} from './products/update-products/update-products.component';
 import {AuthService} from './shared/core/auth.service';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
+import {NgxsModule} from '@ngxs/store';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,8 @@ import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} fro
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
