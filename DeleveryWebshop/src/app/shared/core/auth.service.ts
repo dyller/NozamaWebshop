@@ -6,7 +6,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import * as firebase from 'firebase';
-import {AddUser, RemoveUser} from '../statemangement/action/user.actions';
+import {AddUser, RemoveUser} from '../statemangement/action/product.actions';
 import {Store} from '@ngxs/store';
 
 @Injectable({

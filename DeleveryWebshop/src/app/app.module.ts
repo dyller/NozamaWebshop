@@ -20,8 +20,9 @@ import { LoginComponent } from './User/login/login.component';
 
 import { NgxsModule } from '@ngxs/store';
 
-import {UserState} from './shared/statemangement/action/user.state';
+import {UserState} from './shared/statemangement/action/product.state';
 
+import { UpdateUserComponent } from './User/update-user/update-user.component';
 import {OrderComponent} from './order/order/order.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UpdateProductsComponent} from './products/update-products/update-products.component';
@@ -38,6 +39,7 @@ import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} fro
     AddUserComponent,
     LoginComponent,
     OrderComponent,
+    UpdateUserComponent,
     UpdateProductsComponent
   ],
   imports: [
