@@ -21,7 +21,7 @@ export class NvbarComponent implements OnInit {
 
   constructor(private cart: CartService,
               private user: UserService,
-              private authService: AuthService){
+              private authService: AuthService) {
     firebase.auth().onAuthStateChanged(users => {
       if (users) {
       console.log('User: ' + users.uid);
@@ -38,7 +38,7 @@ export class NvbarComponent implements OnInit {
     this.cart.watchStorage().subscribe((data: string) => {
       if (this.cartSize !== null) {
         this.cartSize = this.cart.getAllProduts();
-        this.itemsNumber = this.countItems();
+      this.itemsNumber = this.countItems();
       }
      // this will call whenever your localStorage data changes
       // use localStorage code here and set your data here for ngFor

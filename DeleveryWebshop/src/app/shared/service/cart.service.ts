@@ -33,6 +33,7 @@ export class CartService {
         if (this.products[i].name === product.name) {
           this.products[i].amount = this.products[i].amount + 1;
           sessionStorage.setItem(key, JSON.stringify(this.products));
+          this.storageSub.next(true);
           return;
         }
       }
