@@ -1,25 +1,38 @@
 import { Injectable } from '@angular/core';
-import {from, Observable} from 'rxjs';
+import {from, Observable, throwError} from 'rxjs';
 import {first, map, switchMap, tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Product} from '../entities/product';
+import {HttpClient} from '@angular/common/http';
+
 const   collection_path = 'users';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore,
+              private http: HttpClient) { }
 
-  addUser(userData: User) {
-        this.db.collection(collection_path).doc(userData.id).set(
-        {
-          username: userData.username,
-          address: userData.address,
-          phonenumber: userData.phonenumber
-        }
-      );
-
+  addUser(userData: User): Observable<User> {
+    if (userData && userData.username && userData.address && userData.email)
+    {
+      const endPoint = 'https://us-central1-nozamaandroid.cloudfunctions.net/users';
+      const userToCreate: any =
+      {
+        username: userData.username,
+        address: userData.address,
+        email: userData.email,
+        phonenumber: userData.phonenumber
+      };
+      return this.http.post<User>(endPoint, userToCreate);
+    }
+    else
+    {
+      return throwError('You need to fill all the fields!');
+    }
   }
 
   updateUser(userData: User) {
@@ -66,8 +79,9 @@ export class UserService {
           if (!productDocument || !productDocument.data())
           {
             throw new Error('User not found');
-          } else {
-            return from
+          } else
+            {
+              return from
             (
               this.db.doc<User>(collection_path + '/' + id)
                 .get()

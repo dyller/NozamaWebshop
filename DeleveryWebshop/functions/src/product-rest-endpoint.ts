@@ -8,7 +8,7 @@ app.get('/:productId', (req, res) => {
 })
 // View all contacts
 app.get('', (req, res) => {
-  res.status(200).send('There u goes')
+  res.status(200).send('There u goes' + req.params.name);
 })
 // Add new contact
 app.post('', (req, res) => {
