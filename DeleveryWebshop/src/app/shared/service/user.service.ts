@@ -3,7 +3,6 @@ import {from, Observable} from 'rxjs';
 import {first, map, switchMap, tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Product} from "../entities/product";
 const   collection_path = 'users';
 @Injectable({
   providedIn: 'root'
@@ -54,22 +53,28 @@ export class UserService {
       );
   }
 
-  getUserById(id: string): Observable<User> {
+  getUserById(id: string): Observable<User>
+  {
     return this.db.doc<User>(collection_path + '/' + id)
       .get()
       .pipe(
         first(),
         tap(() => {
         }),
-        switchMap(productDocument => {
-          if (!productDocument || !productDocument.data()) {
+        switchMap(productDocument =>
+        {
+          if (!productDocument || !productDocument.data())
+          {
             throw new Error('User not found');
           } else {
-            return from(
+            return from
+            (
               this.db.doc<User>(collection_path + '/' + id)
                 .get()
-            ).pipe(
-              map(() => {
+            ).pipe
+            (
+              map(() =>
+              {
                 const data = productDocument.data() as User;
                 data.id = productDocument.id;
                 return data;
@@ -80,22 +85,30 @@ export class UserService {
       );
   }
 
-  deleteUser(id: string): Observable<User> {
+  deleteUser(id: string): Observable<User>
+  {
     return this.db.doc<User>(collection_path + '/' + id)
       .get()
       .pipe(
         first(),
-        tap(productDocument => {
+        tap(productDocument =>
+        {
+
         }),
-        switchMap(productDocument => {
-          if (!productDocument || !productDocument.data()) {
+        switchMap(productDocument =>
+        {
+          if (!productDocument || !productDocument.data())
+          {
             throw new Error('User not found');
           } else {
-            return from(
+            return from
+            (
               this.db.doc<User>(collection_path + '/' + id)
                 .delete()
-            ).pipe(
-              map(() => {
+            ).pipe
+            (
+              map(() =>
+              {
                 const data = productDocument.data() as User;
                 data.id = productDocument.id;
                 return data;
@@ -106,7 +119,8 @@ export class UserService {
       );
   }
 
-  removeUser(id: string) {
+  removeUser(id: string)
+  {
     this.db.doc<User>(collection_path + '/' + id)
       .delete();
   }

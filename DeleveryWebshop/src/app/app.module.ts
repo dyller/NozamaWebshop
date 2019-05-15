@@ -17,9 +17,7 @@ import { ShowUsersComponent } from './User/show-users/show-users.component';
 import { AddUserComponent } from './User/add-user/add-user.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LoginComponent } from './User/login/login.component';
-
 import {UserState} from './shared/statemangement/action/user.state';
-
 import {OrderComponent} from './order/order/order.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UpdateProductsComponent} from './products/update-products/update-products.component';
