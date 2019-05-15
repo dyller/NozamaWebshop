@@ -14,11 +14,11 @@ export class UserStateModel {
   name: 'guest',
   defaults: {
     user: {
-      username: 'guest',
-      email: null,
+      Username: 'guest',
+      Email: null,
       id: null,
-      password: null,
-      address: null
+      Password: null,
+      Address: null
     }
   }
 })

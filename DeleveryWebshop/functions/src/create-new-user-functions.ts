@@ -5,7 +5,7 @@ import * as corsModule from 'cors';
 const cors = corsModule(
   {origin: true});
 
-exports.products = functions.https.onRequest(
+exports.users = functions.https.onRequest(
   (request, response) => {
     cors(request, response, async() => {
       if (request.method === 'GET') {
@@ -23,10 +23,11 @@ exports.products = functions.https.onRequest(
           .catch(err => {console.log(err)})
       } else if(request.method === 'POST') {
         const data = request.body;
-        const user: any = {username: data.username,
-                           phonenumber: data.phonenumber,
-                           address: data.address};
-          const usr = await admin.firestore().collection('products')
+        const user: any = {Username: data.Username,
+                           Phonenumber: data.phonenumber,
+                           Address: data.Address,
+                           Email: data.Email};
+          const usr = await admin.firestore().collection('users')
             .add(user)
             .then();
           user.id = usr.id;

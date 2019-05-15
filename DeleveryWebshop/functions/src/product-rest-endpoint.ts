@@ -1,7 +1,7 @@
+// PRODUCTS
 import * as express from 'express';
 
 const app = express();
-
 // View a contact
 app.get('/:productId', (req, res) => {
   res.status(200).send('got it ' +  req.params.productId);

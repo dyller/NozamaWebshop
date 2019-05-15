@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   createUser(user: User) {
-    firebase.auth().createUserWithEmailAndPassword(user.email, user.password).
+    firebase.auth().createUserWithEmailAndPassword(user.Email, user.Password).
     then((credential) => {
       user.id = credential.user.uid;
      this.store.dispatch(new AddUser(user));

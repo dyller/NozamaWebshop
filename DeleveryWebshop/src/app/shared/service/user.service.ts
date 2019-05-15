@@ -17,15 +17,15 @@ export class UserService {
               private http: HttpClient) { }
 
   addUser(userData: User): Observable<User> {
-    if (userData && userData.username && userData.address && userData.email)
+    if (userData && userData.Username && userData.Address && userData.Email && userData.Phonenumber)
     {
       const endPoint = 'https://us-central1-nozamaandroid.cloudfunctions.net/users';
       const userToCreate: any =
       {
-        username: userData.username,
-        address: userData.address,
-        email: userData.email,
-        phonenumber: userData.phonenumber
+        Username: userData.Username,
+        Address: userData.Address,
+        Email: userData.Email,
+        Phonenumber: userData.Phonenumber
       };
       return this.http.post<User>(endPoint, userToCreate);
     }
@@ -38,7 +38,7 @@ export class UserService {
   updateUser(userData: User) {
     this.db.collection(collection_path).doc(userData.id).update(
       {
-        username: userData.username
+        Username: userData.Username
       }
     );
   }
@@ -55,11 +55,11 @@ export class UserService {
             const data = action.payload.doc.data() as User;
             return {
               id: action.payload.doc.id,
-              username: data.username,
-              password: data.password,
-              address: data.address,
-              phonenumber: data.phonenumber,
-              email: data.email
+              Username: data.Username,
+              Password: data.Password,
+              Address: data.Address,
+              Phonenumber: data.Phonenumber,
+              Email: data.Email
             };
           });
         })
