@@ -3,7 +3,6 @@ import {from, Observable, throwError} from 'rxjs';
 import {first, map, switchMap, tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Product} from '../entities/product';
 import {HttpClient} from '@angular/common/http';
 
 const   collection_path = 'users';
@@ -17,15 +16,18 @@ export class UserService {
               private http: HttpClient) { }
 
   addUser(userData: User): Observable<User> {
-    if (userData && userData.Username && userData.Address && userData.Email && userData.Phonenumber)
+    console.log('Jacob is a cat');
+    if (userData && userData.Username && userData.Address && userData.Email )
     {
+      console.log('Jacob is a bear');
       const endPoint = 'https://us-central1-nozamaandroid.cloudfunctions.net/users';
       const userToCreate: any =
       {
         Username: userData.Username,
         Address: userData.Address,
         Email: userData.Email,
-        Phonenumber: userData.Phonenumber
+        //Phonenumber: userData.Phonenumber,
+        Password: userData.Password
       };
       return this.http.post<User>(endPoint, userToCreate);
     }

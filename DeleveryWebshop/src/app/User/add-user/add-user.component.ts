@@ -23,11 +23,11 @@ export class AddUserComponent implements OnInit {
                private authServer: AuthService) {
 
     this.userFormGroup = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
-      address: new FormControl(''),
-      email: new FormControl(''),
-      phonenumber: new FormControl('')
+      Username: new FormControl(''),
+      Password: new FormControl(''),
+      Address: new FormControl(''),
+      Email: new FormControl(''),
+      Phonenumber: new FormControl('')
     });
   }
 

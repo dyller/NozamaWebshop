@@ -24,7 +24,7 @@ exports.users = functions.https.onRequest(
       } else if(request.method === 'POST') {
         const data = request.body;
         const user: any = {Username: data.Username,
-                           Phonenumber: data.phonenumber,
+                           //Phonenumber: data.Phonenumber,
                            Address: data.Address,
                            Email: data.Email};
           const usr = await admin.firestore().collection('users')
