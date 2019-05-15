@@ -9,7 +9,11 @@
     "rewrites": [
       {
         "source": "/api/v1/**",
-        "destination": "restApi"
+        "function": "restApi"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   },
