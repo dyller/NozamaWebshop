@@ -22,7 +22,13 @@
     phonenumber
     <input type="number" formControlName="Phonenumber">
   </label>
-
+  <input type="file" (change)="uploadFile($event)" accept="image/*">
   <button type="submit">Add</button>
 </form>
-
+<div id="image">
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+  ></image-cropper>
+</div>

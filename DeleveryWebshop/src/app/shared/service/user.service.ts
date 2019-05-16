@@ -4,6 +4,7 @@ import {first, map, switchMap, tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {HttpClient} from '@angular/common/http';
+import {ImageMetadata} from '../entities/image-metadata';
 
 const   collection_path = 'users';
 
@@ -15,19 +16,28 @@ export class UserService {
   constructor(private db: AngularFirestore,
               private http: HttpClient) { }
 
-  addUser(userData: User): Observable<User> {
+  addUser(userData: User, imgMeta: ImageMetadata): Observable<User> {
     console.log('Jacob is a cat');
     if (userData && userData.Username && userData.Address && userData.Email )
     {
       console.log('Jacob is a bear');
-      const endPoint = 'https://us-central1-nozamaandroid.cloudfunctions.net/users';
+      const endPoint = 'https://us-central1-nozama-58c5d.cloudfunctions.net/users';
+
       const userToCreate: any =
       {
+        id: userData.id,
         Username: userData.Username,
         Address: userData.Address,
         Email: userData.Email,
-        //Phonenumber: userData.Phonenumber,
-        Password: userData.Password
+        Phonenumber: userData.Phonenumber,
+        Password: userData.Password,
+        image:
+          {
+            base64: imgMeta.base64Image,
+            name: imgMeta.fileMeta.name,
+            type: imgMeta.fileMeta.type,
+            size: imgMeta.fileMeta.size
+          }
       };
       return this.http.post<User>(endPoint, userToCreate);
     }

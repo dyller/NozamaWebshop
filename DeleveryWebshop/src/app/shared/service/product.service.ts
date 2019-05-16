@@ -24,7 +24,7 @@ export class ProductService {
       && imageMeta.fileMeta.name && imageMeta.fileMeta.type &&
       (imageMeta.imageBlob || imageMeta.base64Image))
     {
-        const endPoint = 'https://us-central1-nozamaandroid.cloudfunctions.net/products';
+        const endPoint = 'https://us-central1-nozama-58c5d.cloudfunctions.net/products';
         const productToSend: any =
         {
           name: product.name,

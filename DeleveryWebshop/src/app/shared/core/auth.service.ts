@@ -8,6 +8,7 @@ import {switchMap} from 'rxjs/operators';
 import * as firebase from 'firebase';
 import {AddUser, RemoveUser} from '../statemangement/action/user.actions';
 import {Store} from '@ngxs/store';
+import {ImageMetadata} from '../entities/image-metadata';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,11 @@ export class AuthService {
   ) {
   }
 
-  createUser(user: User) {
+  createUser(user: User, imgMeta: ImageMetadata) {
     firebase.auth().createUserWithEmailAndPassword(user.Email, user.Password).
     then((credential) => {
       user.id = credential.user.uid;
-     this.store.dispatch(new AddUser(user));
+     this.store.dispatch(new AddUser(user, imgMeta));
     })
       .catch(function(error) {
         // Handle Errors here.
