@@ -1,10 +1,46 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddproductComponent } from './addproduct.component';
+import {UpdateProductsComponent} from '../update-products/update-products.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {ImageCropperModule} from 'ngx-image-cropper';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ProductService} from '../../shared/service/product.service';
+import {Product} from "../../shared/entities/product";
+import {ImageMetadata} from "../../shared/entities/image-metadata";
+import {Observable} from "rxjs";
 
 describe('AddproductComponent', () => {
   let component: AddproductComponent;
   let fixture: ComponentFixture<AddproductComponent>;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ AddproductComponent ],
+      imports: [ ReactiveFormsModule,
+        ImageCropperModule,
+        RouterTestingModule
+      ],
+      providers: [
+        {provide: ProductService, useClass: ProductServiceStub}
+      ]
+    })
+      .compileComponents();
+  }));
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AddproductComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
 });
+
+class ProductServiceStub {
+  addProductWithImage(product: Product, imageMeta: ImageMetadata)
+    : Observable<Product> {
+    return null;
+  }
+}
