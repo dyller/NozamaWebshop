@@ -30,7 +30,7 @@ export class UserService {
         Address: userData.Address,
         Email: userData.Email,
         Phonenumber: userData.Phonenumber,
-        Password: userData.Password,
+
         image:
           {
             base64: imgMeta.base64Image,

@@ -54,7 +54,9 @@ exports.users = functions.https.onRequest(
               metadata: {
                 contentType: file.type
               }
-            }).then();
+            }).then(e => {
+              console.log('Adding image to storage result: ' + e);
+            });
           const usr = await admin.firestore().collection('users')
             .doc(user.id)
             .set(user)
