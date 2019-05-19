@@ -24,7 +24,7 @@ export class NvbarComponent implements OnInit {
               private authService: AuthService) {
     firebase.auth().onAuthStateChanged(users => {
       if (users) {
-      console.log('User: ' + users.uid);
+      console.log('users: ' + users.uid);
         this.user.getUserById(users.uid).subscribe(couldStoreUser => {
         this.currentUser = couldStoreUser;
       });

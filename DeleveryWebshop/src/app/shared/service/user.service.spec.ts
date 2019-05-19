@@ -43,7 +43,7 @@ describe('UserService', () => {
       expect(angularFirestoreMock.collection).toHaveBeenCalledTimes(1);
     });
 
-   /* it('should call collection with "User" as param', () => {
+   /* it('should call collection with "users" as param', () => {
       expect(angularFirestoreMock.collection).toHaveBeenCalledWith('user');
     });*/
 

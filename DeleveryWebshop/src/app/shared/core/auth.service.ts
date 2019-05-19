@@ -42,7 +42,7 @@ export class AuthService {
   }
   deleteAccount(currentUser: firebase.User) {
     currentUser.delete().then(function() {
-      // User deleted.
+      // users deleted.
     }).then(() => {
         this.store.dispatch(new RemoveUser(currentUser.uid));
       }).catch(function(error) {

@@ -90,7 +90,7 @@ export class UserService {
         {
           if (!productDocument || !productDocument.data())
           {
-            throw new Error('User not found');
+            throw new Error('users not found');
           } else
             {
               return from
@@ -125,7 +125,7 @@ export class UserService {
         {
           if (!productDocument || !productDocument.data())
           {
-            throw new Error('User not found');
+            throw new Error('users not found');
           } else {
             return from
             (
