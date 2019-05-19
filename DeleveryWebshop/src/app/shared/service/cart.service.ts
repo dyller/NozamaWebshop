@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 import {debug} from 'util';
 import {forwardRefResolver} from '@angular/compiler-cli/src/ngtsc/annotations/src/util';
 import {forEach} from '@angular/router/src/utils/collection';
+import {Order} from "../entities/order";
 const key = environment.localhostKey;
 
 @Injectable({
@@ -16,6 +17,7 @@ const key = environment.localhostKey;
 })
 export class CartService {
   products: Array<Product> ;
+  prodIds: String[];
   constructor(private db: AngularFirestore) { }
 
   private storageSub = new Subject<boolean>();
@@ -49,26 +51,26 @@ export class CartService {
   }
 
   addToFB(product: Product[]) {
-    if (firebase.auth().currentUser.uid !== null) {
-      const products = JSON.parse(sessionStorage.getItem(key));
-      for (const prod of products) {
-        console.log(prod);
-        this.db.collection('orders').doc(firebase.auth().currentUser.uid).set(
-          {
-            productId: [ {prodId: prod.id}],
-            userId: firebase.auth().currentUser.uid
-          }, {merge: true}
-        );
-      }
+    this.prodIds = new Array<String>();
+    if (firebase.auth().currentUser.uid !== null
+      && product !== null ){
+     // const products = JSON.parse(sessionStorage.getItem(key));
 
-    } else {
-      const products = JSON.parse(sessionStorage.getItem(key));
-      for (const prod of products) {
-        this.db.collection('orders').add(
-          {
-            productId: [prod.id]
-          });
+      for (const prod of product) {
+        this.prodIds.push(prod.id);
       }
+const order = {
+  delevered: false,
+  prodId: this.prodIds,
+  userId: firebase.auth().currentUser.uid
+}
+      this.db.collection('orders').add(order)
+        .then(function(docRef) {
+          console.log('Document written with ID: ', docRef.id);
+        })
+        .catch(function(error) {
+          console.error('Error adding document: ', error);
+        });
 
     }
   }

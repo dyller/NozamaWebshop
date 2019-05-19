@@ -35,12 +35,4 @@ export class ProductState {
   @Action(RemoveProduct)
   remove({getState }: StateContext<ProductStateModel>, { payload }: RemoveProduct) {
     const state = getState();  }
-
- @Action(UpdateProduct)
-  remove({getState }: StateContext<ProductStateModel>, { payload }: UpdateProduct) {
-    const state = getState();  }
-  @Action(ReadAllProduct)
-  remove({getState }: StateContext<ProductStateModel>, { }: ReadAllProduct) {
-    const state = getState();  }
-
 }
