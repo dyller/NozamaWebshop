@@ -4,8 +4,8 @@ import {UserService} from '../../shared/service/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AddUser, RemoveUser} from '../../shared/statemangement/action/user.actions';
 import {Product} from '../../shared/entities/product';
-import {AddProduct, ReadAllProduct, RemoveProduct, UpdateProduct} from "./product.actions";
-import {ProductService} from "../../shared/service/product.service";
+import {AddProduct, ReadAllProduct, RemoveProduct, UpdateProduct} from './product.actions';
+import {ProductService} from '../../shared/service/product.service';
 
 export class ProductStateModel {
   products: Product[];
@@ -37,10 +37,10 @@ export class ProductState {
     const state = getState();  }
 
  @Action(UpdateProduct)
-  remove({getState }: StateContext<ProductStateModel>, { payload }: UpdateProduct) {
+  update({getState }: StateContext<ProductStateModel>, { payload }: UpdateProduct) {
     const state = getState();  }
   @Action(ReadAllProduct)
-  remove({getState }: StateContext<ProductStateModel>, { }: ReadAllProduct) {
+  get({getState }: StateContext<ProductStateModel>, { }: ReadAllProduct) {
     const state = getState();  }
 
 }
