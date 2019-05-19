@@ -17,17 +17,20 @@ import {AuthService} from "../../shared/core/auth.service";
 export class AddUserComponent implements OnInit {
 
   userFormGroup: FormGroup;
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  croppedBlob: Blob;
   constructor (private router: Router,
                private activatedRoute: ActivatedRoute,
                private us: UserService,
                private authServer: AuthService) {
 
     this.userFormGroup = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
-      address: new FormControl(''),
-      email: new FormControl(''),
-      phonenumber: new FormControl('')
+      Username: new FormControl(''),
+      Password: new FormControl(''),
+      Address: new FormControl(''),
+      Email: new FormControl(''),
+      Phonenumber: new FormControl('')
     });
   }
 
@@ -39,25 +42,38 @@ export class AddUserComponent implements OnInit {
   }
   addUser() {
     const userData = this.userFormGroup.value;
-    this.authServer.createUser(userData);
-   /* firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).
-    then((credential) => {
-        userData.id = credential.user.uid;
-      console.log(userData.id)
-      this.us.addUser(userData);
-      //this.router.navigate(['../'],
-       // {relativeTo: this.activatedRoute});
-      })
-      .catch(function(error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(userData.email);
-      console.log(errorCode);
-      console.log(errorMessage);
-      //this.router.navigate(['../'],
-        //{relativeTo: this.activatedRoute});
-      // ...
-    });*/
+    this.authServer.createUser(userData,
+      this.getMetaDataForImage()
+    );
+  }
+
+  private getMetaDataForImage(): ImageMetadata {
+    if (this.imageChangedEvent && this.imageChangedEvent.target &&
+      this.imageChangedEvent.target.files &&
+      this.imageChangedEvent.target.files.length > 0) {
+      const fileBeforeCrop = this.imageChangedEvent.target.files[0];
+      return {
+        base64Image: this.croppedImage,
+        imageBlob: this.croppedBlob,
+        fileMeta: {
+          name: fileBeforeCrop.name,
+          type: 'image/png',
+          size: fileBeforeCrop.size
+        }
+      };
+    }
+    return undefined;
+  }
+
+  uploadFile($event: Event)
+  {
+    this.imageChangedEvent = event;
+  }
+
+  imageCropped(event: ImageCroppedEvent)
+  {
+    // Preview
+    this.croppedImage = event.base64;
+    this.croppedBlob = event.file;
   }
 }
