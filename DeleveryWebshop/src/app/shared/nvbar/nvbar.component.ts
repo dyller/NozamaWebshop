@@ -28,7 +28,8 @@ export class NvbarComponent implements OnInit {
         this.user.getUserById(users.uid).subscribe(couldStoreUser => {
         this.currentUser = couldStoreUser;
       });
-    } else {
+    } else
+      {
         this.currentUser = null;
       }
     });

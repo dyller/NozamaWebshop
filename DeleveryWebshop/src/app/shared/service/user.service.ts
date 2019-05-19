@@ -1,31 +1,56 @@
 import { Injectable } from '@angular/core';
-import {from, Observable} from 'rxjs';
+import {from, Observable, throwError} from 'rxjs';
 import {first, map, switchMap, tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {HttpClient} from '@angular/common/http';
+import {ImageMetadata} from '../entities/image-metadata';
+
 const   collection_path = 'users';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore,
+              private http: HttpClient) { }
 
-  addUser(userData: User) {
-        this.db.collection(collection_path).doc(userData.id).set(
-        {
-          username: userData.username,
-          address: userData.address,
-          phonenumber: userData.phonenumber
-        }
-      );
+  addUser(userData: User, imgMeta: ImageMetadata): Observable<User> {
+    console.log('Jacob is a cat');
+    if (userData && userData.Username && userData.Address && userData.Email )
+    {
+      console.log('Jacob is a bear');
+      const endPoint = 'https://us-central1-nozama-58c5d.cloudfunctions.net/users';
 
+      const userToCreate: any =
+      {
+        id: userData.id,
+        Username: userData.Username,
+        Address: userData.Address,
+        Email: userData.Email,
+        Phonenumber: userData.Phonenumber,
+
+        image:
+          {
+            base64: imgMeta.base64Image,
+            name: imgMeta.fileMeta.name,
+            type: imgMeta.fileMeta.type,
+            size: imgMeta.fileMeta.size
+          }
+      };
+      return this.http.post<User>(endPoint, userToCreate);
+    }
+    else
+    {
+      return throwError('You need to fill all the fields!');
+    }
   }
 
   updateUser(userData: User) {
     this.db.collection(collection_path).doc(userData.id).update(
       {
-        username: userData.username
+        Username: userData.Username
       }
     );
   }
@@ -42,11 +67,11 @@ export class UserService {
             const data = action.payload.doc.data() as User;
             return {
               id: action.payload.doc.id,
-              username: data.username,
-              password: data.password,
-              address: data.address,
-              phonenumber: data.phonenumber,
-              email: data.email
+              Username: data.Username,
+              Password: data.Password,
+              Address: data.Address,
+              Phonenumber: data.Phonenumber,
+              Email: data.Email
             };
           });
         })
@@ -66,8 +91,9 @@ export class UserService {
           if (!productDocument || !productDocument.data())
           {
             throw new Error('User not found');
-          } else {
-            return from
+          } else
+            {
+              return from
             (
               this.db.doc<User>(collection_path + '/' + id)
                 .get()

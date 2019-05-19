@@ -4,7 +4,7 @@ import {UserService} from './user.service';
 import {of} from 'rxjs';
 import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 import {User} from '../entities/user';
-import * as firebase from "firebase";
+import * as firebase from 'firebase';
 
 
 describe('UserService', () => {

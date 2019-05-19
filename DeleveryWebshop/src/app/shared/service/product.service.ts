@@ -18,15 +18,18 @@ export class ProductService {
               private fs: FileService,
               private http: HttpClient) {}
 
-  addProductWithImage(product: Product, imageMeta: ImageMetadata)
-    : Observable<Product> {
+  addProductWithImage(product: Product, imageMeta: ImageMetadata): Observable<Product>
+  {
     if (imageMeta && imageMeta.fileMeta
       && imageMeta.fileMeta.name && imageMeta.fileMeta.type &&
-      (imageMeta.imageBlob || imageMeta.base64Image)) {
-        const endPoint = 'https://us-central1-nozamaandroid.cloudfunctions.net/products';
-        const productToSend: any = {
+      (imageMeta.imageBlob || imageMeta.base64Image))
+    {
+        const endPoint = 'https://us-central1-nozama-58c5d.cloudfunctions.net/products';
+        const productToSend: any =
+        {
           name: product.name,
-          image: {
+          image:
+          {
             base64: imageMeta.base64Image,
             name: imageMeta.fileMeta.name,
             type: imageMeta.fileMeta.type,
@@ -34,10 +37,13 @@ export class ProductService {
           }
         };
         return this.http.post<Product>(endPoint, productToSend);
-    } else {
+    }
+    else
+    {
       return throwError('You need better metadata');
     }
   }
+
   private addProduct(product: Product): Observable<Product> {
     return from(
       this.db.collection('products').add(

@@ -1,23 +1,16 @@
-import * as admin from 'firebase-admin'
+import * as admin from 'firebase-admin';
+import * as deleteProducts from './delete-products-functions';
+import * as productRest from './product-rest';
+import * as restApi from './main-rest-endpoint';
 import * as uploadNewProductImage from './upload-new-product-image';
-import * as deleteProduct from './delete-products-functions';
-import * as productsRest from './product-rest';
-import * as restAPI from './main-rest-endpoint';
+import * as createNewUser from './create-new-user-functions';
 
 admin.initializeApp();
 
 module.exports = {
-  ...deleteProduct,
+  ...deleteProducts,
+  ...productRest,
+  ...restApi,
   ...uploadNewProductImage,
-  ...productsRest,
-  ...restAPI
+  ...createNewUser
 }
-
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-
-
-
-
-
-

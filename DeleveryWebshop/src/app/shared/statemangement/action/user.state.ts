@@ -14,11 +14,11 @@ export class UserStateModel {
   name: 'guest',
   defaults: {
     user: {
-      username: 'guest',
-      email: null,
+      Username: 'guest',
+      Email: null,
       id: null,
-      password: null,
-      address: null
+      Password: null,
+      Address: null
     }
   }
 })
@@ -35,13 +35,14 @@ export class UserState {
 
   // Section 5
   @Action(AddUser)
-  add({getState }: StateContext<UserStateModel>, { payload }: AddUser) {
+  add({getState }: StateContext<UserStateModel>, { payload, payload2 }: AddUser) {
     const state = getState();
     getState().user = payload;
-    this.us.addUser(state.user);
-    this.router.navigate([''],
-      {relativeTo: this.activatedRoute});
-
+    this.us.addUser(state.user, payload2)
+      .subscribe(() => {
+        this.router.navigate([''],
+          {relativeTo: this.activatedRoute});
+      });
   }
 
   @Action(RemoveUser)
