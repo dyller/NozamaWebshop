@@ -5,6 +5,7 @@ import * as restApi from './main-rest-endpoint';
 import * as uploadNewProductImage from './upload-new-product-image';
 import * as createNewUser from './create-new-user-functions';
 
+import * as order from './orders-rest';
 admin.initializeApp();
 
 module.exports = {
@@ -12,5 +13,6 @@ module.exports = {
   ...productRest,
   ...restApi,
   ...uploadNewProductImage,
-  ...createNewUser
+  ...createNewUser,
+  ...order
 }
