@@ -14,10 +14,19 @@ exports.orders = functions.https.onRequest(
             const listOfOrders: any = [];
             orders.forEach(order => {
               const ord = order.data();
+              console.log(ord);
               ord.id = order.id;
+              admin.firestore().collection('users').doc(ord.userId)
+                  .get().then(user => {
+                    const use = user.data();
+                    if(use) {
+                    console.log(use.Address);
+                     }
+              }).catch(err => {console.log(err)})
+
               listOfOrders.push(ord);
-            })
-            response.json(listOfOrders);
+            });
+           // response.json(listOfOrders);
           })
           .catch(err => {console.log(err)})
       }  else {

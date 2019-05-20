@@ -61,7 +61,7 @@ exports.users = functions.https.onRequest(
             .doc(user.id)
             .set(user)
             .then();
-          response.json(user);
+          response.json(usr);
         }
         catch (e) {
           console.log(e);
