@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {Observable} from "rxjs";
-import {Product} from "../../shared/entities/product";
-import {ProductService} from "../../shared/service/product.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {tap} from 'rxjs/operators';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Product} from '../../shared/entities/product';
+import {ProductService} from '../../shared/service/product.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FileService} from '../../shared/service/file.service';
-import {AngularFirestore} from "@angular/fire/firestore";
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-update-products',
@@ -18,8 +16,10 @@ export class UpdateProductsComponent implements OnInit {
   productFormGroup: FormGroup;
   id: string;
   products: Product;
-  constructor(private router: Router, private prodService: ProductService, private actRouter: ActivatedRoute,
-              private fs: FileService, private db: AngularFirestore) {
+  constructor(private router: Router,
+              private prodService: ProductService,
+              private actRouter: ActivatedRoute,
+              private fs: FileService) {
     this.productFormGroup = new FormGroup( {
       name: new FormControl('')
     });
