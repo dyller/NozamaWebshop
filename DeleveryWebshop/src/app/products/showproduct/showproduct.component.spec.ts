@@ -24,7 +24,7 @@ import {DOMHelper} from '../../../testing/DOMHelper';
 
 describe('ShowproductComponent', () => {
   let component: ShowproductComponent;
-  let dh: DOMHelper<ProductsListComponent>;
+  let dh: DOMHelper<ShowproductComponent>;
   let fixture: ComponentFixture<ShowproductComponent>;
   let productServiceMock: any;
   beforeEach(async(() => {
