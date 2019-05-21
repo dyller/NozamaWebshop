@@ -30,9 +30,9 @@ describe('ShowproductComponent', () => {
   let productServiceMock: any;
   let fileServiceMock: any;
   let fe: any;
-  let fsAuth: any
-  let productCart: any
-  let something: any
+  let fsAuth: any;
+  let productCart: any;
+  let something: any;
 
   beforeEach(async(() => {
     fe = jasmine.createSpyObj('firebase', ['auth']);
@@ -72,6 +72,7 @@ describe('ShowproductComponent', () => {
     })
       .compileComponents();
   }));
+
   beforeEach(() => {
     fixture = TestBed.createComponent(ShowproductComponent);
     component = fixture.componentInstance;
@@ -103,8 +104,8 @@ describe('ShowproductComponent', () => {
   });
 
   describe('List Products', () => {
-    let helper: Helper;
-    beforeEach(() => {
+      let helper: Helper;
+      beforeEach(() => {
       helper = new Helper();
       fixture.detectChanges();
     });
@@ -174,6 +175,7 @@ describe('ShowproductComponent', () => {
     });
   });
   });
+
 class Helper {
   products: Product[] = [];
   getProducts(amount: number): Observable<Product[]> {

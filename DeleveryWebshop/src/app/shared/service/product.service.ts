@@ -20,7 +20,8 @@ export class ProductService {
 
   addProductWithImage(product: Product, imageMeta: ImageMetadata): Observable<Product>
   {
-    if (imageMeta && imageMeta.fileMeta
+      console.log('The add product with image is starting');
+      if (imageMeta && imageMeta.fileMeta
       && imageMeta.fileMeta.name && imageMeta.fileMeta.type &&
       (imageMeta.imageBlob || imageMeta.base64Image))
     {
@@ -42,22 +43,6 @@ export class ProductService {
     {
       return throwError('You need better metadata');
     }
-  }
-
-  private addProduct(product: Product): Observable<Product> {
-    return from(
-      this.db.collection('products').add(
-        {
-          name: product.name,
-          pictureId: product.pictureId
-        }
-      )
-    ).pipe(
-        map(productRef => {
-        product.id = productRef.id;
-        return product;
-      })
-    );
   }
 
   updateProduct(prodData: Product) {

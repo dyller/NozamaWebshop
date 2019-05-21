@@ -9,6 +9,8 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
 import {CartService} from '../../shared/service/cart.service';
+import {Store} from '@ngxs/store';
+import {RemoveProduct} from '../statemagnement/product.actions';
 
 @Component({
   selector: 'app-showproduct',
@@ -22,7 +24,8 @@ export class ShowproductComponent implements OnInit {
               private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
               private router: Router,
-              private cart: CartService) {
+              private cart: CartService,
+              private store: Store) {
   }
  ngOnInit() {
     this.products = this.ps.getProducts()
@@ -41,12 +44,9 @@ export class ShowproductComponent implements OnInit {
   }
 
   deleteProduct(product: Product) {
-    const obs = this.ps.deleteProduct(product.id);
-    obs.subscribe(productFromFirebase => {
-      window.alert('product with id: ' + productFromFirebase.id + ' is Deleted');
-    }, error1 => {
-      window.alert('product not found id: ' + product.id);
-    });
+    const obs = this.store.dispatch(new RemoveProduct(product.id));
+    console.log('What is the prodId: ' + product.id);
+    console.log(obs);
   }
 
   logut() {
