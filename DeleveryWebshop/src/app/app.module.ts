@@ -24,7 +24,7 @@ import {UpdateProductsComponent} from './products/update-products/update-product
 import {AuthService} from './shared/core/auth.service';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
 import {NgxsModule} from '@ngxs/store';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [

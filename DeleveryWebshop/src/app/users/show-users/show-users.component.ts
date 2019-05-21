@@ -23,7 +23,7 @@ export class ShowUsersComponent implements OnInit {
     this.users = this.us.getUsers();
   }
 
-  deleteProduct(user: User) {
+  deleteUser(user: User) {
     const obs = this.us.deleteUser(user.id);
     obs.subscribe(productFromFirebase => {
       window.alert('user with id: ' + productFromFirebase.id + ' is Deleted');

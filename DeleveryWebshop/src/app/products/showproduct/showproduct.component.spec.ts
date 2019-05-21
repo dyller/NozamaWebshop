@@ -33,11 +33,12 @@ describe('ShowproductComponent', () => {
   let fsAuth: any
   let productCart: any
   let something: any
+
   beforeEach(async(() => {
     fe = jasmine.createSpyObj('firebase', ['auth']);
-     fsAuth = jasmine.createSpyObj('auth', ['signOut']);
+    fsAuth = jasmine.createSpyObj('auth', ['signOut']);
     fe.auth.and.returnValue(fsAuth);
-   fsAuth.signOut.and.returnValue(of([]));
+    fsAuth.signOut.and.returnValue(of([]));
 
     productServiceMock = jasmine.createSpyObj('ProductService', ['getProducts', 'deleteProduct']);
     productServiceMock.getProducts.and.returnValue(of([]));
@@ -47,6 +48,7 @@ describe('ShowproductComponent', () => {
     fileServiceMock = jasmine.createSpyObj('ProductService', ['getFileUrl']);
     fileServiceMock.getFileUrl.and.returnValue(of([]));
     productCart = jasmine.createSpyObj('CartService', ['add']);
+
     TestBed.configureTestingModule({
       declarations: [ShowproductComponent],
       imports: [ReactiveFormsModule,
@@ -184,11 +186,6 @@ class Helper {
     return of(this.products);
   }
 }
-class ProductServiceStub {
-  getProducts(): Observable<Product[]> {
-    return of([]);
-  }
-  }
 
 class CartServiceStub {
 }

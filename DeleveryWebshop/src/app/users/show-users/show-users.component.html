@@ -1,9 +1,9 @@
 <h2>List all Users</h2>
-<--<button routerLink="add-product">+</button>
+<button routerLink="add-user">+</button>
 <ul>
   <li class="text" *ngFor="let user of users | async">
     {{user.Username}} -- {{user.id}} -- {{user.Password}}
-    <button (click)="deleteProduct(user)">Delete</button>
+    <button (click)="deleteUser(user)">Delete</button>
     <button routerLink="update-user/{{user.id}}">Update</button>
   </li>
 </ul>
