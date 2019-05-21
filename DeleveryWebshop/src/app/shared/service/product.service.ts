@@ -102,6 +102,7 @@ export class ProductService {
   }
 
   deleteProduct(id: string): Observable<Product> {
+    console.log('deleteProd in prodService, id: ' + id);
     return this.db.doc<Product>(collection_path + '/' + id)
       .get()
       .pipe(

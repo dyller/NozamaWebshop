@@ -57,7 +57,7 @@ export class ProductState {
     const state = getState();
     this.ps.deleteProduct(payload)
       .subscribe(productFromFirebase => {
-      window.alert('product with id: ' + productFromFirebase.id + ' is Deleted');
+      window.alert('product');
     }, error1 => {
       window.alert('product not found');
     });

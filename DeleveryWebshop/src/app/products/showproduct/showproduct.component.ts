@@ -44,9 +44,13 @@ export class ShowproductComponent implements OnInit {
   }
 
   deleteProduct(product: Product) {
-    const obs = this.store.dispatch(new RemoveProduct(product.id));
-    console.log('What is the prodId: ' + product.id);
-    console.log(obs);
+    try {
+      const obs = this.store.dispatch(new RemoveProduct(product.id));
+      console.log('What is the prodId: ' + product.id);
+      console.log(obs);
+    }catch (e) {
+      console.log('deleteProd error, in component: ' + e);
+    }
   }
 
   logut() {
