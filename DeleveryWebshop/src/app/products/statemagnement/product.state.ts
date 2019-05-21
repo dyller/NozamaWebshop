@@ -36,6 +36,7 @@ export class ProductState {
   remove({getState }: StateContext<ProductStateModel>, { payload }: RemoveProduct) {
     const state = getState();  }
 
+
  @Action(UpdateProduct)
   update({getState }: StateContext<ProductStateModel>, { payload }: UpdateProduct) {
     const state = getState();  }
