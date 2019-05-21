@@ -184,11 +184,3 @@ class Helper {
     return of(this.products);
   }
 }
-class ProductServiceStub {
-  getProducts(): Observable<Product[]> {
-    return of([]);
-  }
-  }
-
-class CartServiceStub {
-}

@@ -11,13 +11,13 @@ import {Observable} from "rxjs";
 })
 export class OrderComponent implements OnInit {
 
-  orderList: Product[] = this.cart.getAllProduts();
+  orderList: Product[];
   constructor(private cart: CartService) {
 
 }
 
   ngOnInit() {
-
+this.orderList = this.cart.getAllProduts();
       }
 
   buyProducts() {

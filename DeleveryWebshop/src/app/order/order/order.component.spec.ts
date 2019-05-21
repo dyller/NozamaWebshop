@@ -23,11 +23,10 @@ describe('OrderComponent', () => {
   let productCart: any;
   beforeEach(async(() => {
     productCart = jasmine.createSpyObj('CartService', ['getAllProduts', 'addToFB']);
-    productCart.getAllProduts.and.returnValue(of([]));
+    productCart.getAllProduts.and.returnValue([]);
     TestBed.configureTestingModule({
       declarations: [OrderComponent],
       imports: [
-        ReactiveFormsModule,
         RouterTestingModule,
         AngularFireStorageModule,
         AngularFireAuthModule,
@@ -72,17 +71,15 @@ describe('OrderComponent', () => {
       expect(dh.singleText('button')).toBe('Buy');
     });
   });
-
+  describe('productcart Add to fB', () => {
+    beforeEach(() => {
+     /* productCart.addToFB([{id: 'product1', amount: 1, pictureId: 'picture'
+        , name: 'product', url: 'image', price: 300}]);*/
+     component.buyProducts();
+    });
+    it('Should call addtoFB 1 time', () => {
+      expect(productCart.addToFB).toHaveBeenCalledTimes(1);
+    });
+  });
 });
-class Helper {
-  products: Product[] = [];
-  getProducts(amount: number): Observable<Product[]> {
-    for (let i = 0; i < amount; i++) {
-      this.products.push(
-        {id: 'product1', amount: 1, pictureId: 'picture'
-          , name: 'product', url: 'image', price: 300}
-      );
-    }
-    return of(this.products);
-  }
-}
+
