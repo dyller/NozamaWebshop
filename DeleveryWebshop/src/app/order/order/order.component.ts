@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../../shared/entities/product';
 import {CartService} from '../../shared/service/cart.service';
-import {forEach} from '@angular/router/src/utils/collection';
-import {count} from "rxjs/operators";
+import {Observable} from "rxjs";
+
 
 @Component({
   selector: 'app-order',
@@ -11,18 +11,14 @@ import {count} from "rxjs/operators";
 })
 export class OrderComponent implements OnInit {
 
-  orderList: Array<Product> = this.cart.getAllProduts();
-  showLost: Array<Product>;
+  orderList: Product[];
   constructor(private cart: CartService) {
-    if (this.orderList !== null) {
-      this.orderList.sort((a, b) => a.name.localeCompare(b.name));
-      for (let i = 0; i < this.orderList.length; i++) {
-      }
 
-  }}
+}
 
   ngOnInit() {
-  }
+this.orderList = this.cart.getAllProduts();
+      }
 
   buyProducts() {
     this.cart.addToFB(this.orderList);

@@ -18,8 +18,6 @@ export class AuthService {
   user: Observable<User>;
 
   constructor(
-    private afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
     private router: Router,
     private store: Store
   ) {
@@ -40,6 +38,7 @@ export class AuthService {
       });
   }
   deleteAccount(currentUser: firebase.User) {
+
     currentUser.delete().then(function() {
       // users deleted.
     }).then(() => {
