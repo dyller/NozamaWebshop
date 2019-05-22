@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UpdateProductsComponent } from './update-products.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {RouterTestingModule} from "@angular/router/testing";
-import {ProductService} from "../../shared/service/product.service";
-import {FileService} from "../../shared/service/file.service";
-import {AngularFirestore} from "@angular/fire/firestore";
-import {of} from "rxjs";
+import {ReactiveFormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ProductService} from '../../shared/service/product.service';
+import {FileService} from '../../shared/service/file.service';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {of} from 'rxjs';
 
 describe('UpdateProductsComponent', () => {
   let component: UpdateProductsComponent;
@@ -18,9 +18,11 @@ describe('UpdateProductsComponent', () => {
   beforeEach(async(() => {
     psMock = jasmine.createSpyObj('ProductService', ['getProductById', 'updateProduct']);
     psMockSub = jasmine.createSpyObj('getProductById', ['subscribe']);
-    psMockSub.subscribe.and.returnValue(of());
+
 
     psMock.getProductById.and.returnValue(psMockSub);
+    psMockSub.subscribe.and.returnValue(of({id: 'product1', amount: 1, pictureId: 'picture'
+      , name: 'product', url: 'image', price: 300}));
     fsMock = jasmine.createSpyObj('FileService', ['getFileUrl']);
     fsMockSub = jasmine.createSpyObj('getFileUrl', ['subscribe']);
     fsMock.getFileUrl.and.returnValue(fsMockSub);
@@ -61,8 +63,6 @@ describe('UpdateProductsComponent', () => {
     it('should call productService.getFileUrl 1 time', () => {
       expect(psMockSub.subscribe).toHaveBeenCalledTimes(1);
     });
-    it('should call fs.getFileUrl 0 time', () => {
-      expect(fsMockSub.subscribe).toHaveBeenCalledTimes(0);
-    });
+
   });
 });

@@ -6,7 +6,7 @@
   </mat-card-header>
   <mat-card-content>
 
-    <div *ngFor="let product of orderList" >
+    <div *ngFor="let product of orderList" | async >
     <p>
       {{product.amount}} x {{product.name}}
     </p>
@@ -16,9 +16,3 @@
     <button mat-button (click)="buyProducts()">Buy</button>
   </mat-card-actions>
 </mat-card>
-<!--<li class="text" *ngFor="let product of orderList ">
-  <img [src]="product.url" *ngIf="product.url" style="width: 24px; height: 24px;">
-  {{product.name}} -- {{product.id}} -- {{product.price}}
-  <button (click)="deleteProduct(product)">Delete</button>
-</li>
-<button (click)="buyProducts()">Buy</button>-->

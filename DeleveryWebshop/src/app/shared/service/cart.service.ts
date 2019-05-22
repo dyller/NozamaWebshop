@@ -6,17 +6,13 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {User} from '../entities/user';
 import {map} from 'rxjs/operators';
 import * as firebase from 'firebase';
-import {debug} from 'util';
-import {forwardRefResolver} from '@angular/compiler-cli/src/ngtsc/annotations/src/util';
-import {forEach} from '@angular/router/src/utils/collection';
-import {Order} from "../entities/order";
 const key = environment.localhostKey;
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  products: Array<Product> ;
+  products: Product[] ;
   prodIds: String[];
   constructor(private db: AngularFirestore) { }
 
@@ -79,7 +75,7 @@ const order = {
     return this.storageSub.asObservable();
   }
 
-  getAllProduts(): Array<Product> {
+  getAllProduts(): Product[] {
     return JSON.parse(sessionStorage.getItem(environment.localhostKey));
   }
 }

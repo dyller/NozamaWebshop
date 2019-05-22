@@ -10,9 +10,9 @@
     <input type="number" formControlName="price">
   </label>
 
-  <input type="file" (change)="uploadFile($event)" accept="image/*">
+  <input id="chooseFile" type="file" (change)="uploadFile($event)" accept="image/*">
 
-  <button type="submit">Add</button>
+  <button type="submit">Save</button>
 </form>
 <div id="image">
 <image-cropper
