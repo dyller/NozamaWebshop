@@ -37,9 +37,7 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
   }
-  googleLogin() {
 
-  }
   addUser() {
     const userData = this.userFormGroup.value;
     this.authServer.createUser(userData,

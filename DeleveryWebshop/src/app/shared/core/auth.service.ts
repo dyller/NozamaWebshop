@@ -35,8 +35,7 @@ export class AuthService {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        this.router.navigate([''],
-          {relativeTo: this.activatedRoute});
+        console.log('auth.service, create user error: ' + error);
         // ...
       });
   }

@@ -8,6 +8,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../../shared/service/product.service";
 import {ImageMetadata} from "../../shared/entities/image-metadata";
 import { Store } from '@ngxs/store';
+import {AddProduct} from '../statemagnement/product.actions';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class AddproductComponent implements OnInit {
   croppedBlob: Blob;
   constructor (private router: Router,
                private activatedRoute: ActivatedRoute,
-               private ps: ProductService) {
+               private ps: ProductService,
+               private store: Store) {
 
     this.productFormGroup = new FormGroup({
       name: new FormControl(''),
@@ -35,19 +37,11 @@ export class AddproductComponent implements OnInit {
 
   }
 
-  addProduct() {
+  addProduct()   {
     const productData = this.productFormGroup.value;
-    this.ps.addProductWithImage(
-      productData,
+    this.store.dispatch(new AddProduct(productData,
       this.getMetaDataForImage()
-    ).subscribe(product => {
-        this.router.navigate(['../'],
-          {relativeTo: this.activatedRoute});
-        // window.alert('product with id: ' + product.id + ' and name : ' + product.name + 'is added');
-      },
-      error1 => {
-        window.alert('Bad stuff happened: ' + error1);
-      });
+    ));
   }
 
   private getMetaDataForImage(): ImageMetadata {

@@ -24,7 +24,8 @@ import {UpdateProductsComponent} from './products/update-products/update-product
 import {AuthService} from './shared/core/auth.service';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
 import {NgxsModule} from '@ngxs/store';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {ProductState} from './products/statemagnement/product.state';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import {HttpClientModule} from '@angular/common/http';
     ImageCropperModule,
     AngularFireAuthModule,
     NgxsModule.forRoot(
-      [UserState]
+      [UserState, ProductState]
     ),
     MatTooltipModule,
     BrowserAnimationsModule,

@@ -11,37 +11,72 @@ export class ProductStateModel {
   products: Product[];
 
 }
+
 @State<ProductStateModel>({
   name: 'products',
   defaults: {
-    products: []
+    products:
+    [{
+      price: 22,
+      name: 'CheeseSocks',
+      pictureId: 'socks.png',
+      url: 'socks.dk',
+      amount: 1
+    }]
   }
 })
+
 export class ProductState {
   constructor(private ps: ProductService,
               private router: Router,
               private activatedRoute: ActivatedRoute
   ) {}
   @Selector()
-  static getProducts(state: ProductStateModel) {
+  static getProducts(state: ProductStateModel)
+  {
     return state.products;
   }
 
   @Action(AddProduct)
-  add({getState }: StateContext<ProductStateModel>, { payload }: AddProduct) {
+  add({getState, patchState }: StateContext<ProductStateModel>, { payload, payload2 }: AddProduct) {
+    console.log('Add Product in the state is starting');
     const state = getState();
+    patchState({
+      products: [...state.products, payload]
+    });
+    this.ps.addProductWithImage(payload, payload2)
+      .subscribe(() => {
+        this.router.navigate([''],
+          {relativeTo: this.activatedRoute});
+      });
   }
 
   @Action(RemoveProduct)
   remove({getState }: StateContext<ProductStateModel>, { payload }: RemoveProduct) {
-    const state = getState();  }
+    console.log('RemoveProduct, inside prod state: ' + payload);
+    const state = getState();
+    this.ps.deleteProduct(payload)
+      .subscribe(productFromFirebase => {
+      window.alert('product');
+    }, error1 => {
+      window.alert('product not found');
+    });
+  }
 
 
  @Action(UpdateProduct)
   update({getState }: StateContext<ProductStateModel>, { payload }: UpdateProduct) {
-    const state = getState();  }
+    const state = getState();
+    console.log('What is the updateProduct Paylod: ' + payload.name);
+          this.ps.updateProduct(payload);
+          this.router.navigate([''],
+            {relativeTo: this.activatedRoute});
+  }
+
   @Action(ReadAllProduct)
   get({getState }: StateContext<ProductStateModel>, { }: ReadAllProduct) {
-    const state = getState();  }
+    const state = getState();
+    this.ps.getProducts();
+  }
 
 }

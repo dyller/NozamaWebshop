@@ -6,6 +6,7 @@ import {ImageMetadata} from '../entities/image-metadata';
 import {from, Observable, throwError} from 'rxjs';
 import {catchError, first, map, switchMap, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
+import {log} from 'util';
 
 const collection_path = 'products';
 
@@ -20,7 +21,8 @@ export class ProductService {
 
   addProductWithImage(product: Product, imageMeta: ImageMetadata): Observable<Product>
   {
-    if (imageMeta && imageMeta.fileMeta
+      console.log('The add product with image is starting');
+      if (imageMeta && imageMeta.fileMeta
       && imageMeta.fileMeta.name && imageMeta.fileMeta.type &&
       (imageMeta.imageBlob || imageMeta.base64Image))
     {
@@ -44,31 +46,23 @@ export class ProductService {
     }
   }
 
-  private addProduct(product: Product): Observable<Product> {
-    return from(
-      this.db.collection('products').add(
-        {
-          name: product.name,
-          pictureId: product.pictureId
-        }
-      )
-    ).pipe(
-        map(productRef => {
-        product.id = productRef.id;
-        return product;
-      })
-    );
-  }
-
   updateProduct(prodData: Product) {
-    this.db.collection(collection_path).doc(prodData.id).update(
-      {
-        name: prodData.name
-      }
-    );
+    console.log('updateProductService, update product starting');
+    console.log('What is the prodData.name in updateProduct service: ' + prodData.name);
+    try{
+      this.db.collection(collection_path).doc(prodData.id).update(
+        {
+
+          name: prodData.name
+        }
+      );
+    }catch (e) {
+      console.log('Error with updating the product in the service: ' + e);
+    }
   }
 
   getProductById(id: string): Observable<Product> {
+    console.log('What is the id: ' + id);
     return this.db.doc<Product>(collection_path + '/' + id)
       .get()
       .pipe(
@@ -117,6 +111,7 @@ export class ProductService {
   }
 
   deleteProduct(id: string): Observable<Product> {
+    console.log('deleteProd in prodService, id: ' + id);
     return this.db.doc<Product>(collection_path + '/' + id)
       .get()
       .pipe(
