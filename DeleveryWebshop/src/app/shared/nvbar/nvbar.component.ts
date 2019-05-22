@@ -47,9 +47,12 @@ export class NvbarComponent implements OnInit {
     });
   }
 
-  deleteAccount() {
-    this.authService.deleteAccount(firebase.auth().currentUser);
+  deleteAccount()
+  {
+    console.log('Current user in navbar is: ' + this.currentUser);
+    this.authService.deleteAccount(this.currentUser);
   }
+
   countItems(): number {
     let count = 0 ;
     if (this.cartSize !== null) {
