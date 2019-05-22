@@ -10,17 +10,22 @@ import {Product} from '../../shared/entities/product';
 import {ImageMetadata} from '../../shared/entities/image-metadata';
 import {Observable, of} from 'rxjs';
 import {Store} from '@ngxs/store';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('AddproductComponent', () =>
 {
   let component: AddproductComponent;
   let fixture: ComponentFixture<AddproductComponent>;
-  let psMock: any;
+  //let psMock: any;
   //let psMockSub: any;
   let str: any;
 
   beforeEach(async(() => {
-    psMock = jasmine.createSpyObj('ProductService', ['addProductWithImage']);
+    //psMock = jasmine.createSpyObj('ProductService', ['addProductWithImage']);
     //psMockSub = jasmine.createSpyObj('store', ['dispatch']);
     //psMock.addProductWithImage.and.returnValue(psMockSub);
 
@@ -30,11 +35,15 @@ describe('AddproductComponent', () =>
       declarations: [ AddproductComponent ],
       imports: [ ReactiveFormsModule,
         ImageCropperModule,
-        RouterTestingModule
+        HttpClientModule,
+        RouterTestingModule,
+        AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule // imports firebase/firestore, only needed for database features
       ],
       providers: [
         {provide: Store, useValue: str},
-        {provide: ProductService, useValue: psMock}
+        //{provide: ProductService, useValue: psMock}
       ]
     })
       .compileComponents();
@@ -61,10 +70,3 @@ describe('AddproductComponent', () =>
 
 
 });
-
-class ProductServiceStub {
-  addProductWithImage(product: Product, imageMeta: ImageMetadata)
-    : Observable<Product> {
-    return null;
-  }
-}

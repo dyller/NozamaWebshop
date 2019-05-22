@@ -185,15 +185,12 @@ describe('ShowproductComponent', () => {
     /*it('should call ps.deleteProduct 1 time', () => {
       expect(productServiceMock.deleteProduct).toHaveBeenCalledTimes(1);
     });*/
-
     });
-  });
+
   describe('logout', () => {
     beforeEach(() => {
       component.logut();
     });
-
-  });
   });
 });
 
