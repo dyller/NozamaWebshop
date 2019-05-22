@@ -17,6 +17,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Product} from "../../shared/entities/product";
 import {User} from "../../shared/entities/user";
 import * as firebase from "firebase";
+import {UserService} from "../../shared/service/user.service";
 
 describe('ShowUsersComponent', () =>
 {
@@ -24,23 +25,15 @@ describe('ShowUsersComponent', () =>
   let dh: DOMHelper<ShowUsersComponent>;
   let fixture: ComponentFixture<ShowUsersComponent>;
   let userServiceMock: any;
-  //let fileServiceMock: any;
-  //let productCart: any
-  let something: any;
-  let fe: any;
-  let fsAuth: any;
+  let userServiceMockDelete: any;
 
   beforeEach(async(() =>
   {
-    fe = jasmine.createSpyObj('firebase', ['auth']);
-    fsAuth = jasmine.createSpyObj('auth', ['signOut']);
-    fe.auth.and.returnValue(fsAuth);
-    fsAuth.signOut.and.returnValue(of([]));
 
     userServiceMock = jasmine.createSpyObj('UserService', ['getUsers', 'deleteUser']);
     userServiceMock.getUsers.and.returnValue(of([]));
-    something = jasmine.createSpyObj('deleteUser', ['subscribe']);
-    userServiceMock.deleteUser.and.returnValue(something);
+    userServiceMockDelete = jasmine.createSpyObj('deleteUser', ['subscribe']);
+    userServiceMock.deleteUser.and.returnValue(userServiceMockDelete);
 
     /*fileServiceMock = jasmine.createSpyObj('UserService', ['getFileUrl']);
     fileServiceMock.getFileUrl.and.returnValue(of([]));*/
@@ -64,8 +57,7 @@ describe('ShowUsersComponent', () =>
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
-        {provide: firebase, useValue: fe},
-        {provide: ShowUsersComponent, useValue: userServiceMock},
+        {provide: UserService, useValue: userServiceMock},
         //{provide: FileService, useValue: fileServiceMock}
       ]
     })
@@ -124,31 +116,41 @@ describe('ShowUsersComponent', () =>
   });
 
   describe('Call NgOnInit on Demand', () => {
-    let helper: Helper;
-    beforeEach(() => {
-      helper = new Helper();
-    });
+  let helper: Helper;
+  beforeEach(() => {
+    helper = new Helper();
+  });
 
-    it('Should call getProducts on the ProductService one time on ngOnInit', () => {
+  it('Should call getUsers on the UserService one time on ngOnInit', () => {
+    fixture.detectChanges();
+    expect(userServiceMock.getUsers).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should not show img tag when product does not have pictureId and is loaded async from ProductService',
+    () => {
+      userServiceMock.getUsers.and.returnValue(helper.getUsers(1));
+      helper.users[0].PictureId = undefined;
       fixture.detectChanges();
-      expect(userServiceMock.getProducts).toHaveBeenCalledTimes(1);
+      expect(dh.count('img')).toBe(0);
     });
+});
 
-    it('Should show img tag when user with picture is loaded async from ProductService',
-      () => {
-        userServiceMock.getUsers.and.returnValue(helper.getUsers(1));
-        helper.users[0].PictureId = 'happy-face.png';
-        fixture.detectChanges();
-        expect(dh.count('img')).toBe(1);
-      });
+  describe('Call deleteUser call us.deleteUser.subscribe', () => {
+    beforeEach(() => {
+      component.deleteUser({ id: 'user1',
+        Username: 'Steve',
+        Password: 'jkahdkjsandjksa',
+        Address: 'Esbjerg',
+        Phonenumber: '56567899',
+        PictureId: 'happy-face.png',
+        Email: 'steve@steve.com',  });
+    });
+/*
+    it('Should call getUsers on the UserService one time on ngOnInit', () => {
+      fixture.detectChanges();
+      expect(userServiceMock.getUsers).toHaveBeenCalledTimes(1);
+    });*/
 
-    it('Should not show img tag when product does not have pictureId and is loaded async from ProductService',
-      () => {
-        userServiceMock.getUsers.and.returnValue(helper.getUsers(1));
-        helper.users[0].PictureId = undefined;
-        fixture.detectChanges();
-        expect(dh.count('img')).toBe(0);
-      });
   });
 });
 

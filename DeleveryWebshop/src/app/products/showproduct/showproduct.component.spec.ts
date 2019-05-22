@@ -187,13 +187,11 @@ describe('ShowproductComponent', () => {
     });*/
 
     });
-  });
   describe('logout', () => {
     beforeEach(() => {
       component.logut();
     });
 
-  });
   });
 });
 
