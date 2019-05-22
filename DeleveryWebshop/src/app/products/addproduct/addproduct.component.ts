@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../../shared/service/product.service";
 import {ImageMetadata} from "../../shared/entities/image-metadata";
 import { Store } from '@ngxs/store';
-import {AddProduct} from "../statemagnement/product.actions";
+import {AddProduct} from '../statemagnement/product.actions';
 
 
 @Component({

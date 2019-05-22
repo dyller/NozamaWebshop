@@ -14,9 +14,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {AngularFireModule} from "@angular/fire";
 import {environment} from "../../../environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
-import {ProductService} from "../../shared/service/product.service";
-import {UserService} from "../../shared/service/user.service";
-import {AuthService} from "../../shared/core/auth.service";
+import {ProductService} from '../../shared/service/product.service';
+import {UserService} from '../../shared/service/user.service';
+import {AuthService} from '../../shared/core/auth.service';
 
 describe('AddUserComponent', () => {
 
@@ -24,21 +24,11 @@ describe('AddUserComponent', () => {
   let dh: DOMHelper<AddUserComponent>;
   let fixture: ComponentFixture<AddUserComponent>;
   let userServiceMock: any;
-  let authServiceMock: any;
-  let addUser: any;
 
   beforeEach(async(() =>
   {
     userServiceMock = jasmine.createSpyObj('UserService', ['getUsers', 'deleteUser']);
-    authServiceMock = jasmine.createSpyObj('authSerice', ['createUser']);
     userServiceMock.getUsers.and.returnValue(of([]));
-    addUser = jasmine.createSpyObj('addUser', ['subscribe']);
-    addUser.addUser.and.returnValue(addUser);
-
-    /*fileServiceMock = jasmine.createSpyObj('UserService', ['getFileUrl']);
-    fileServiceMock.getFileUrl.and.returnValue(of([]));*/
-
-    //productCart = jasmine.createSpyObj('CartService', ['add']);
 
     TestBed.configureTestingModule({
       declarations: [AddUserComponent],
@@ -57,10 +47,7 @@ describe('AddUserComponent', () => {
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
-        //{provide: firebase, useValue: fe},
-        {provide: UserService, useValue: userServiceMock},
-        {provide: AuthService, useValue: authServiceMock}
-        //{provide: FileService, useValue: fileServiceMock}
+        {provide: UserService, useValue: userServiceMock}
       ]
     })
       .compileComponents();

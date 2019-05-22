@@ -6,6 +6,7 @@ import {ImageMetadata} from '../entities/image-metadata';
 import {from, Observable, throwError} from 'rxjs';
 import {catchError, first, map, switchMap, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
+import {log} from 'util';
 
 const collection_path = 'products';
 
@@ -46,14 +47,22 @@ export class ProductService {
   }
 
   updateProduct(prodData: Product) {
-    this.db.collection(collection_path).doc(prodData.id).update(
-      {
-        name: prodData.name
-      }
-    );
+    console.log('updateProductService, update product starting');
+    console.log('What is the prodData.name in updateProduct service: ' + prodData.name);
+    try{
+      this.db.collection(collection_path).doc(prodData.id).update(
+        {
+
+          name: prodData.name
+        }
+      );
+    }catch (e) {
+      console.log('Error with updating the product in the service: ' + e);
+    }
   }
 
   getProductById(id: string): Observable<Product> {
+    console.log('What is the id: ' + id);
     return this.db.doc<Product>(collection_path + '/' + id)
       .get()
       .pipe(

@@ -18,6 +18,7 @@ import {RemoveProduct} from '../statemagnement/product.actions';
   styleUrls: ['./showproduct.component.css']
 })
 export class ShowproductComponent implements OnInit {
+
   products: Observable<Product[]>;
   constructor(private ps: ProductService,
               private fs: FileService,

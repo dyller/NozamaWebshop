@@ -67,11 +67,10 @@ export class ProductState {
  @Action(UpdateProduct)
   update({getState }: StateContext<ProductStateModel>, { payload }: UpdateProduct) {
     const state = getState();
-      this.ps.getProductById(payload)
-        .subscribe(updProd => {
-          this.ps.updateProduct(updProd);
-        }).unsubscribe();
-
+    console.log('What is the updateProduct Paylod: ' + payload.name);
+          this.ps.updateProduct(payload);
+          this.router.navigate([''],
+            {relativeTo: this.activatedRoute});
   }
 
   @Action(ReadAllProduct)

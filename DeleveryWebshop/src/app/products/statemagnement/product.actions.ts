@@ -17,8 +17,9 @@ export class RemoveProduct {
 export class UpdateProduct {
   static readonly type = '[products] Update';
 
-  constructor(public payload: string) {}
+  constructor(public payload: Product) {}
 }
+
   export class ReadAllProduct {
   static readonly type = '[products] ReadAll';
 
