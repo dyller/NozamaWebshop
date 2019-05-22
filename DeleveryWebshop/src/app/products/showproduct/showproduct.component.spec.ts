@@ -186,7 +186,7 @@ describe('ShowproductComponent', () => {
       expect(productServiceMock.deleteProduct).toHaveBeenCalledTimes(1);
     });*/
     });
-
+  
   describe('logout', () => {
     beforeEach(() => {
       component.logut();
