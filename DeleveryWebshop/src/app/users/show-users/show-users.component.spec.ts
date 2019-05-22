@@ -17,7 +17,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Product} from "../../shared/entities/product";
 import {User} from "../../shared/entities/user";
 import * as firebase from "firebase";
-import {UserService} from "../../shared/service/user.service";
+import {UserService} from '../../shared/service/user.service';
 
 describe('ShowUsersComponent', () =>
 {
@@ -26,19 +26,12 @@ describe('ShowUsersComponent', () =>
   let fixture: ComponentFixture<ShowUsersComponent>;
   let userServiceMock: any;
   let userServiceMockDelete: any;
-
   beforeEach(async(() =>
   {
-
     userServiceMock = jasmine.createSpyObj('UserService', ['getUsers', 'deleteUser']);
     userServiceMock.getUsers.and.returnValue(of([]));
     userServiceMockDelete = jasmine.createSpyObj('deleteUser', ['subscribe']);
     userServiceMock.deleteUser.and.returnValue(userServiceMockDelete);
-
-    /*fileServiceMock = jasmine.createSpyObj('UserService', ['getFileUrl']);
-    fileServiceMock.getFileUrl.and.returnValue(of([]));*/
-
-    //productCart = jasmine.createSpyObj('CartService', ['add']);
 
     TestBed.configureTestingModule({
       declarations: [ShowUsersComponent],
@@ -58,7 +51,7 @@ describe('ShowUsersComponent', () =>
       ],
       providers: [
         {provide: UserService, useValue: userServiceMock},
-        //{provide: FileService, useValue: fileServiceMock}
+        {provide: window, useValue: windowsMock}
       ]
     })
       .compileComponents();
@@ -135,7 +128,7 @@ describe('ShowUsersComponent', () =>
     });
 });
 
-  describe('Call deleteUser call us.deleteUser.subscribe', () => {
+  describe('Call deleteUser call', () => {
     beforeEach(() => {
       component.deleteUser({ id: 'user1',
         Username: 'Steve',
@@ -143,15 +136,14 @@ describe('ShowUsersComponent', () =>
         Address: 'Esbjerg',
         Phonenumber: '56567899',
         PictureId: 'happy-face.png',
-        Email: 'steve@steve.com',  });
+        Email: 'steve@steve.com'  });
     });
-/*
-    it('Should call getUsers on the UserService one time on ngOnInit', () => {
-      fixture.detectChanges();
-      expect(userServiceMock.getUsers).toHaveBeenCalledTimes(1);
-    });*/
+    it('us.deleteUser.subscribe', () => {
+      expect(userServiceMockDelete.subscribe).toHaveBeenCalledTimes(1);
+    });
 
   });
+
 });
 
 class Helper {
