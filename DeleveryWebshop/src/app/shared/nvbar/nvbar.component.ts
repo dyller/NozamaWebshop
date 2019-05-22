@@ -21,7 +21,7 @@ export class NvbarComponent implements OnInit {
 
   constructor(private cart: CartService,
               private user: UserService,
-              private authService: AuthService) {/*
+              private authService: AuthService) {
     firebase.auth().onAuthStateChanged(users => {
       if (users) {
       console.log('users: ' + users.uid);
@@ -32,7 +32,7 @@ export class NvbarComponent implements OnInit {
       {
         this.currentUser = null;
       }
-    });*/
+    });
   }
 
   ngOnInit() {
