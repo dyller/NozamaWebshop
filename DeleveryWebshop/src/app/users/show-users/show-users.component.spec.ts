@@ -50,8 +50,7 @@ describe('ShowUsersComponent', () =>
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
-        {provide: UserService, useValue: userServiceMock},
-        {provide: window, useValue: windowsMock}
+        {provide: UserService, useValue: userServiceMock}
       ]
     })
       .compileComponents();

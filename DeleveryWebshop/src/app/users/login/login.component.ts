@@ -12,9 +12,7 @@ import * as firebase from "firebase";
 export class LoginComponent implements OnInit {
   userId: String;
   userFormGroup: FormGroup;
-  constructor(private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private us: UserService) {
+  constructor() {
 
     this.userFormGroup = new FormGroup({
       email: new FormControl(''),
