@@ -21,7 +21,9 @@ export class ProductStateModel {
       name: 'CheeseSocks',
       pictureId: 'socks.png',
       url: 'socks.dk',
-      amount: 1
+      amount: 1,
+      category: 'Books',
+      details: 'Great socks of Samuel, with ultra good smell'
     }]
   }
 })
@@ -39,7 +41,7 @@ export class ProductState {
 
   @Action(AddProduct)
   add({getState, patchState }: StateContext<ProductStateModel>, { payload, payload2 }: AddProduct) {
-    console.log('Add Product in the state is starting');
+    console.log('What is payload in addProduct.state.ts: ' + JSON.stringify(payload));
     const state = getState();
     patchState({
       products: [...state.products, payload]
@@ -74,7 +76,7 @@ export class ProductState {
   }
 
   @Action(ReadAllProduct)
-  get({getState }: StateContext<ProductStateModel>, { }: ReadAllProduct) {
+  get({getState }: StateContext<ProductStateModel>, {payload }: ReadAllProduct) {
     const state = getState();
     this.ps.getProducts();
   }

@@ -20,16 +20,13 @@ describe('AddproductComponent', () =>
 {
   let component: AddproductComponent;
   let fixture: ComponentFixture<AddproductComponent>;
-  //let psMock: any;
-  //let psMockSub: any;
   let str: any;
+  let something: any;
 
   beforeEach(async(() => {
-    //psMock = jasmine.createSpyObj('ProductService', ['addProductWithImage']);
-    //psMockSub = jasmine.createSpyObj('store', ['dispatch']);
-    //psMock.addProductWithImage.and.returnValue(psMockSub);
-
     str = jasmine.createSpyObj('Store', ['dispatch']);
+    something = jasmine.createSpyObj('addProduct', ['store']);
+    str.dispatch.and.callThrough(something);
 
     TestBed.configureTestingModule({
       declarations: [ AddproductComponent ],
@@ -42,8 +39,7 @@ describe('AddproductComponent', () =>
         AngularFirestoreModule // imports firebase/firestore, only needed for database features
       ],
       providers: [
-        {provide: Store, useValue: str},
-        //{provide: ProductService, useValue: psMock}
+        {provide: Store, useValue: str}
       ]
     })
       .compileComponents();
@@ -59,14 +55,17 @@ describe('AddproductComponent', () =>
     expect(component).toBeTruthy();
   });
 
-  /*describe('AddProduct Add', () => {
-    beforeEach(() => {
+  describe('AddProduct Add', () => {
+    beforeEach(() =>
+    {
       component.addProduct();
     });
-    it('should call ps.deleteProduct 1 time', () => {
-      expect(psMockSub.subscribe).toHaveBeenCalledTimes(1);
+
+    it('should call ps.deleteProduct 1 time', () =>
+    {
+      expect(str.dispatch).toHaveBeenCalledTimes(1);
     });
-  });*/
+  });
 
 
 });

@@ -25,7 +25,13 @@ exports.products = functions.https.onRequest(
         // Read Data from Request
         const data = request.body;
         // Create Domain objects
-        const product: any = {name: data.name};
+        const product: any =
+        {
+          price: data.price,
+          name: data.name,
+          category: data.category,
+          details: data.details,
+        };
         const file = {
           name: data.image.name,
           type: data.image.type,

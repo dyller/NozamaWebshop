@@ -17,7 +17,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Product} from "../../shared/entities/product";
 import {User} from "../../shared/entities/user";
 import * as firebase from "firebase";
-import {UserService} from "../../shared/service/user.service";
+import {UserService} from '../../shared/service/user.service';
+import {Store} from '@ngxs/store';
 
 describe('ShowUsersComponent', () =>
 {
@@ -26,6 +27,7 @@ describe('ShowUsersComponent', () =>
   let fixture: ComponentFixture<ShowUsersComponent>;
   let userServiceMock: any;
   let userServiceMockDelete: any;
+  let str: any;
 
   beforeEach(async(() =>
   {
@@ -34,6 +36,8 @@ describe('ShowUsersComponent', () =>
     userServiceMock.getUsers.and.returnValue(of([]));
     userServiceMockDelete = jasmine.createSpyObj('deleteUser', ['subscribe']);
     userServiceMock.deleteUser.and.returnValue(userServiceMockDelete);
+
+    str = jasmine.createSpyObj('store', ['dispatch']);
 
     /*fileServiceMock = jasmine.createSpyObj('UserService', ['getFileUrl']);
     fileServiceMock.getFileUrl.and.returnValue(of([]));*/
@@ -47,18 +51,13 @@ describe('ShowUsersComponent', () =>
         RouterTestingModule,
         AngularFireStorageModule,
         AngularFireAuthModule,
-        MatTooltipModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatCardModule,
         HttpClientModule,
-        MatGridListModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
         {provide: UserService, useValue: userServiceMock},
-        //{provide: FileService, useValue: fileServiceMock}
+        {provide: Store, useValue: str}
       ]
     })
       .compileComponents();

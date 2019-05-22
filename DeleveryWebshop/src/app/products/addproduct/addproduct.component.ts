@@ -4,9 +4,9 @@ import {Observable} from 'rxjs';
 import {FileService} from '../../shared/service/file.service';
 import {switchMap} from 'rxjs/operators';
 import {ImageCroppedEvent} from 'ngx-image-cropper';
-import {ActivatedRoute, Router} from "@angular/router";
-import {ProductService} from "../../shared/service/product.service";
-import {ImageMetadata} from "../../shared/entities/image-metadata";
+import {ActivatedRoute, Router} from '@angular/router';
+import {ProductService} from '../../shared/service/product.service';
+import {ImageMetadata} from '../../shared/entities/image-metadata';
 import { Store } from '@ngxs/store';
 import {AddProduct} from '../statemagnement/product.actions';
 
@@ -17,11 +17,19 @@ import {AddProduct} from '../statemagnement/product.actions';
   styleUrls: ['./addproduct.component.css']
 })
 export class AddproductComponent implements OnInit {
-
+  fileTypes =
+  [
+    {name: 'Books'},
+    {name: 'Clothes'},
+    {name: 'Decoration'},
+    {name: 'Electrical'},
+    {name: 'Appliance'}
+  ];
   productFormGroup: FormGroup;
   imageChangedEvent: any = '';
   croppedImage: any = '';
   croppedBlob: Blob;
+
   constructor (private router: Router,
                private activatedRoute: ActivatedRoute,
                private ps: ProductService,
@@ -29,7 +37,9 @@ export class AddproductComponent implements OnInit {
 
     this.productFormGroup = new FormGroup({
       name: new FormControl(''),
-      price: new FormControl('')
+      details: new FormControl(''),
+      price: new FormControl(''),
+      category: new FormControl('')
     });
   }
 

@@ -7,6 +7,8 @@ import {tap} from "rxjs/operators";
 import {UserService} from "../../shared/service/user.service";
 import {User} from "../../shared/entities/user";
 import * as firebase from "firebase";
+import {Store} from '@ngxs/store';
+import {RemoveUser} from '../../shared/statemangement/action/user.actions';
 
 @Component({
   selector: 'app-show-users',
@@ -16,7 +18,8 @@ import * as firebase from "firebase";
 export class ShowUsersComponent implements OnInit {
 
   users: Observable<User[]>;
-  constructor(private us: UserService) {
+  constructor(private us: UserService,
+              private store: Store) {
   }
 
   ngOnInit() {
@@ -24,11 +27,6 @@ export class ShowUsersComponent implements OnInit {
   }
 
   deleteUser(user: User) {
-    const obs = this.us.deleteUser(user.id);
-    obs.subscribe(productFromFirebase => {
-      window.alert('user with id: ' + productFromFirebase.id + ' is Deleted');
-    }, error1 => {
-      window.alert('user not found id: ' + user.id);
-    });
+    this.store.dispatch(new RemoveUser(user));
   }
 }

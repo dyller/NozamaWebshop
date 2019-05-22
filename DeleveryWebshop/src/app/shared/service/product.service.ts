@@ -30,6 +30,10 @@ export class ProductService {
         const productToSend: any =
         {
           name: product.name,
+          price: product.price,
+          category: product.category,
+          details: product.details,
+
           image:
           {
             base64: imageMeta.base64Image,
@@ -52,7 +56,6 @@ export class ProductService {
     try{
       this.db.collection(collection_path).doc(prodData.id).update(
         {
-
           name: prodData.name
         }
       );
@@ -98,12 +101,16 @@ export class ProductService {
           // actions is an array of DocumentChangeAction
           return actions.map(action => {
             const data = action.payload.doc.data() as Product;
+            console.log('get prods: ' + data.name);
             return {
               id: action.payload.doc.id,
               price: data.price,
               name: data.name,
+              url: data.url,
               amount: data.amount,
-              pictureId: data.pictureId
+              pictureId: data.pictureId,
+              details: data.details,
+              category: data.category
             };
           });
         })

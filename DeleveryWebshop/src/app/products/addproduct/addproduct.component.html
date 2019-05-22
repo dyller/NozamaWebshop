@@ -5,10 +5,26 @@
     Name
     <input type="text" formControlName="name">
   </label>
+
+  <label>
+    Details
+    <input type="text" formControlName="details">
+  </label>
+
   <label>
     price
     <input type="number" formControlName="price">
   </label>
+
+    <label>
+      File Type
+    </label>
+    <select class="dropdown" formControlName="category" id="sel1">
+      <option>Books</option>
+      <option>Clothes</option>
+      <option>Decoration</option>
+      <option>Electrical</option>
+    </select>
 
   <input id="chooseFile" type="file" (change)="uploadFile($event)" accept="image/*">
 
