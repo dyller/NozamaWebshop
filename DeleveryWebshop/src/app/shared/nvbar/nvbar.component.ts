@@ -9,13 +9,14 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {FirebaseAuth} from '@angular/fire';
 import {AuthService} from "../core/auth.service";
 import {User} from '../entities/user';
+import {forEach} from "@angular/router/src/utils/collection";
 @Component({
   selector: 'app-nvbar',
   templateUrl: './nvbar.component.html',
   styleUrls: ['./nvbar.component.css']
 })
 export class NvbarComponent implements OnInit {
-  cartSize: Array<Product> = this.cart.getAllProduts();
+  cartSize: Product[] = this.cart.getAllProduts();
   itemsNumber: number = this.countItems();
  currentUser: User;
 
@@ -52,11 +53,11 @@ export class NvbarComponent implements OnInit {
   }
   countItems(): number {
     let count = 0 ;
-    if (this.cartSize !== null) {
-      this.cartSize.forEach(value => {
+    /*if (this.cartSize !== null) {
+      for(let value of this.cartSize) {
         count = count + value.amount;
-      });
-    }
+      }
+    }*/
     return count;
   }
 
