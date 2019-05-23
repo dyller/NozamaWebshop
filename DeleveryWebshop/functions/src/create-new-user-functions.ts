@@ -31,7 +31,7 @@ exports.users = functions.https.onRequest(
           Username: data.Username,
           Phonenumber: data.Phonenumber,
           Address: data.Address,
-          Email: data.Email
+          Email: data.Email,
         };
 
         const file = {

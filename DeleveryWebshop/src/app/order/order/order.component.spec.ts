@@ -22,8 +22,10 @@ describe('OrderComponent', () => {
   let dh: DOMHelper<OrderComponent>;
   let productCart: any;
   beforeEach(async(() => {
+
     productCart = jasmine.createSpyObj('CartService', ['getAllProduts', 'addToFB']);
     productCart.getAllProduts.and.returnValue([]);
+
     TestBed.configureTestingModule({
       declarations: [OrderComponent],
       imports: [
@@ -77,6 +79,7 @@ describe('OrderComponent', () => {
         , name: 'product', url: 'image', price: 300}]);*/
      component.buyProducts();
     });
+
     it('Should call addtoFB 1 time', () => {
       expect(productCart.addToFB).toHaveBeenCalledTimes(1);
     });

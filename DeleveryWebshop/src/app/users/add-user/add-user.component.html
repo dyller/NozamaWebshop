@@ -9,10 +9,18 @@
     Password
     <input type="password" formControlName="Password">
   </label>
+
   <label>
-    Address
-    <input type="text" formControlName="Address">
+    City
   </label>
+  <select class="dropdown" formControlName="Address" id="sel1">
+    <option>Esbjerg</option>
+    <option>Kolding</option>
+    <option>Aarhus</option>
+    <option>Sonderborg</option>
+    <option>Odense</option>
+  </select>
+
   <label>
     email
     <input type="email" formControlName="Email">
@@ -22,6 +30,7 @@
     phonenumber
     <input type="number" formControlName="Phonenumber">
   </label>
+
   <input type="file" (change)="uploadFile($event)" accept="image/*">
   <button type="submit">Add</button>
 </form>
