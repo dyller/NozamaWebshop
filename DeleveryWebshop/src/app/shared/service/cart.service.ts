@@ -48,6 +48,7 @@ export class CartService {
 
   addToFB(product: Product[]) {
     this.prodIds = new Array<String>();
+    firebase.auth().currentUser.uid;
     if (firebase.auth().currentUser.uid !== null
       && product !== null ){
      // const products = JSON.parse(sessionStorage.getItem(key));
