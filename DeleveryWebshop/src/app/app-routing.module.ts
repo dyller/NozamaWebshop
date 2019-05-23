@@ -11,11 +11,7 @@ import {OrderComponent} from './order/order/order.component';
 import {AuthGuard} from './shared/core/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: ShowproductComponent},
-  {path: 'add-product', component: AddproductComponent /*, canActivate: [AuthGuard]*/},
   {path: 'login', component: LoginComponent},
-  {path: 'update-products/:id', component: UpdateProductsComponent},
-  //{path: 'show-users', component: ShowUsersComponent},
   {
     path: 'users',
     loadChildren: './users/users.module#UsersModule'
@@ -23,9 +19,19 @@ const routes: Routes = [
   {
     path: 'orders',
     loadChildren: './order/order.module#OrderModule'
-  }];
-  //{path: 'orders', component: OrderComponent}];
+  },
 
+  {
+    path: '',
+    loadChildren: './products/products.module#ProductsModule'
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  }
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
