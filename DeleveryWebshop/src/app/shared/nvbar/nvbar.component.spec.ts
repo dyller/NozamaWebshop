@@ -55,15 +55,18 @@ describe('NvbarComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
   describe('delete account', () => {
-    beforeEach(() => {
+    beforeEach(() =>
+    {
       component.deleteAccount();
     });
+
     it('should call authService.deleteAccount', () => {
       expect(auth.deleteAccount).toHaveBeenCalledTimes(1);
     });
-    });
+  });
 });
