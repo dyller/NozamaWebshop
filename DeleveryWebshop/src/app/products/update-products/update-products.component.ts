@@ -49,7 +49,7 @@ export class UpdateProductsComponent implements OnInit {
   }
 
   updateProduct() {
-    const prodData = this.productFormGroup.value;
+   const prodData = this.productFormGroup.value;
     this.products.name = prodData.name;
     console.log('What is the prod name inside updateProduct.com: ' + this.products.name);
     this.store.dispatch(new UpdateProduct(this.products));
