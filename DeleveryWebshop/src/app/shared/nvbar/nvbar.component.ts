@@ -14,22 +14,26 @@ import {User} from '../entities/user';
   templateUrl: './nvbar.component.html',
   styleUrls: ['./nvbar.component.css']
 })
-export class NvbarComponent implements OnInit {
+export class NvbarComponent implements OnInit
+{
   cartSize: Array<Product> = this.cart.getAllProduts();
   itemsNumber: number = this.countItems();
- currentUser: User;
+   currentUser: User;
 
   constructor(private cart: CartService,
               private user: UserService,
-              private authService: AuthService) {
-    firebase.auth().onAuthStateChanged(users => {
+              private authService: AuthService)
+  {
+    firebase.auth().onAuthStateChanged(users =>
+    {
       if (users) {
       console.log('users: ' + JSON.stringify(users));
-        this.user.getUserById(users.uid).subscribe(couldStoreUser => {
-        this.currentUser = couldStoreUser;
-
-      });
-    } else
+        this.user.getUserById(users.uid).subscribe(couldStoreUser =>
+        {
+          this.currentUser = couldStoreUser;
+        });
+      }
+      else
       {
         this.currentUser = null;
       }

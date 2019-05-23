@@ -76,9 +76,11 @@ export class ProductState {
   }
 
   @Action(ReadAllProduct)
-  get({getState }: StateContext<ProductStateModel>, {payload }: ReadAllProduct) {
+  get({getState}: StateContext<ProductStateModel>, { payload}: ReadAllProduct) {
     const state = getState();
-    this.ps.getProducts();
+    return this.ps.getProducts().subscribe(sas => {
+      console.log('Return stuff from service: ' + sas.toString());
+      });
   }
 
 }

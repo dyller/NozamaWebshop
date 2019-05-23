@@ -23,7 +23,8 @@ describe('AddproductComponent', () =>
   let str: any;
   let something: any;
 
-  beforeEach(async(() => {
+  beforeEach(async(() =>
+  {
     str = jasmine.createSpyObj('Store', ['dispatch']);
     something = jasmine.createSpyObj('addProduct', ['store']);
     str.dispatch.and.callThrough(something);
@@ -61,7 +62,7 @@ describe('AddproductComponent', () =>
       component.addProduct();
     });
 
-    it('should call ps.deleteProduct 1 time', () =>
+    it('should call the store 1 time', () =>
     {
       expect(str.dispatch).toHaveBeenCalledTimes(1);
     });

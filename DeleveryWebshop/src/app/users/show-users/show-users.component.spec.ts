@@ -152,13 +152,15 @@ class Helper {
   getUsers(amount: number): Observable<User[]> {
     for (let i = 0; i < amount; i++) {
       this.users.push(
-        { id: 'user1',
+        {
+          id: 'user1',
           Username: 'Steve',
           Password: 'jkahdkjsandjksa',
           Address: 'Esbjerg',
           Phonenumber: '56567899',
           PictureId: 'happy-face.png',
-          Email: 'steve@steve.com',  }
+          Email: 'steve@steve.com',
+        }
       );
     }
     return of(this.users);

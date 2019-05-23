@@ -42,6 +42,25 @@ export class ShowproductComponent implements OnInit {
           });
         })
       );
+
+       /*this.store.dispatch(ReadAllProduct)
+     .pipe(
+       tap(products =>
+       {
+         console.log('message from showprod.commp');
+         products.forEach(product =>
+         {
+           if (product.pictureId)
+           {
+             this.fs.getFileUrl(product.pictureId)
+               .subscribe(url =>
+               {
+                 product.url = url;
+               });
+           }
+         });
+       })
+     );*/
   }
 
   deleteProduct(product: Product) {

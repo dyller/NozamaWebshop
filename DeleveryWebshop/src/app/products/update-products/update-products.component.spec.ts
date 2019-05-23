@@ -5,9 +5,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ProductService} from '../../shared/service/product.service';
 import {FileService} from '../../shared/service/file.service';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 import {of} from 'rxjs';
 import {Store} from '@ngxs/store';
+import {ImageCropperModule} from 'ngx-image-cropper';
+import {HttpClientModule} from '@angular/common/http';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../../environments/environment';
 
 describe('UpdateProductsComponent', () => {
   let component: UpdateProductsComponent;
@@ -17,12 +22,15 @@ describe('UpdateProductsComponent', () => {
   let psMockSub: any;
   let fsMockSub: any;
   let str: any;
+  let something: any;
 
   beforeEach(async(() => {
     psMock = jasmine.createSpyObj('ProductService', ['getProductById', 'updateProduct']);
     psMockSub = jasmine.createSpyObj('getProductById', ['subscribe']);
 
-    str = jasmine.createSpyObj('store', ['dispatch']);
+    str = jasmine.createSpyObj('Store', ['dispatch']);
+    something = jasmine.createSpyObj('updateProduct', ['store']);
+    str.dispatch.and.callThrough(something);
 
     psMock.getProductById.and.returnValue(psMockSub);
     psMockSub.subscribe.and.returnValue(of({id: 'product1', amount: 1, pictureId: 'picture'
@@ -34,7 +42,12 @@ describe('UpdateProductsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ UpdateProductsComponent ],
       imports: [ ReactiveFormsModule,
-        RouterTestingModule
+        ImageCropperModule,
+        HttpClientModule,
+        RouterTestingModule,
+        AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule // imports firebase/firestore, only needed for database features
       ],
       providers:
       [
@@ -70,6 +83,17 @@ describe('UpdateProductsComponent', () => {
     it('should call productService.getFileUrl 1 time', () => {
       expect(psMockSub.subscribe).toHaveBeenCalledTimes(1);
     });
+  });
 
+  describe('UpdateProduct Update', () => {
+    beforeEach(() =>
+    {
+      component.updateProduct();
+    });
+
+    it('should call the store 1 time', () =>
+    {
+      expect(str.dispatch).toHaveBeenCalledTimes(1);
+    });
   });
 });
