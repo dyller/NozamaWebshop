@@ -16,6 +16,7 @@ describe('cypress test', function() {
   it('error upload product without image', function() {
     cy.contains('Save').click()
     const stub = cy.stub()
+
     cy.on('window:alert', (str) => {
       expect(str).to.equal('Bad stuff happened: You need better metadata')
     })

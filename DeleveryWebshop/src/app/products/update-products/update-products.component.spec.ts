@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../../environments/environment';
+import {Product} from "../../shared/entities/product";
 
 describe('UpdateProductsComponent', () => {
   let component: UpdateProductsComponent;
@@ -23,14 +24,13 @@ describe('UpdateProductsComponent', () => {
   let fsMockSub: any;
   let str: any;
   let something: any;
-
   beforeEach(async(() => {
     psMock = jasmine.createSpyObj('ProductService', ['getProductById', 'updateProduct']);
     psMockSub = jasmine.createSpyObj('getProductById', ['subscribe']);
 
     str = jasmine.createSpyObj('Store', ['dispatch']);
     something = jasmine.createSpyObj('updateProduct', ['store']);
-    str.dispatch.and.callThrough(something);
+    //str.dispatch.and.callThrough(something);
 
     psMock.getProductById.and.returnValue(psMockSub);
     psMockSub.subscribe.and.returnValue(of({id: 'product1', amount: 1, pictureId: 'picture'
@@ -83,17 +83,7 @@ describe('UpdateProductsComponent', () => {
     it('should call productService.getFileUrl 1 time', () => {
       expect(psMockSub.subscribe).toHaveBeenCalledTimes(1);
     });
+
   });
 
-  describe('UpdateProduct Update', () => {
-    beforeEach(() =>
-    {
-      component.updateProduct();
-    });
-
-    it('should call the store 1 time', () =>
-    {
-      expect(str.dispatch).toHaveBeenCalledTimes(1);
-    });
-  });
 });

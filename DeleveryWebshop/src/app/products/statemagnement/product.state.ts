@@ -50,7 +50,10 @@ export class ProductState {
       .subscribe(() => {
         this.router.navigate([''],
           {relativeTo: this.activatedRoute});
-      });
+        },
+        error1 => {
+          window.alert('Bad stuff happened: ' + error1);
+        });
   }
 
   @Action(RemoveProduct)
