@@ -4,7 +4,6 @@ import { NvbarComponent } from './nvbar.component';
 import {CartService} from '../service/cart.service';
 import {UserService} from '../service/user.service';
 import {AuthService} from '../core/auth.service';
-import {AddproductComponent} from '../../products/addproduct/addproduct.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {HttpClientModule} from '@angular/common/http';
@@ -13,9 +12,9 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {Store} from '@ngxs/store';
 
 describe('NvbarComponent', () => {
+
   let component: NvbarComponent;
   let fixture: ComponentFixture<NvbarComponent>;
   let cart: any;
@@ -56,15 +55,18 @@ describe('NvbarComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
   describe('delete account', () => {
-    beforeEach(() => {
+    beforeEach(() =>
+    {
       component.deleteAccount();
     });
+
     it('should call authService.deleteAccount', () => {
       expect(auth.deleteAccount).toHaveBeenCalledTimes(1);
     });
-    });
+  });
 });

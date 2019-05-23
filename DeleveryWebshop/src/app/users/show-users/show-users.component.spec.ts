@@ -14,10 +14,9 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {ProductService} from '../../shared/service/product.service';
 import {Observable, of} from 'rxjs';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {Product} from "../../shared/entities/product";
-import {User} from "../../shared/entities/user";
-import * as firebase from "firebase";
+import {User} from '../../shared/entities/user';
 import {UserService} from '../../shared/service/user.service';
+import {Store} from '@ngxs/store';
 
 describe('ShowUsersComponent', () =>
 {
@@ -26,13 +25,20 @@ describe('ShowUsersComponent', () =>
   let fixture: ComponentFixture<ShowUsersComponent>;
   let userServiceMock: any;
   let userServiceMockDelete: any;
+  let str: any;
+  
   beforeEach(async(() =>
   {
     userServiceMock = jasmine.createSpyObj('UserService', ['getUsers', 'deleteUser']);
     userServiceMock.getUsers.and.returnValue(of([]));
     userServiceMockDelete = jasmine.createSpyObj('deleteUser', ['subscribe']);
     userServiceMock.deleteUser.and.returnValue(userServiceMockDelete);
+    str = jasmine.createSpyObj('store', ['dispatch']);
 
+    /*fileServiceMock = jasmine.createSpyObj('UserService', ['getFileUrl']);
+    fileServiceMock.getFileUrl.and.returnValue(of([]));*/
+
+    //productCart = jasmine.createSpyObj('CartService', ['add']);
     TestBed.configureTestingModule({
       declarations: [ShowUsersComponent],
       imports: [
@@ -40,17 +46,13 @@ describe('ShowUsersComponent', () =>
         RouterTestingModule,
         AngularFireStorageModule,
         AngularFireAuthModule,
-        MatTooltipModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatCardModule,
         HttpClientModule,
-        MatGridListModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
-        {provide: UserService, useValue: userServiceMock}
+        {provide: UserService, useValue: userServiceMock},
+        {provide: Store, useValue: str}
       ]
     })
       .compileComponents();
@@ -150,13 +152,15 @@ class Helper {
   getUsers(amount: number): Observable<User[]> {
     for (let i = 0; i < amount; i++) {
       this.users.push(
-        { id: 'user1',
+        {
+          id: 'user1',
           Username: 'Steve',
           Password: 'jkahdkjsandjksa',
           Address: 'Esbjerg',
           Phonenumber: '56567899',
           PictureId: 'happy-face.png',
-          Email: 'steve@steve.com',  }
+          Email: 'steve@steve.com',
+        }
       );
     }
     return of(this.users);

@@ -15,22 +15,27 @@ import {forEach} from "@angular/router/src/utils/collection";
   templateUrl: './nvbar.component.html',
   styleUrls: ['./nvbar.component.css']
 })
-export class NvbarComponent implements OnInit {
+
+export class NvbarComponent implements OnInit
+{
   cartSize: Product[] = this.cart.getAllProduts();
   itemsNumber: number = this.countItems();
- currentUser: User;
+  currentUser: User;
 
   constructor(private cart: CartService,
               private user: UserService,
-              private authService: AuthService) {
-    firebase.auth().onAuthStateChanged(users => {
+              private authService: AuthService)
+  {
+    firebase.auth().onAuthStateChanged(users =>
+    {
       if (users) {
       console.log('users: ' + JSON.stringify(users));
-        this.user.getUserById(users.uid).subscribe(couldStoreUser => {
-        this.currentUser = couldStoreUser;
-
-      });
-    } else
+        this.user.getUserById(users.uid).subscribe(couldStoreUser =>
+        {
+          this.currentUser = couldStoreUser;
+        });
+      }
+      else
       {
         this.currentUser = null;
       }
@@ -48,9 +53,12 @@ export class NvbarComponent implements OnInit {
     });
   }
 
-  deleteAccount() {
-    this.authService.deleteAccount(firebase.auth().currentUser);
+  deleteAccount()
+  {
+    console.log('Current user in navbar is: ' + this.currentUser);
+    this.authService.deleteAccount(this.currentUser);
   }
+
   countItems(): number {
     let count = 0 ;
     /*if (this.cartSize !== null) {

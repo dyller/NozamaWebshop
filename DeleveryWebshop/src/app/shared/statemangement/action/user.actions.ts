@@ -12,6 +12,6 @@ export class AddUser {
 export class RemoveUser {
   static readonly type = '[users] Remove';
 
-  constructor(public payload: string) {}
+  constructor(public payload: User) {}
 }
 

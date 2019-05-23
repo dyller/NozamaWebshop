@@ -17,6 +17,8 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {ProductService} from '../../shared/service/product.service';
 import {UserService} from '../../shared/service/user.service';
 import {AuthService} from '../../shared/core/auth.service';
+import {ImageCropperModule} from 'ngx-image-cropper';
+import {Store} from '@ngxs/store';
 
 describe('AddUserComponent', () => {
 
@@ -24,29 +26,29 @@ describe('AddUserComponent', () => {
   let dh: DOMHelper<AddUserComponent>;
   let fixture: ComponentFixture<AddUserComponent>;
   let userServiceMock: any;
+  let str: any;
 
   beforeEach(async(() =>
   {
     userServiceMock = jasmine.createSpyObj('UserService', ['getUsers', 'deleteUser']);
     userServiceMock.getUsers.and.returnValue(of([]));
 
+    str = jasmine.createSpyObj('store', ['dispatch']);
+
     TestBed.configureTestingModule({
       declarations: [AddUserComponent],
       imports: [
         ReactiveFormsModule,
         RouterTestingModule,
+        ImageCropperModule,
         AngularFireStorageModule,
         AngularFireAuthModule,
-        MatTooltipModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatCardModule,
         HttpClientModule,
-        MatGridListModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
+        {provide: Store, useValue: str},
         {provide: UserService, useValue: userServiceMock}
       ]
     })

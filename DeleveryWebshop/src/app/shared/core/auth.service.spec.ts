@@ -1,4 +1,4 @@
-import {getTestBed, TestBed} from '@angular/core/testing';
+import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
@@ -11,20 +11,26 @@ import {environment} from '../../../environments/environment';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {NvbarComponent} from '../nvbar/nvbar.component';
 
 describe('AuthService', () => {
+
+  let component: AuthService;
+  let fixture: ComponentFixture<AuthService>;
   let store: any;
   let firebaseUser: any;
   let firebasedelete: any;
-  let firebasethen: any;
   let httpMock: HttpTestingController;
   let service: AuthService;
   beforeEach(() => {
+
     store = jasmine.createSpyObj('Store', ['dispatch']);
     firebaseUser = jasmine.createSpyObj('firebase', ['auth']);
     firebasedelete = jasmine.createSpyObj('auth', ['createUserWithEmailAndPassword']);
-   firebaseUser.auth.and.returnValue(firebasedelete);
+    firebaseUser.auth.and.returnValue(firebasedelete);
+
     TestBed.configureTestingModule({
+      declarations: [ AuthService ],
       imports: [
         AngularFirestoreModule,
         HttpClientTestingModule,
@@ -40,17 +46,23 @@ describe('AuthService', () => {
     httpMock = getTestBed().get(HttpTestingController);
     service = TestBed.get(AuthService);
   });
-it('should be created', () => {
-  expect(service).toBeTruthy();
-});
-  describe('Simple HTML', () => {
-    beforeEach(() => {
-      service.createUser(null, null);
-    it('should call ps.deleteProduct 1 time', () => {
-      expect(firebasedelete.createUserWithEmailAndPassword).toHaveBeenCalledTimes(1);
-    });
 
+  it('should be created', () => {
+  expect(service).toBeTruthy();
   });
 
-});
+  describe('Simple HTML', () => {
+    beforeEach(() =>
+    {
+      service.createUser(null, null);
+      it('should call ps.deleteProduct 1 time', () =>
+      {
+        expect(firebasedelete.createUserWithEmailAndPassword).toHaveBeenCalledTimes(1);
+      });
+    });
+  });
+
+  describe('delete account', () => {
+
+  });
 });

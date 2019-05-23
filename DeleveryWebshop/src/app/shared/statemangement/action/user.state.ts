@@ -48,7 +48,7 @@ export class UserState {
   @Action(RemoveUser)
   remove({getState }: StateContext<UserStateModel>, { payload }: RemoveUser) {
     const state = getState();
-    this.us.removeUser(payload);
+    this.us.removeUser(payload.id);
   }
 
 }

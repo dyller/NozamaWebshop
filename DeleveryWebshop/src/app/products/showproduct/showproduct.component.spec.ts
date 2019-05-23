@@ -43,7 +43,9 @@ describe('ShowproductComponent', () => {
     fe.auth.and.returnValue(fsAuth);
     fsAuth.signOut.and.returnValue(of([]));
 
-    str = jasmine.createSpyObj('store', ['dispatch']);
+    str = jasmine.createSpyObj('Store', ['dispatch']);
+    something = jasmine.createSpyObj('deleteProduct', ['store']);
+    str.dispatch.and.callThrough(something);
 
 
     productServiceMock = jasmine.createSpyObj('ProductService', ['getProducts', 'deleteProduct']);
@@ -177,14 +179,15 @@ describe('ShowproductComponent', () => {
   });
 
   describe('delete', () => {
-    beforeEach(() => {
+    beforeEach(() =>
+    {
       component.deleteProduct({id: 'product1', amount: 1, pictureId: 'picture'
         , name: 'product', url: 'image', price: 300});
     });
 
-    /*it('should call ps.deleteProduct 1 time', () => {
-      expect(productServiceMock.deleteProduct).toHaveBeenCalledTimes(1);
-    });*/
+    it('should call ps.deleteProduct 1 time', () => {
+      expect(str.dispatch).toHaveBeenCalledTimes(1);
+    });
     });
   
   describe('logout', () => {
