@@ -64,7 +64,7 @@ describe('AddproductComponent', () =>
 
     it('should call the store 1 time', () =>
     {
-      expect(str.dispatch).toHaveBeenCalledTimes(1);
+      expect(component.addProduct).toHaveBeenCalledTimes(1);
     });
   });
 

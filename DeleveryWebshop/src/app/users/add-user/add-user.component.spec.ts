@@ -26,14 +26,17 @@ describe('AddUserComponent', () => {
   let dh: DOMHelper<AddUserComponent>;
   let fixture: ComponentFixture<AddUserComponent>;
   let userServiceMock: any;
-  let str: any;
+  //let str: any;
+  let authService: any;
 
   beforeEach(async(() =>
   {
     userServiceMock = jasmine.createSpyObj('UserService', ['getUsers', 'deleteUser']);
     userServiceMock.getUsers.and.returnValue(of([]));
 
-    str = jasmine.createSpyObj('store', ['dispatch']);
+    authService = jasmine.createSpyObj('authServer', ['createUser']);
+    authService.getAllProduts.and.returnValue([]);
+
 
     TestBed.configureTestingModule({
       declarations: [AddUserComponent],
@@ -48,7 +51,7 @@ describe('AddUserComponent', () => {
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
-        {provide: Store, useValue: str},
+        {provide: AuthService, useValue: authService},
         {provide: UserService, useValue: userServiceMock}
       ]
     })
@@ -67,18 +70,26 @@ describe('AddUserComponent', () => {
       fixture.detectChanges();
     });
 
-   /* it('should create', () => {
+    it('should create', () => {
       expect(component).toBeTruthy();
     });
 
     it('should contain a label',  () =>
     {
       expect(dh.count('label')).toBeGreaterThanOrEqual(1);
-    });*/
+    });
   });
 
-  describe('Button pressed calls', () =>
-  {
 
+  describe('AddProduct Add', () => {
+    beforeEach(() =>
+    {
+      authService.addUser();
+    });
+
+    it('should call the store 1 time', () =>
+    {
+      expect(authService.addUser).toHaveBeenCalledTimes(1);
+    });
   });
 });

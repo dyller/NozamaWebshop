@@ -17,7 +17,8 @@ export class UserStateModel {
       Email: null,
       id: null,
       Password: null,
-      Address: null
+      Address: null,
+      City: null
     }
   }
 })
