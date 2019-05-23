@@ -30,14 +30,11 @@ import {ProductState} from './products/statemagnement/product.state';
 @NgModule({
   declarations: [
     AppComponent,
-    ShowproductComponent,
-    AddproductComponent,
     NvbarComponent,
     ShowUsersComponent,
     AddUserComponent,
     LoginComponent,
     OrderComponent,
-    UpdateProductsComponent
   ],
   imports: [
     ReactiveFormsModule,
