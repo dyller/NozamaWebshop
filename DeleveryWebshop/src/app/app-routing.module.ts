@@ -13,11 +13,18 @@ import {AuthGuard} from './shared/core/auth.guard';
 const routes: Routes = [
   {path: '', component: ShowproductComponent},
   {path: 'add-product', component: AddproductComponent /*, canActivate: [AuthGuard]*/},
-  {path: 'add-user', component: AddUserComponent},
   {path: 'login', component: LoginComponent},
   {path: 'update-products/:id', component: UpdateProductsComponent},
-  {path: 'show-users', component: ShowUsersComponent},
-  {path: 'order', component: OrderComponent}];
+  //{path: 'show-users', component: ShowUsersComponent},
+  {
+    path: 'users',
+    loadChildren: './users/users.module#UsersModule'
+  },
+  {
+    path: 'orders',
+    loadChildren: './order/order.module#OrderModule'
+  }];
+  //{path: 'orders', component: OrderComponent}];
 
 
 @NgModule({

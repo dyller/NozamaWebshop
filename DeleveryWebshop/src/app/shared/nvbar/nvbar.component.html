@@ -1,9 +1,9 @@
 <ul>
   <li><a routerLink="/">Main screen</a></li>
   <li><a routerLink="/add-product">Add Prodcut</a></li>
-  <li><a routerLink="/add-user">Add User</a></li>
-  <li><a routerLink="/show-users">Show user</a></li>
- <li><a routerLink="/order" >Order</a></li>
+  <li><a routerLink="/users/add-user">Add User</a></li>
+  <li><a routerLink="/users">Show user</a></li>
+ <li><a routerLink="/orders" >Order</a></li>
   <li *ngIf="currentUser != null"><a (click)="deleteAccount()" >Delete Account</a></li>
   <li *ngIf="currentUser != null"><a style="color: red">{{currentUser.Username}}</a></li>
   <li *ngIf="currentUser == null"><a style="color: red">Guest</a></li>

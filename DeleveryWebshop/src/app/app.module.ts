@@ -33,10 +33,7 @@ import {ProductState} from './products/statemagnement/product.state';
     ShowproductComponent,
     AddproductComponent,
     NvbarComponent,
-    ShowUsersComponent,
-    AddUserComponent,
     LoginComponent,
-    OrderComponent,
     UpdateProductsComponent
   ],
   imports: [
