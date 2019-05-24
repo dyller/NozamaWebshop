@@ -23,6 +23,6 @@ export class UpdateProduct {
   export class ReadAllProduct {
   static readonly type = '[products] ReadAll';
 
-  constructor(public payload: Product[]) {}
+  constructor(public action: Product[]) {}
 }
 

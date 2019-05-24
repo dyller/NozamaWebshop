@@ -6,10 +6,10 @@ import {AddUser, RemoveUser} from '../../shared/statemangement/action/user.actio
 import {Product} from '../../shared/entities/product';
 import {AddProduct, ReadAllProduct, RemoveProduct, UpdateProduct} from './product.actions';
 import {ProductService} from '../../shared/service/product.service';
+import {log} from 'util';
 
 export class ProductStateModel {
-  products: Product[];
-
+  public products: Product[];
 }
 
 @State<ProductStateModel>({
@@ -17,18 +17,19 @@ export class ProductStateModel {
   defaults: {
     products:
     [{
-      price: 22,
-      name: 'CheeseSocks',
-      pictureId: 'socks.png',
-      url: 'socks.dk',
+      price: 1,
+      name: '',
+      pictureId: '',
+      url: '',
       amount: 1,
-      category: 'Books',
-      details: 'Great socks of Samuel, with ultra good smell'
+      category: '',
+      details: ''
     }]
   }
 })
 
 export class ProductState {
+
   constructor(private ps: ProductService,
               private router: Router,
               private activatedRoute: ActivatedRoute
@@ -71,11 +72,25 @@ export class ProductState {
   }
 
   @Action(ReadAllProduct)
-  get({getState}: StateContext<ProductStateModel>, { payload}: ReadAllProduct) {
-    const state = getState();
-    return this.ps.getProducts().subscribe(sas => {
-      console.log('Return stuff from service: ' + sas.toString());
+  get(ctx: StateContext<ProductStateModel>, { }: ReadAllProduct) {
+    const state = ctx.getState();
+    return this.ps.getProducts().subscribe(sas =>
+    {
+      sas.map(prd =>
+      {
+        console.log('Prod name: ' + prd.name + ' price: ' + prd.price);
+        console.log('Trying something in the state ' + ctx.setState({
+          ...state,
+          products: [prd]
+        }));
+
+        ctx.setState({
+          ...state,
+          products: [prd]
+
+        });
       });
+    });
   }
 
 }

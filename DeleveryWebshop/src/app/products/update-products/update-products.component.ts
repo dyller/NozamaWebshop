@@ -21,7 +21,7 @@ export class UpdateProductsComponent implements OnInit {
 
   constructor(private router: Router,
               private prodService: ProductService,
-              private actRouter: ActivatedRoute,
+              private activatedRoute: ActivatedRoute,
               private fs: FileService,
               private store: Store) {
     this.productFormGroup = new FormGroup( {
@@ -30,7 +30,7 @@ export class UpdateProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id =  this.actRouter.snapshot.paramMap.get('id');
+    this.id =  this.activatedRoute.snapshot.paramMap.get('id');
     this.prodService.getProductById(this.id)
       .subscribe(prd => {
         console.log(prd);

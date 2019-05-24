@@ -61,7 +61,7 @@ export class NvbarComponent implements OnInit
   }
   countItems(): number {
    let count = 0 ;
-   if (this.cartSize !== null) {
+   if (this.cartSize) {
       for (const value of this.cartSize) {
         count = + value.amount;
         }
