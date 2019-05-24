@@ -27,11 +27,7 @@ export class OrderComponent implements OnInit {
   buyProducts() {/*
     this.cart.clear();
     this.cart.addToFB(this.orderList);*/
-    this.store.dispatch(new DeleteCart()).subscribe(() => {
-      console.log('done');
-      this.store.snapshot();
-    }
-    );
+    this.store.dispatch(new DeleteCart()).subscribe();
 
   }
 }

@@ -1,4 +1,4 @@
-import {Product} from "../../entities/product";
+
 
 export class AddToCart
 {

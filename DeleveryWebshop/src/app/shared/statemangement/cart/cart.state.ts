@@ -52,13 +52,9 @@ export class CartState {
   @Action(DeleteCart)
   DeleteCart(ctx: StateContext<CartStateModel> ) {
     const state = ctx.getState();
-    ctx.patchState({
-      productsCart: []
-    });
-   /* ctx.setState({
-      ...state,
-      productsCart: []
-    });*/
+      ctx.patchState({
+        productsCart: []
+      });  
   }
 
 }

@@ -79,8 +79,7 @@ export class ShowproductComponent implements OnInit {
   }
 
   productToCart(product) {
-    this.store.
-    dispatch(new AddToCart(product)).
-    subscribe();
+    this.store.dispatch(new AddToCart(product)).
+      subscribe();
   }
 }
