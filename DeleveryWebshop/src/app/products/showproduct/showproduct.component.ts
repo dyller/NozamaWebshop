@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 import {CartService} from '../../shared/service/cart.service';
 import {Store} from '@ngxs/store';
 import {RemoveProduct} from '../statemagnement/product.actions';
+import {AddToCart} from "../../shared/statemangement/cart/cart.actions";
 
 @Component({
   selector: 'app-showproduct',
@@ -78,6 +79,8 @@ export class ShowproductComponent implements OnInit {
   }
 
   productToCart(product) {
-    this.cart.add(product);
+    this.store.
+    dispatch(new AddToCart(product)).
+    subscribe();
   }
 }
