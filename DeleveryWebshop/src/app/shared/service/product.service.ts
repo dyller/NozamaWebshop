@@ -21,12 +21,12 @@ export class ProductService {
 
   addProductWithImage(product: Product, imageMeta: ImageMetadata): Observable<Product>
   {
-      console.log('The add product with image is starting');
+
       if (imageMeta && imageMeta.fileMeta
       && imageMeta.fileMeta.name && imageMeta.fileMeta.type &&
       (imageMeta.imageBlob || imageMeta.base64Image))
     {
-        const endPoint = 'https://us-central1-nozama-58c5d.cloudfunctions.net/products';
+        const endPoint = 'https://us-central1-nozamafinal.cloudfunctions.net/products';
         const productToSend: any =
         {
           name: product.name,
@@ -51,8 +51,6 @@ export class ProductService {
   }
 
   updateProduct(prodData: Product) {
-    console.log('updateProductService, update product starting');
-    console.log('What is the prodData.name in updateProduct service: ' + prodData.name);
     try{
       this.db.collection(collection_path).doc(prodData.id).update(
         {
@@ -60,12 +58,10 @@ export class ProductService {
         }
       );
     }catch (e) {
-      console.log('Error with updating the product in the service: ' + e);
     }
   }
 
   getProductById(id: string): Observable<Product> {
-    console.log('What is the id: ' + id);
     return this.db.doc<Product>(collection_path + '/' + id)
       .get()
       .pipe(
@@ -118,7 +114,6 @@ export class ProductService {
   }
 
   deleteProduct(id: string): Observable<Product> {
-    console.log('deleteProd in prodService, id: ' + id);
     return this.db.doc<Product>(collection_path + '/' + id)
       .get()
       .pipe(

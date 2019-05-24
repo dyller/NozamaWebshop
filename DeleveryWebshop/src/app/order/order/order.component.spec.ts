@@ -23,7 +23,7 @@ describe('OrderComponent', () => {
   let productCart: any;
   beforeEach(async(() => {
 
-    productCart = jasmine.createSpyObj('CartService', ['getAllProduts', 'addToFB']);
+    productCart = jasmine.createSpyObj('CartService', ['getAllProduts', 'addToFB', 'clear']);
     productCart.getAllProduts.and.returnValue([]);
 
     TestBed.configureTestingModule({
@@ -82,6 +82,9 @@ describe('OrderComponent', () => {
 
     it('Should call addtoFB 1 time', () => {
       expect(productCart.addToFB).toHaveBeenCalledTimes(1);
+    });
+    it('Should call clear 1 time', () => {
+      expect(productCart.clear).toHaveBeenCalledTimes(1);
     });
   });
 });

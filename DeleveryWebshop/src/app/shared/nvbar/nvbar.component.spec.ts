@@ -12,6 +12,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {Product} from "../entities/product";
 
 describe('NvbarComponent', () => {
 
@@ -54,6 +55,8 @@ describe('NvbarComponent', () => {
     fixture = TestBed.createComponent(NvbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+console.log(component.cartSize);
   });
 
   it('should create', () => {

@@ -17,11 +17,9 @@ export class UserService {
               private http: HttpClient) { }
 
   addUser(userData: User, imgMeta: ImageMetadata): Observable<User> {
-    console.log('Jacob is a cat');
     if (userData && userData.Username && userData.Address && userData.Email )
     {
-      console.log('Jacob is a bear');
-      const endPoint = 'https://us-central1-nozama-58c5d.cloudfunctions.net/users';
+      const endPoint = 'https://us-central1-nozamafinal.cloudfunctions.net/users';
 
       const userToCreate: any =
       {

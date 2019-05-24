@@ -12,16 +12,20 @@ describe('cypress test', function() {
 
     cy.get('[formControlName="price"]').type(123)
         .should('have.value', '123')
+    cy.get('[formControlName="details"]').type('test')
+      .should('have.value', 'test')
+
   })
   it('error upload product without image', function() {
-    cy.contains('Save').click()
+    //cy.contains('Save').click()
     const stub = cy.stub()
 
     cy.on('window:alert', (str) => {
-      expect(str).to.equal('Bad stuff happened: You need better metadata')
+      expect( cy.contains('Save').click()).toThrowError();
     })
   })
   it('logout', function () {
+    cy.visit('http://localhost:4200/')
     cy.contains('Main screen').click();
     cy.contains('logout').click()
 
@@ -34,7 +38,7 @@ describe('cypress test', function() {
     cy.get('[formControlName="email"]').type('facejs@live.dk')
       .should('have.value', 'facejs@live.dk')
     cy.get('#login').click()
-    cy.contains('123456')
+    cy.contains('facejs@live.dk')
     cy.contains('Main screen').click();
   })
 
@@ -53,7 +57,7 @@ describe('cypress test', function() {
   it('routing add user', function() {
     cy.visit('http://localhost:4200/')
     cy.contains('Show user').click();
-    cy.url().should('include', '/show-users')
+    cy.url().should('include', '/users')
     cy.contains('Main screen').click();
     })
   it('add user contains 5 forms', function() {
@@ -63,8 +67,8 @@ describe('cypress test', function() {
       .should('have.value', '123456')
     cy.get('[formControlName="Password"]').type('123456')
       .should('have.value', '123456')
-    cy.get('[formControlName="Address"]').type('123456')
-      .should('have.value', '123456')
+    cy.get('[formControlName="Address"]').select('Esbjerg')
+      .should('have.value', 'Esbjerg')
     cy.get('[formControlName="Email"]').type('123456')
       .should('have.value', '123456')
     cy.get('[formControlName="Phonenumber"]').type(123)
@@ -74,16 +78,13 @@ describe('cypress test', function() {
   it('go to order by clicking Order', function() {
     cy.visit('http://localhost:4200/')
     cy.contains('Order').click();
-    cy.url().should('include', '/order')
-    cy.contains('Main screen').click();
-    cy.get('#image').click();
-    cy.url().should('include', '/order')
+    cy.url().should('include', '/orders')
     cy.contains('Main screen').click();
   })
   it('go to order by clicking Cart', function() {
 
     cy.get('#image').click();
-    cy.url().should('include', '/order')
+    cy.url().should('include', '/orders')
     cy.contains('Main screen').click();
   })
 })

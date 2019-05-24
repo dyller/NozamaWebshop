@@ -17,10 +17,16 @@ export class OrderComponent implements OnInit {
 }
 
   ngOnInit() {
+
 this.orderList = this.cart.getAllProduts();
+    for (let th of this.orderList)
+    {
+      console.log(JSON.stringify(th));
+    }
       }
 
   buyProducts() {
+    this.cart.clear();
     this.cart.addToFB(this.orderList);
   }
 }

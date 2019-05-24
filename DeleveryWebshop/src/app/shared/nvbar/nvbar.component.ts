@@ -18,6 +18,8 @@ import {forEach} from "@angular/router/src/utils/collection";
 
 export class NvbarComponent implements OnInit
 {
+
+
   cartSize: Product[] = this.cart.getAllProduts();
   itemsNumber: number = this.countItems();
   currentUser: User;
@@ -57,15 +59,16 @@ export class NvbarComponent implements OnInit
     console.log('Current user in navbar is: ' + this.currentUser);
     this.authService.deleteAccount(this.currentUser);
   }
-
   countItems(): number {
-    let count = 0 ;
-    /*if (this.cartSize !== null) {
-      for(let value of this.cartSize) {
-        count = count + value.amount;
+   let count = 0 ;
+   if (this.cartSize !== null) {
+      for (const value of this.cartSize) {
+        count = + value.amount;
+        }
       }
-    }*/
-    return count;
+      return count;
+
+
   }
 
 }

@@ -12,11 +12,20 @@ describe('UserService', () => {
   let fsCollectionMock: any;
   let httpMock: HttpTestingController;
   let service: UserService;
+  let dbDoc : any;
+  let dbGetPipe: any ;
+  let dbUpdate: any ;
   beforeEach(() => {
-    angularFirestoreMock = jasmine.createSpyObj('AngularFirestore', ['collection']);
-    fsCollectionMock = jasmine.createSpyObj('collection', ['snapshotChanges', 'valueChanges', 'delete']);
+    angularFirestoreMock = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc']);
+    dbDoc = jasmine.createSpyObj('doc', ['delete', 'get']);
+    dbGetPipe = jasmine.createSpyObj('get', ['pipe']);
+    dbDoc.get.and.returnValue(dbGetPipe);
+    angularFirestoreMock.doc.and.returnValue(dbDoc);
+    fsCollectionMock = jasmine.createSpyObj('collection', ['snapshotChanges', 'valueChanges', 'delete', 'doc']);
     angularFirestoreMock.collection.and.returnValue(fsCollectionMock);
     fsCollectionMock.snapshotChanges.and.returnValue(of([]));
+    dbUpdate = jasmine.createSpyObj('doc', ['update']);
+    fsCollectionMock.doc.and.returnValue(dbUpdate);
 
     TestBed.configureTestingModule({
       imports: [
@@ -51,5 +60,57 @@ describe('UserService', () => {
       expect(fsCollectionMock.snapshotChanges).toHaveBeenCalledTimes(1);
     });
   });
+  describe('updateUser', () => {
+    beforeEach(() => {
+      service.updateUser(  {
+        id: 'user1',
+        Username: 'Steve',
+        Password: 'jkahdkjsandjksa',
+        Address: 'Esbjerg',
+        Phonenumber: '56567899',
+        PictureId: 'happy-face.png',
+        Email: 'steve@steve.com',
+      });
+
+    });
+
+    it('should call db collection', () => {
+      expect(angularFirestoreMock.collection).toHaveBeenCalledTimes(1);
+    });
+    it('should call db doc', () => {
+      expect(fsCollectionMock.doc).toHaveBeenCalledTimes(1);
+    });
+    it('should call db update', () => {
+      expect(dbUpdate.update).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('updateUser', () => {
+    beforeEach(() => {
+      service.removeUser(  'test');
+    });
+    it('should call db collection', () => {
+      expect(dbDoc.delete).toHaveBeenCalledTimes(1);
+    });
+
+  });
+  describe('updateUser', () => {
+    beforeEach(() => {
+      service.deleteUser(  'test');
+    });
+    it('should call db collection', () => {
+      expect(dbDoc.get).toHaveBeenCalledTimes(1);
+    });
+
+  });
+  describe('updateUser', () => {
+    beforeEach(() => {
+      service.getUserById(  'test');
+    });
+    it('should call db collection', () => {
+      expect(dbDoc.get).toHaveBeenCalledTimes(1);
+    });
+
+  });
+
 
 });

@@ -51,7 +51,14 @@ export class AddproductComponent implements OnInit {
     const productData = this.productFormGroup.value;
     this.store.dispatch(new AddProduct(productData,
       this.getMetaDataForImage()
-    ));
+    )).subscribe(() => {
+      this.router.navigate([''],
+        {relativeTo: this.activatedRoute});
+    },
+      error1 => {
+        window.alert('Bad stuff happened: ' + error1);
+      });
+
   }
 
   private getMetaDataForImage(): ImageMetadata {

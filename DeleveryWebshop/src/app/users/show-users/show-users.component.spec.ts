@@ -139,8 +139,8 @@ describe('ShowUsersComponent', () =>
         PictureId: 'happy-face.png',
         Email: 'steve@steve.com'  });
     });
-    it('us.deleteUser.subscribe', () => {
-      expect(userServiceMockDelete.subscribe).toHaveBeenCalledTimes(1);
+    it('str.dispath', () => {
+      expect(str.dispatch).toHaveBeenCalledTimes(1);
     });
 
   });

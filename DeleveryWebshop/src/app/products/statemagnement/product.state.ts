@@ -43,17 +43,12 @@ export class ProductState {
   add({getState, patchState }: StateContext<ProductStateModel>, { payload, payload2 }: AddProduct) {
     console.log('What is payload in addProduct.state.ts: ' + JSON.stringify(payload));
     const state = getState();
-    patchState({
+    /*patchState({
       products: [...state.products, payload]
-    });
+    });*/
+
     this.ps.addProductWithImage(payload, payload2)
-      .subscribe(() => {
-        this.router.navigate([''],
-          {relativeTo: this.activatedRoute});
-        },
-        error1 => {
-          window.alert('Bad stuff happened: ' + error1);
-        });
+      .subscribe();
   }
 
   @Action(RemoveProduct)
@@ -72,10 +67,7 @@ export class ProductState {
  @Action(UpdateProduct)
   update({getState }: StateContext<ProductStateModel>, { payload }: UpdateProduct) {
     const state = getState();
-    console.log('What is the updateProduct Paylod: ' + payload.name);
           this.ps.updateProduct(payload);
-          this.router.navigate([''],
-            {relativeTo: this.activatedRoute});
   }
 
   @Action(ReadAllProduct)

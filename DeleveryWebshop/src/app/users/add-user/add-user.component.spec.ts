@@ -33,7 +33,7 @@ describe('AddUserComponent', () => {
   {
     userServiceMock = jasmine.createSpyObj('UserService', ['getUsers', 'deleteUser']);
 
-    authService = jasmine.createSpyObj('authServer', ['createUser']);
+    authService = jasmine.createSpyObj('AuthService', ['createUser']);
 
 
     TestBed.configureTestingModule({
@@ -79,15 +79,15 @@ describe('AddUserComponent', () => {
   });
 
 
-  describe('AddProduct Add', () => {
+  describe('AddUser Add', () => {
     beforeEach(() =>
     {
-      authService.addUser();
+      component.addUser();
     });
 
-    it('should call the store 1 time', () =>
+    it('should call the authService.createUser 1 time', () =>
     {
-      expect(authService.addUser()).toHaveBeenCalledTimes(1);
+      expect(authService.createUser).toHaveBeenCalledTimes(1);
     });
   });
 });

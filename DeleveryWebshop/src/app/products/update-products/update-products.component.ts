@@ -52,6 +52,13 @@ export class UpdateProductsComponent implements OnInit {
    const prodData = this.productFormGroup.value;
     this.products.name = prodData.name;
     console.log('What is the prod name inside updateProduct.com: ' + this.products.name);
-    this.store.dispatch(new UpdateProduct(this.products));
+    this.store.dispatch(new UpdateProduct(this.products))
+      .subscribe(() => {
+          this.router.navigate([''],
+            {relativeTo: this.activatedRoute});
+        },
+        error1 => {
+          window.alert('Bad stuff happened: ' + error1);
+        });;
   }
 }

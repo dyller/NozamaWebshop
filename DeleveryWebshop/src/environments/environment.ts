@@ -6,13 +6,13 @@ export const environment = {
   production: false,
   localhostKey: 'deleveryWebshopCart',
   firebase: {
-    apiKey: 'AIzaSyCkO9GDThEGwIis1I0xZOi7USmkTGb4InY',
-    authDomain: 'nozama-58c5d.firebaseapp.com',
-    databaseURL: 'https://nozama-58c5d.firebaseio.com',
-    projectId: 'nozama-58c5d',
-    storageBucket: 'nozama-58c5d.appspot.com',
-    messagingSenderId: '791478407672',
-    appId: '1:791478407672:web:566846f0f5239ae3'
+    apiKey: 'AIzaSyD3AeSaQ7nDVJNpVK8UvcbcJFAY1IfHNpw',
+    authDomain: 'nozamafinal.firebaseapp.com',
+    databaseURL: 'https://nozamafinal.firebaseio.com',
+    projectId: 'nozamafinal',
+    storageBucket: 'nozamafinal.appspot.com',
+    messagingSenderId: '306588928058',
+    appId: '1:306588928058:web:1ad72c75a291979d'
   }
 };
 

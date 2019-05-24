@@ -22,12 +22,15 @@ describe('AddproductComponent', () =>
   let fixture: ComponentFixture<AddproductComponent>;
   let str: any;
   let something: any;
+  let storeDis: any;
 
   beforeEach(async(() =>
   {
     str = jasmine.createSpyObj('Store', ['dispatch']);
     something = jasmine.createSpyObj('addProduct', ['store']);
-    str.dispatch.and.callThrough(something);
+    storeDis = jasmine.createSpyObj('dispatch', ['subscribe']);
+    str.dispatch.and.returnValue(storeDis);
+   // str.dispatch.and.callThrough(something);
 
     TestBed.configureTestingModule({
       declarations: [ AddproductComponent ],
@@ -64,7 +67,11 @@ describe('AddproductComponent', () =>
 
     it('should call the store 1 time', () =>
     {
-      expect(component.addProduct).toHaveBeenCalledTimes(1);
+        expect(str.dispatch).toHaveBeenCalledTimes(1);
+    });
+    it('should call the store subscribe time', () =>
+    {
+      expect(storeDis.subscribe).toHaveBeenCalledTimes(1);
     });
   });
 

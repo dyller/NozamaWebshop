@@ -11,3 +11,10 @@ mat-grid-tile :hover {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
+#img
+{
+  min-width: 230px;
+  min-height: 300px;
+  max-width: 230px;
+  max-height: 300px;
+}
