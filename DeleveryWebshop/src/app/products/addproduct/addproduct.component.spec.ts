@@ -44,6 +44,7 @@ describe('AddproductComponent', () =>
       ],
       providers: [
         {provide: Store, useValue: str}
+
       ]
     })
       .compileComponents();

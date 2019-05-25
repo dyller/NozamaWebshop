@@ -5,7 +5,7 @@ export class AddToCart
 {
   static readonly type = '[Cart] Add';
 
-  constructor(public product: Product) {}
+  constructor(public prod: Product) {}
 }
 
 export class DeleteCart {

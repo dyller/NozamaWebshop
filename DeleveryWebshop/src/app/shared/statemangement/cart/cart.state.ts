@@ -1,63 +1,61 @@
 import {Product} from '../../entities/product';
 import {Action, NgxsAfterBootstrap, NgxsOnInit, Selector, State, StateContext} from '@ngxs/store';
-import {UserService} from '../../service/user.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AddToCart, DeleteCart} from "./cart.actions";
+import {AddToCart, DeleteCart} from './cart.actions';
 import {Observable, of} from "rxjs";
-import {append, patch} from "@ngxs/store/operators";
 
 export interface CartStateModel {
-  productsCart: Observable<Product[]>;
+  productsCart: Product[];
 
 }
 
 @State<CartStateModel>({
-  name: 'cart',
+
+  name: 'cartModel',
   defaults: {
-    productsCart: of([])
+    productsCart: []
   }
 })
 
 
-export class CartState  implements NgxsOnInit, NgxsAfterBootstrap{
+export class CartState  {
 
 
   @Selector()
-  static getProducts(state: CartStateModel): Observable<Product[]> {
+  static getProductsInCart(state: CartStateModel): Product[]
+  {
+    if (state){
     return state.productsCart;
+    }
+    else
+    {
+      return [];
+    }
   }
 
-  public ngxsOnInit({ getState, setState }: StateContext<Product[]>) {
-    const state: Product[] = getState();
-    const payload: Product = null;
-    if (!state.includes(payload)) {
-      setState([...state, payload]);
-    }
-  }
-  public ngxsAfterBootstrap({ getState, setState }: StateContext<Product[]>): void {
-    const state: Product[] = getState();
-    const payload: Product = null;
-    if (!state.includes(payload)) {
-      setState([...state, payload]);
-    }
-  }
   @Action(AddToCart)
-  AddToCart(ctx: StateContext<CartStateModel>, product: AddToCart ) {
+  AddToCart(ctx: StateContext<CartStateModel>, action: AddToCart ) {
   const state = ctx.getState();
-    if ( ctx.getState()){
+    if (state){
+      ctx.patchState({
+        productsCart: [
+          ...state.productsCart,
+          action.prod,
+        ]
+      });
+      /*
       ctx.setState({
       ...state,
         productsCart: [
         ...state.productsCart,
-          product.product
+          action.prod,
       ]
-    });
+    });*/
     }
     else {
       ctx.setState({
         ...state,
         productsCart: [
-          product.product
+          action.prod
         ]
       });
     }
@@ -67,7 +65,7 @@ export class CartState  implements NgxsOnInit, NgxsAfterBootstrap{
   DeleteCart(ctx: StateContext<CartStateModel> ) {
     const state = ctx.getState();
       ctx.patchState({
-        productsCart: of([])
+        productsCart: []
       });
   }
 

@@ -13,6 +13,8 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {Product} from "../entities/product";
+import {Store} from "@ngxs/store";
+import * as firebase from "firebase";
 
 describe('NvbarComponent', () => {
 
@@ -22,8 +24,13 @@ describe('NvbarComponent', () => {
   let user: any;
   let cartWatch: any;
   let auth: any;
-
+  let fires: any
+  let fireAuth: any
   beforeEach(async(() => {
+    fires = jasmine.createSpyObj('firebase', ['auth']);
+    fireAuth = jasmine.createSpyObj('auth', ['onAuthStateChanged']);
+    fires.auth.and.returnValue(fireAuth);
+    fireAuth.onAuthStateChanged.and.returnValue('asd');
     cart = jasmine.createSpyObj('CartService', ['getAllProduts', 'watchStorage']);
     user = jasmine.createSpyObj('UserService', ['getUserById']);
     cartWatch = jasmine.createSpyObj('watchStorage', ['subscribe']);
@@ -44,19 +51,19 @@ describe('NvbarComponent', () => {
       providers: [
         {provide: CartService, useValue: cart},
         {provide: UserService, useValue: user},
-        {provide: AuthService, useValue: auth}
+        {provide: AuthService, useValue: auth},
+        {provide: firebase, useValue: fires}
         //{provide: ProductService, useValue: psMock}
       ]
     })
       .compileComponents();
+
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NvbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-console.log(component.cartSize);
   });
 
   it('should create', () => {
@@ -72,4 +79,12 @@ console.log(component.cartSize);
       expect(auth.deleteAccount).toHaveBeenCalledTimes(1);
     });
   });
+  /*  describe('nginit', () => {
+     beforeEach(() =>
+     {
+     });
+  /*  it('should call fireAuth', () => {
+       expect(user.getUserById).toHaveBeenCalledTimes(1);
+     });
+   });*/
 });

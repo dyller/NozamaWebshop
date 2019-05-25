@@ -12,6 +12,7 @@ import {CartService} from '../../shared/service/cart.service';
 import {Store} from '@ngxs/store';
 import {RemoveProduct} from '../statemagnement/product.actions';
 import {AddToCart} from "../../shared/statemangement/cart/cart.actions";
+import {CartState} from "../../shared/statemangement/cart/cart.state";
 
 @Component({
   selector: 'app-showproduct',
@@ -81,5 +82,6 @@ export class ShowproductComponent implements OnInit {
   productToCart(product) {
     this.store.dispatch(new AddToCart(product)).
       subscribe();
+
   }
 }
