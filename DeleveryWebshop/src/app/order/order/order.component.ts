@@ -13,7 +13,7 @@ import {DeleteCart} from "../../shared/statemangement/cart/cart.actions";
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  @Select(CartState.getProducts) cartProduct: Product[];
+  @Select(CartState.getProducts) cartProduct: Observable<Product[]>;
   orderList: Product[];
   constructor(private cart: CartService,
               private store: Store) {
