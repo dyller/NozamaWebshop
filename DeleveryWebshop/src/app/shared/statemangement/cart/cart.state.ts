@@ -1,7 +1,7 @@
 import {Product} from '../../entities/product';
 import {Action, NgxsAfterBootstrap, NgxsOnInit, Selector, State, StateContext} from '@ngxs/store';
 import {AddToCart, DeleteCart} from './cart.actions';
-import {Observable, of} from "rxjs";
+import {Observable, of} from 'rxjs';
 
 export interface CartStateModel {
   productsCart: Product[];

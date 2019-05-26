@@ -3,7 +3,7 @@ import {Product} from '../../shared/entities/product';
 import {Observable} from 'rxjs';
 import {Select, Store} from '@ngxs/store';
 import {DeleteCart} from '../../shared/statemangement/cart/cart.actions';
-import {CartState} from "../../shared/statemangement/cart/cart.state";
+import {CartState} from '../../shared/statemangement/cart/cart.state';
 
 
 @Component({
@@ -12,14 +12,14 @@ import {CartState} from "../../shared/statemangement/cart/cart.state";
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+
   @Select(CartState.getProductsInCart) cartProduct: Observable<Product[]>;
-  constructor(
-              private store: Store) {
+
+  constructor(private store: Store) {
 
 }
 
   ngOnInit() {
-
 
   }
 

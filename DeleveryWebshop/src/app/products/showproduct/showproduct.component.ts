@@ -12,6 +12,7 @@ import {Select, Store} from '@ngxs/store';
 import {ReadAllProduct, RemoveProduct} from '../statemagnement/product.actions';
 import {ProductState, ProductStateModel} from '../statemagnement/product.state';
 import {AddToCart} from '../../shared/statemangement/cart/cart.actions';
+import {CartState} from '../../shared/statemangement/cart/cart.state';
 
 @Component({
   selector: 'app-showproduct',
@@ -19,11 +20,6 @@ import {AddToCart} from '../../shared/statemangement/cart/cart.actions';
   styleUrls: ['./showproduct.component.css']
 })
 export class ShowproductComponent implements OnInit {
-
-  //@Select(state => state.prods) animals$: Observable<any>;
-
-
-  products: Observable<Product[]>;
 
   // Reads the name of the state from the state class
   @Select(ProductState.getProducts) prods: Observable<Product[]>;
@@ -38,6 +34,7 @@ export class ShowproductComponent implements OnInit {
  ngOnInit() {
 
    this.store.dispatch(ReadAllProduct);
+
     /*this.products = this.ps.getProducts()
       .pipe(
         tap(products => {
@@ -52,10 +49,10 @@ export class ShowproductComponent implements OnInit {
         })
       );*/
 
-
-
    this.prods.subscribe(some => {
-     console.log('Please make this defined: ' + JSON.stringify(some));
+     some.map(sad => {
+       console.log('and map? ' + JSON.stringify(sad.name) + ' and img? ' + JSON.stringify(sad.url));
+     });
    });
   }
 

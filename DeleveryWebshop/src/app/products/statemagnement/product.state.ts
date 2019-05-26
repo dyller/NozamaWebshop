@@ -8,48 +8,53 @@ import {AddProduct, ReadAllProduct, RemoveProduct, UpdateProduct} from './produc
 import {ProductService} from '../../shared/service/product.service';
 import {log} from 'util';
 
-export class ProductStateModel {
-  public products: Product[];
+export interface ProductStateModel {
+  products: Product[];
 }
 
 @State<ProductStateModel>({
   name: 'products',
   defaults: {
-    products:
-    [{
-      price: 1,
-      name: '',
-      pictureId: '',
-      url: '',
-      amount: 1,
-      category: '',
-      details: ''
-    }]
+    products: []
   }
 })
 
-export class ProductState {
-
+export class ProductState
+{
   constructor(private ps: ProductService,
               private router: Router,
-              private activatedRoute: ActivatedRoute
-  ) {}
+              private activatedRoute: ActivatedRoute) {}
+
   @Selector()
-  static getProducts(state: ProductStateModel)
+  static getProducts(state: ProductStateModel): Product[]
   {
-    return state.products;
+    if (state) {
+      return state.products;
+    }
+    else {
+      return [];
+    }
   }
 
   @Action(AddProduct)
-  add({getState, patchState }: StateContext<ProductStateModel>, { payload, payload2 }: AddProduct) {
-    console.log('What is payload in addProduct.state.ts: ' + JSON.stringify(payload));
-    const state = getState();
-    /*patchState({
-      products: [...state.products, payload]
-    });*/
+  add(ctx: StateContext<ProductStateModel>, action: AddProduct) {
+    const state = ctx.getState();
+    if (state) {
+      ctx.patchState({
+        products: [...state.products, action.payload]
+      });
 
-    this.ps.addProductWithImage(payload, payload2)
-      .subscribe();
+      this.ps.addProductWithImage(action.payload, action.payload2).subscribe(() => {
+      });
+    }
+    else {
+      ctx.setState({
+        ...state,
+        products: [
+          action.payload
+        ]
+      });
+    }
   }
 
   @Action(RemoveProduct)
@@ -78,7 +83,7 @@ export class ProductState {
     {
       sas.map(prd =>
       {
-        console.log('Prod name: ' + prd.name + ' price: ' + prd.price);
+        console.log('Prod name: ' + prd.name + ' price: ' + prd.price + ' img? ' + prd.url);
         console.log('Trying something in the state ' + ctx.setState({
           ...state,
           products: [prd]

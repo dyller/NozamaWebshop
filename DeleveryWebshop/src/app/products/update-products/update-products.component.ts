@@ -54,7 +54,7 @@ export class UpdateProductsComponent implements OnInit {
     this.store.dispatch(new UpdateProduct(this.products))
       .subscribe(() => {
           this.router.navigate([''],
-            {relativeTo: this.actRouter});
+            {relativeTo: this.activatedRoute});
         },
         error1 => {
           window.alert('Bad stuff happened: ' + error1);
