@@ -1,24 +1,23 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import {NvbarComponent} from "./shared/nvbar/nvbar.component";
-import {AngularFireModule} from "@angular/fire";
-import {environment} from "../environments/environment";
-import {AngularFirestoreModule} from "@angular/fire/firestore";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {Store} from "@ngxs/store";
-import {AngularFireStorageModule} from "@angular/fire/storage";
-import {AngularFireAuthModule} from "@angular/fire/auth";
-import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from "@angular/material";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import * as firebase from "firebase";
-import {ProductService} from "./shared/service/product.service";
-import {FileService} from "./shared/service/file.service";
-import {CartService} from "./shared/service/cart.service";
-import {of} from "rxjs";
-import {ReactiveFormsModule} from "@angular/forms";
-import {UserService} from "./shared/service/user.service";
-import {AuthService} from "./shared/core/auth.service";
+import {NvbarComponent} from './shared/nvbar/nvbar.component';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {Store} from '@ngxs/store';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import * as firebase from 'firebase';
+import {ProductService} from './shared/service/product.service';
+import {FileService} from './shared/service/file.service';
+import {of} from 'rxjs';
+import {ReactiveFormsModule} from '@angular/forms';
+import {UserService} from './shared/service/user.service';
+import {AuthService} from './shared/core/auth.service';
 
 describe('AppComponent', () => {
   let productServiceMock: any;
@@ -79,8 +78,6 @@ describe('AppComponent', () => {
         {provide: firebase, useValue: fe},
         {provide: ProductService, useValue: productServiceMock},
         {provide: FileService, useValue: fileServiceMock},
-        {provide: CartService, useValue: productCart},
-        {provide: CartService, useValue: cart},
         {provide: UserService, useValue: user},
         {provide: AuthService, useValue: auth}
       ],

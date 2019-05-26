@@ -5,7 +5,6 @@ import {Observable, of} from 'rxjs';
 import {RouterTestingModule} from '@angular/router/testing';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CartService} from '../../shared/service/cart.service';
 import {HttpClientModule} from '@angular/common/http';
 import {DOMHelper} from '../../../testing/DOMHelper';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -47,7 +46,6 @@ describe('OrderComponent', () => {
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
-        {provide: CartService, useValue: productCart},
        {provide: Store, useValue: str}
       ]
     })

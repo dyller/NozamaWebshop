@@ -14,15 +14,19 @@ export class FileService {
   constructor(private storage: AngularFireStorage,
               private db: AngularFirestore) {}
 
-  uploadImage(imageMetadata: ImageMetadata): Observable<FileMetadata> {
+  /*uploadImage(imageMetadata: ImageMetadata): Observable<FileMetadata> {
     if (imageMetadata.imageBlob) {
-      const fileToUpload = new File(
-        [imageMetadata.imageBlob],
-        imageMetadata.fileMeta.name
-        , {type: imageMetadata.fileMeta.type});
-      return this.upload(fileToUpload);
+      return this.createImage(imageMetadata);
     }
   }
+  createImage(imageMetadata: ImageMetadata): Observable<FileMetadata> {
+    const fileToUpload = new File(
+      [imageMetadata.imageBlob],
+      imageMetadata.fileMeta.name
+      , {type: imageMetadata.fileMeta.type});
+    return this.upload(fileToUpload);
+  }
+
 
   upload(file: File): Observable<FileMetadata> {
     const uid = this.db.createId();
@@ -41,7 +45,7 @@ export class FileService {
           })
         );
   }
-
+*/
   getFileUrl(id: string): Observable<any> {
     return this.storage.ref('product-pictures/' + id)
       .getDownloadURL();

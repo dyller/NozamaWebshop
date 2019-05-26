@@ -8,7 +8,6 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
-import {CartService} from '../../shared/service/cart.service';
 import {Store} from '@ngxs/store';
 import {RemoveProduct} from '../statemagnement/product.actions';
 import {AddToCart} from "../../shared/statemangement/cart/cart.actions";
@@ -27,7 +26,6 @@ export class ShowproductComponent implements OnInit {
               private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
               private router: Router,
-              private cart: CartService,
               private store: Store) {
   }
  ngOnInit() {

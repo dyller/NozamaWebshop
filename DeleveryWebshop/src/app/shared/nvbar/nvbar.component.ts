@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {Product} from '../entities/product';
 import {environment} from '../../../environments/environment';
-import {CartService} from '../service/cart.service';
 import {UserService} from '../service/user.service';
 import * as firebase from 'firebase';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -22,7 +21,7 @@ export class NvbarComponent implements OnInit
 
   currentUser: User;
 
-  constructor(private cart: CartService,
+  constructor(
               private user: UserService,
               private authService: AuthService)
   {
@@ -48,7 +47,6 @@ export class NvbarComponent implements OnInit
 
   deleteAccount()
   {
-    console.log('Current user in navbar is: ' + this.currentUser);
     this.authService.deleteAccount(this.currentUser);
   }
 

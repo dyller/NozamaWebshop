@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {User} from '../entities/user';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
-import * as firebase from 'firebase';
 import {AddUser, RemoveUser} from '../statemangement/action/user.actions';
 import {Store} from '@ngxs/store';
 import {ImageMetadata} from '../entities/image-metadata';
+import * as firebase from "firebase";
 
 @Injectable({
   providedIn: 'root'
