@@ -1,5 +1,5 @@
 import {Component, OnInit, Provider} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subscription} from 'rxjs';
 import {Product} from '../../shared/entities/product';
 import {FileService} from '../../shared/service/file.service';
 import {ProductService} from '../../shared/service/product.service';
@@ -23,6 +23,7 @@ export class ShowproductComponent implements OnInit {
 
   // Reads the name of the state from the state class
   @Select(ProductState.getProducts) prods: Observable<Product[]>;
+  //subscription: Subscription;
 
   constructor(private ps: ProductService,
               private fs: FileService,
@@ -33,8 +34,11 @@ export class ShowproductComponent implements OnInit {
   }
  ngOnInit() {
 
-   this.store.dispatch(ReadAllProduct);
+   this.store.dispatch(new ReadAllProduct());
+   this.prods.subscribe(sas =>
+   {
 
+   });
     /*this.products = this.ps.getProducts()
       .pipe(
         tap(products => {
