@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {Product} from '../entities/product';
-import {environment} from '../../../environments/environment';
-import {CartService} from '../service/cart.service';
 import {UserService} from '../service/user.service';
 import * as firebase from 'firebase';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {FirebaseAuth} from '@angular/fire';
-import {AuthService} from "../core/auth.service";
+import {AuthService} from '../core/auth.service';
 import {User} from '../entities/user';
-import {forEach} from "@angular/router/src/utils/collection";
 @Component({
   selector: 'app-nvbar',
   templateUrl: './nvbar.component.html',
@@ -20,14 +15,13 @@ export class NvbarComponent implements OnInit
 {
 
 
-  cartSize: Product[] = this.cart.getAllProduts();
-  itemsNumber: number = this.countItems();
   currentUser: User;
 
-  constructor(private cart: CartService,
+  constructor(
               private user: UserService,
               private authService: AuthService)
   {
+
     firebase.auth().onAuthStateChanged(users =>
     {
       if (users) {
@@ -44,22 +38,15 @@ export class NvbarComponent implements OnInit
   }
 
   ngOnInit() {
-    this.cart.watchStorage().subscribe((data: string) => {
-      if (this.cartSize !== null) {
-        this.cartSize = this.cart.getAllProduts();
-      this.itemsNumber = this.countItems();
-      }
-     // this will call whenever your localStorage data changes
-      // use localStorage code here and set your data here for ngFor
-    });
+
   }
 
   deleteAccount()
   {
-    console.log('Current user in navbar is: ' + this.currentUser);
     this.authService.deleteAccount(this.currentUser);
   }
-  countItems(): number {
+
+  /*countItems(): number {
    let count = 0 ;
    if (this.cartSize) {
       for (const value of this.cartSize) {
@@ -67,8 +54,5 @@ export class NvbarComponent implements OnInit
         }
       }
       return count;
-
-
-  }
-
+  }*/
 }

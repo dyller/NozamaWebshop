@@ -10,7 +10,6 @@ import {FileService} from '../../shared/service/file.service';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
-import {CartService} from '../../shared/service/cart.service';
 import {Product} from '../../shared/entities/product';
 import {ImageMetadata} from '../../shared/entities/image-metadata';
 import {Observable, of} from 'rxjs';
@@ -76,7 +75,6 @@ describe('ShowproductComponent', () => {
         {provide: firebase, useValue: fe},
         {provide: ProductService, useValue: productServiceMock},
         {provide: FileService, useValue: fileServiceMock},
-        {provide: CartService, useValue: productCart}
       ]
     })
       .compileComponents();

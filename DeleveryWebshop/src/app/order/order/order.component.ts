@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../shared/entities/product';
-import {CartService} from '../../shared/service/cart.service';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
+import {Select, Store} from '@ngxs/store';
+import {DeleteCart} from '../../shared/statemangement/cart/cart.actions';
+import {CartState} from "../../shared/statemangement/cart/cart.state";
 
 
 @Component({
@@ -10,23 +12,19 @@ import {Observable} from "rxjs";
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-
-  orderList: Product[];
-  constructor(private cart: CartService) {
+  @Select(CartState.getProductsInCart) cartProduct: Observable<Product[]>;
+  constructor(
+              private store: Store) {
 
 }
 
   ngOnInit() {
 
-this.orderList = this.cart.getAllProduts();
-    for (let th of this.orderList)
-    {
-      console.log(JSON.stringify(th));
-    }
-      }
+
+  }
 
   buyProducts() {
-    this.cart.clear();
-    this.cart.addToFB(this.orderList);
+    this.store.dispatch(new DeleteCart()).subscribe();
+
   }
 }

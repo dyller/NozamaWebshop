@@ -18,7 +18,6 @@ export class UpdateProductsComponent implements OnInit {
   productFormGroup: FormGroup;
   id: string;
   products: Product;
-
   constructor(private router: Router,
               private prodService: ProductService,
               private activatedRoute: ActivatedRoute,
@@ -55,10 +54,10 @@ export class UpdateProductsComponent implements OnInit {
     this.store.dispatch(new UpdateProduct(this.products))
       .subscribe(() => {
           this.router.navigate([''],
-            {relativeTo: this.activatedRoute});
+            {relativeTo: this.actRouter});
         },
         error1 => {
           window.alert('Bad stuff happened: ' + error1);
-        });;
+        });
   }
 }

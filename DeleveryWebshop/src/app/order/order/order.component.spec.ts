@@ -5,7 +5,6 @@ import {Observable, of} from 'rxjs';
 import {RouterTestingModule} from '@angular/router/testing';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CartService} from '../../shared/service/cart.service';
 import {HttpClientModule} from '@angular/common/http';
 import {DOMHelper} from '../../../testing/DOMHelper';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -15,21 +14,27 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {Product} from '../../shared/entities/product';
-
+import {NgxsModule, Select, Store} from "@ngxs/store";
+import {CartState} from "../../shared/statemangement/cart/cart.state";
 describe('OrderComponent', () => {
   let component: OrderComponent;
   let fixture: ComponentFixture<OrderComponent>;
   let dh: DOMHelper<OrderComponent>;
   let productCart: any;
+  let str: any;
+  let strDisp: any;
+  let store: Store;
   beforeEach(async(() => {
-
     productCart = jasmine.createSpyObj('CartService', ['getAllProduts', 'addToFB', 'clear']);
     productCart.getAllProduts.and.returnValue([]);
-
+    str = jasmine.createSpyObj('Store', ['dispatch', 'select']);
+    strDisp = jasmine.createSpyObj('dispatch', ['subscribe']);
+    str.dispatch.and.returnValue(strDisp);
     TestBed.configureTestingModule({
       declarations: [OrderComponent],
       imports: [
         RouterTestingModule,
+        NgxsModule.forRoot([CartState]),
         AngularFireStorageModule,
         AngularFireAuthModule,
         MatTooltipModule,
@@ -41,10 +46,12 @@ describe('OrderComponent', () => {
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
-        {provide: CartService, useValue: productCart}
+       {provide: Store, useValue: str}
       ]
     })
       .compileComponents();
+
+    store = TestBed.get(Store);
   }));
   beforeEach(() => {
     fixture = TestBed.createComponent(OrderComponent);
@@ -72,20 +79,18 @@ describe('OrderComponent', () => {
     it('Should be a Buy button first on the page', () => {
       expect(dh.singleText('button')).toBe('Buy');
     });
+
   });
   describe('productcart Add to fB', () => {
     beforeEach(() => {
-     /* productCart.addToFB([{id: 'product1', amount: 1, pictureId: 'picture'
-        , name: 'product', url: 'image', price: 300}]);*/
+
      component.buyProducts();
     });
 
-    it('Should call addtoFB 1 time', () => {
-      expect(productCart.addToFB).toHaveBeenCalledTimes(1);
+    it('Should call dispathc subscibe 1 time', () => {
+      expect(str.dispatch).toHaveBeenCalledTimes(1);
     });
-    it('Should call clear 1 time', () => {
-      expect(productCart.clear).toHaveBeenCalledTimes(1);
-    });
+
   });
 });
 

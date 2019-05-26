@@ -2,7 +2,7 @@ import {getTestBed, TestBed} from '@angular/core/testing';
 
 import { ProductService } from './product.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {of} from "rxjs";
+import {of, throwError} from "rxjs";
 import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/firestore";
 import {FileService} from "./file.service";
 import {error} from "selenium-webdriver";
@@ -37,15 +37,19 @@ describe('ProductService', () => {
         {provide: FileService, useValue: fileServiceMock}
       ]
     });
-    httpMock = getTestBed().get(HttpTestingController);
+    httpMock = TestBed.get(HttpTestingController);
     service = TestBed.get(ProductService);
   });
+  afterEach(() => {
+    httpMock.verify();
+  });
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
   describe('getProductsCalls', () => {
     beforeEach(() => {
-      service.getProducts();
+      service.getProducts().subscribe();
     });
 
     it('should call collection 1 time on AngularFirestore service', () => {
@@ -60,6 +64,38 @@ describe('ProductService', () => {
       expect(fsCollectionMock.snapshotChanges).toHaveBeenCalledTimes(1);
     });
   });
+  describe('create product', () => {
+    beforeEach(() => {
+      service.addProductWithImage({name: 'test',
+      price: 123,
+      category: 'test',
+      details: 'test'}, {base64Image: 'test',
+        fileMeta: { name: 'test',
+          type: 'test',
+          size: 123
+        }
+      }).subscribe();
+    });
+
+    it('https', () => {
+      const req = httpMock.expectOne('https://us-central1-nozamafinal.cloudfunctions.net/products');
+
+      expect(req.request.method).toEqual('POST');
+    });
+  });
+
+  describe('addProductWithImage', () => {
+    beforeEach(() => {
+      service.addProductWithImage( null, null
+      ).subscribe();
+    });
+        
+    /* it('throw error', () => {
+      *expect( function(){  service.addProductWithImage( null, null
+       ).subscribe(); } ).toThrowError();
+     });*/
+  });
+
   describe('update product', () => {
     beforeEach(() => {
       service.updateProduct({id: 'product1', amount: 1, pictureId: 'picture'

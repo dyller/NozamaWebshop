@@ -26,6 +26,7 @@ import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} fro
 import {NgxsModule} from '@ngxs/store';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {ProductState} from './products/statemagnement/product.state';
+import {CartState} from "./shared/statemangement/cart/cart.state";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {ProductState} from './products/statemagnement/product.state';
     ImageCropperModule,
     AngularFireAuthModule,
     NgxsModule.forRoot(
-      [UserState, ProductState]
+      [UserState, ProductState,
+        CartState]
     ),
     MatTooltipModule,
     BrowserAnimationsModule,

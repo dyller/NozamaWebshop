@@ -8,10 +8,10 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
-import {CartService} from '../../shared/service/cart.service';
 import {Select, Store} from '@ngxs/store';
 import {ReadAllProduct, RemoveProduct} from '../statemagnement/product.actions';
 import {ProductState, ProductStateModel} from '../statemagnement/product.state';
+import {AddToCart} from '../../shared/statemangement/cart/cart.actions';
 
 @Component({
   selector: 'app-showproduct',
@@ -33,7 +33,6 @@ export class ShowproductComponent implements OnInit {
               private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
               private router: Router,
-              private cart: CartService,
               private store: Store) {
   }
  ngOnInit() {
@@ -75,6 +74,8 @@ export class ShowproductComponent implements OnInit {
   }
 
   productToCart(product) {
-    this.cart.add(product);
+    this.store.dispatch(new AddToCart(product)).
+      subscribe();
+
   }
 }

@@ -1,12 +1,9 @@
 import {getTestBed, TestBed} from '@angular/core/testing';
 
 import { FileService } from './file.service';
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {ProductService} from "./product.service";
-import {defer, of} from "rxjs";
-import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/firestore";
-import {AngularFireStorage} from "@angular/fire/storage";
-import {FileMetadata} from "../entities/file-metadata";
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 describe('FileService', () => {
   let angularFirestoreMock: any;
@@ -14,11 +11,14 @@ describe('FileService', () => {
   let dbMockRef: any;
   let httpMock: HttpTestingController;
   let service: FileService;
+  let downRef: any;
   beforeEach(() => {
     angularFirestoreMock = jasmine.createSpyObj('AngularFirestore', ['createId']);
 
     dbMock = jasmine.createSpyObj('AngularFireStorage', ['ref']);
-    dbMockRef = jasmine.createSpyObj('ref', ['getDownloadURL']);
+    dbMockRef = jasmine.createSpyObj('ref', ['getDownloadURL', 'put']);
+    downRef = jasmine.createSpyObj('put', ['then']);
+    dbMockRef.put.and.returnValue(downRef);
     dbMock.ref.and.returnValue(dbMockRef);
     TestBed.configureTestingModule({
       imports: [
@@ -53,7 +53,7 @@ describe('FileService', () => {
 
       });
   });
-    describe('getProductsCalls', () => {
+   /* describe('getProductsCalls', () => {
       beforeEach(() => {
         service.upload(new File(
           [null],
@@ -63,10 +63,21 @@ describe('FileService', () => {
       it('created by id', () => {
         expect(angularFirestoreMock.createId).toHaveBeenCalledTimes(1);
 
-      });
+      });*/
+      /*it('then called', () => {
+        expect(dbMockRef.put).toHaveBeenCalledTimes(1);
 
-  });
+      });*/
+   /* });*/
+     /* describe('getProductsCalls', () => {
+        beforeEach(() => {
+          service.createImage(null);
+
+        });
+
+        it('created by id', () => {
+          expect(File).toHaveBeenCalledTimes(null);
+        });
+  });*/
+
 });
-export function asyncData<T>(data: T) {
-  return defer(() => Promise.resolve(data));
-}

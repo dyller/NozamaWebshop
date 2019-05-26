@@ -44,10 +44,10 @@ export class ProductService {
         };
         return this.http.post<Product>(endPoint, productToSend);
     }
-    else
-    {
-      return throwError('You need better metadata');
-    }
+   else
+     {
+       return throwError('You need better metadata');
+     }
   }
 
   updateProduct(prodData: Product) {
