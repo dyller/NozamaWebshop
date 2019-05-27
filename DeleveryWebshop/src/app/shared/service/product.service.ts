@@ -97,7 +97,6 @@ export class ProductService {
           // actions is an array of DocumentChangeAction
           return actions.map(action => {
             const data = action.payload.doc.data() as Product;
-            console.log('get prods: ' + data.name);
             return {
               id: action.payload.doc.id,
               price: data.price,
@@ -114,7 +113,6 @@ export class ProductService {
   }
 
   deleteProduct(id: Product): Observable<Product> {
-    console.log(' what is id ' + id);
     return this.db.doc<Product>(collection_path + '/' + id.id)
       .get()
       .pipe(

@@ -17,12 +17,13 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private store: Store
+    private store: Store,
+    private auth: AngularFireAuth
   ) {
   }
 
   createUser(user: User, imgMeta: ImageMetadata) {
-    firebase.auth().createUserWithEmailAndPassword(user.Email, user.Password).
+    this.auth.auth.createUserWithEmailAndPassword(user.Email, user.Password).
     then((credential) => {
       user.id = credential.user.uid;
      this.store.dispatch(new AddUser(user, imgMeta));

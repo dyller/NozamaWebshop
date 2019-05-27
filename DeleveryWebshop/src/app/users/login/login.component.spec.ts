@@ -6,7 +6,7 @@ import {ShowUsersComponent} from '../show-users/show-users.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AngularFireStorageModule} from '@angular/fire/storage';
-import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
@@ -20,13 +20,14 @@ import * as firebase from 'firebase';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let fire: any;
-  let fireAuth: any;
+  let afAuthMock: any;
   beforeEach(async(() =>
   {
-    fire = jasmine.createSpyObj('firebase', ['auth']);
-    fireAuth = jasmine.createSpyObj('auth', ['signInWithEmailAndPassword']);
-    fire.auth.and.returnValue(fireAuth);
+    afAuthMock = {};
+    afAuthMock.auth = jasmine.createSpyObj('auth',
+      ['signInWithEmailAndPassword']);
+
+    afAuthMock.auth.signInWithEmailAndPassword.and.returnValue(of([]).toPromise());
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
       imports: [
@@ -39,7 +40,7 @@ describe('LoginComponent', () => {
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
       ],
       providers: [
-        {provide: firebase, useValue: fire}
+        {provide: AngularFireAuth, useValue: afAuthMock}
       ]
     })
       .compileComponents();
@@ -53,6 +54,15 @@ describe('LoginComponent', () => {
   {
     it('should create', () => {
       expect(component).toBeTruthy();
+    });
+  });
+  describe('Login', () =>
+  {
+    beforeEach(() => {
+    component.Login();
+  });
+    it('should call auth.signInWithEmailAndPassword', () => {
+      expect(afAuthMock.auth.signInWithEmailAndPassword).toHaveBeenCalledTimes(1);
     });
   });
 

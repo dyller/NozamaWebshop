@@ -13,6 +13,7 @@ import {ReadAllProduct, RemoveProduct} from '../statemagnement/product.actions';
 import {ProductState, ProductStateModel} from '../statemagnement/product.state';
 import {AddToCart} from '../../shared/statemangement/cart/cart.actions';
 import {CartState} from '../../shared/statemangement/cart/cart.state';
+import {AuthService} from "../../shared/core/auth.service";
 
 @Component({
   selector: 'app-showproduct',
@@ -30,7 +31,8 @@ export class ShowproductComponent implements OnInit {
               private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
               private router: Router,
-              private store: Store) {
+              private store: Store,
+              private auth: AngularFireAuth){
   }
  ngOnInit() {
 
@@ -43,7 +45,7 @@ export class ShowproductComponent implements OnInit {
   }
 
   logut() {
-    firebase.auth().signOut();
+    this.auth.auth.signOut();
   }
 
   productToCart(product) {

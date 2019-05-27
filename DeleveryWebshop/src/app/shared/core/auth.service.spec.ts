@@ -5,6 +5,8 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Store} from "@ngxs/store";
 import * as firebase from "firebase";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {of} from "rxjs";
 
 describe('AuthService', () => {
 
@@ -14,6 +16,7 @@ describe('AuthService', () => {
   let httpMock: HttpTestingController;
   let service: AuthService;
   let fireThen: any;
+  let afAuthMock: any;
   beforeEach(() => {
 
     store = jasmine.createSpyObj('Store', ['dispatch']);
@@ -21,7 +24,13 @@ describe('AuthService', () => {
     firebasecreate = jasmine.createSpyObj('auth', ['createUserWithEmailAndPassword']);
     firebaseUser.auth.and.returnValue(firebasecreate);
     fireThen = jasmine.createSpyObj('createUserWithEmailAndPassword', ['then']);
-    firebasecreate.createUserWithEmailAndPassword.and.returnValue(fireThen)
+    firebasecreate.createUserWithEmailAndPassword.and.returnValue(fireThen);
+    afAuthMock = {};
+    afAuthMock.auth = jasmine.createSpyObj('auth',
+      ['createUserWithEmailAndPassword']);
+
+
+    afAuthMock.auth.createUserWithEmailAndPassword.and.returnValue(of([]).toPromise());
     TestBed.configureTestingModule({
       imports: [
         AngularFirestoreModule,
@@ -30,7 +39,7 @@ describe('AuthService', () => {
       ],
       providers: [
      {provide: Store, useValue: store},
-        {provide: firebase, useValue: firebaseUser}
+        {provide: AngularFireAuth, useValue: afAuthMock}
       ]
     });
     httpMock = getTestBed().get(HttpTestingController);
@@ -41,7 +50,7 @@ describe('AuthService', () => {
   expect(service).toBeTruthy();
   });
 
-  describe('Simple HTML', () => {
+  describe('create user', () => {
     beforeEach(() =>
     {
       service.createUser({id: 'user1',
@@ -54,19 +63,30 @@ describe('AuthService', () => {
       imageBlob: null,
       fileMeta: null});
     });
-     /*it('should call ps.deleteProduct 1 time', () =>
+     it('should call auth createUserWithEmailAndPassword 1 time', () =>
     {
-      expect(firebasecreate.createUserWithEmailAndPassword).toHaveBeenCalledTimes(1);
+      expect(afAuthMock.auth.createUserWithEmailAndPassword).toHaveBeenCalledTimes(1);
     });
-      /*it('should call ps.deleteProduct 1 time', () =>
-      {
-        expect(firebasecreate.createUserWithEmailAndPassword).toHaveBeenCalledWith(null);
-      });*/
-
-    /*it('should call ps.deleteProduct 1 time', () =>
+   /* it('should call store.dispatch 1 time', () =>
     {
-      expect(fireThen.then).toHaveBeenCalledTimes(1);
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
     });*/
   });
 
+  describe('delete user', () => {
+    beforeEach(() =>
+    {
+      service.deleteAccount({id: 'user1',
+        Username: 'Steve',
+        Password: 'jkahdkjsandjksa',
+        Address: 'Esbjerg',
+        Phonenumber: '56567899',
+        PictureId: 'happy-face.png',
+        Email: 'steve@steve.com'});
+    });
+    it('should call store.dispatch 1 time', () =>
+    {
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
+    });
+  });
 });

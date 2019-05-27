@@ -33,7 +33,6 @@ export class UpdateProductsComponent implements OnInit {
     this.id =  this.activatedRoute.snapshot.paramMap.get('id');
     this.prevName = this.prodService.getProductById(this.id)
       .subscribe(prd => {
-        console.log(prd);
         if (prd.pictureId) {
           this.fs.getFileUrl(prd.pictureId)
             .subscribe(url => {
@@ -51,7 +50,6 @@ export class UpdateProductsComponent implements OnInit {
   updateProduct() {
    const prodData = this.productFormGroup.value;
     this.products.name = prodData.name;
-    console.log('What is the prod name inside updateProduct.com: ' + this.products.name);
     this.store.dispatch(new UpdateProduct(this.products, this.prevName))
       .subscribe(() => {
           this.router.navigate([''],

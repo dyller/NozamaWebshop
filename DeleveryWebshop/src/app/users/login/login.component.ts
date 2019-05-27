@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../shared/service/user.service";
-import * as firebase from "firebase";
+import {AngularFireAuth} from "@angular/fire/auth";
 
 @Component({
   selector:'app-login',
@@ -12,7 +10,9 @@ import * as firebase from "firebase";
 export class LoginComponent implements OnInit {
   userId: String;
   userFormGroup: FormGroup;
-  constructor() {
+  constructor(
+    private auth: AngularFireAuth
+  ) {
 
     this.userFormGroup = new FormGroup({
       email: new FormControl(''),
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   Login() {
     const userData = this.userFormGroup.value;
-   firebase.auth().signInWithEmailAndPassword(userData.email, userData.password)
+    this.auth.auth.signInWithEmailAndPassword(userData.email, userData.password)
         .then((credential) => {
           /*  console.log(credential.user.uid);
           this.userId = credential.user.uid;*/

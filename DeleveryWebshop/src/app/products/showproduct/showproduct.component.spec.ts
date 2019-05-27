@@ -7,7 +7,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ProductService} from '../../shared/service/product.service';
 import {FileService} from '../../shared/service/file.service';
-import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import {Product} from '../../shared/entities/product';
@@ -35,11 +35,11 @@ describe('ShowproductComponent', () => {
   let fsAuth: any;
   let productCart: any;
   let something: any;
-
+  let afAuthMock: any;
   beforeEach(async(() => {
     str = jasmine.createSpyObj('Store', ['dispatch', 'select']);
 
-    fe = jasmine.createSpyObj('firebase', ['auth']);
+    fe = jasmine.createSpyObj('AngularFireAuth', ['auth']);
     fsAuth = jasmine.createSpyObj('auth', ['signOut']);
     fe.auth.and.returnValue(fsAuth);
     fsAuth.signOut.and.returnValue(of([]));
@@ -55,6 +55,11 @@ describe('ShowproductComponent', () => {
     fileServiceMock.getFileUrl.and.returnValue(of([]));
     productCart = jasmine.createSpyObj('CartService', ['add']);
 
+    afAuthMock = {};
+    afAuthMock.auth = jasmine.createSpyObj('auth',
+      ['signOut']);
+
+    afAuthMock.auth.signOut.and.returnValue(of([]).toPromise());
     TestBed.configureTestingModule({
       declarations: [ShowproductComponent],
       imports: [ReactiveFormsModule,
@@ -71,14 +76,13 @@ describe('ShowproductComponent', () => {
       ],
       providers: [
         {provide: Store, useValue: str},
-        {provide: firebase, useValue: fe},
+        {provide: AngularFireAuth, useValue: afAuthMock},
         {provide: ProductService, useValue: productServiceMock},
         {provide: FileService, useValue: fileServiceMock},
       ]
     })
       .compileComponents();
   }));
-
   beforeEach(() => {
     fixture = TestBed.createComponent(ShowproductComponent);
     component = fixture.componentInstance;
@@ -86,6 +90,31 @@ describe('ShowproductComponent', () => {
     fixture.detectChanges();
   });
 
+
+  describe('deleteProduct', () => {
+    beforeEach(() => {
+      component.deleteProduct(
+        {id: 'product1', amount: 1, pictureId: 'picture'
+          , name: 'product', url: 'image', price: 300}
+    );
+    });
+
+    it('should call store dispath', () => {
+        expect(str.dispatch).toHaveBeenCalledTimes(2);
+    });
+  });
+  describe('productToCart', () => {
+    beforeEach(() => {
+      component.productToCart(
+        {id: 'product1', amount: 1, pictureId: 'picture'
+          , name: 'product', url: 'image', price: 300}
+      );
+    });
+
+    it('should call store dispath', () => {
+      expect(str.dispatch).toHaveBeenCalledTimes(2);
+    });
+  });
 
   describe('Simple HTML', () => {
     beforeEach(() => {
@@ -108,7 +137,6 @@ describe('ShowproductComponent', () => {
       expect(dh.singleText('button')).toBe('+');
     });
   });
-
   describe('List Products', () => {
       let helper: Helper;
       beforeEach(() => {
@@ -123,57 +151,7 @@ describe('ShowproductComponent', () => {
       expect(dh.count('li')).toBe(0);
     });
 
-    /*it('Should show one list item when I have one product', () => {
-      component.products = helper.getProducts(1);
-      fixture.detectChanges();
-      expect(dh.count('mat-card-header')).toBe(1);
     });
-
-    it('Should show 100 list item when I have 100 products mat-card-header ', () => {
-      component.products = helper.getProducts(100);
-      fixture.detectChanges();
-      expect(dh.count('mat-card-header')).toBe(100);
-    });
-    it('Should show 100 Delete buttons, 1 pr. item', () => {
-      component.products = helper.getProducts(100);
-      fixture.detectChanges();
-      expect(dh.countText('button', 'Delete')).toBe(100);
-    });
-
-
-    it('Should show 1 product name in mat-card-header', () => {
-      component.products = helper.getProducts(1);
-      fixture.detectChanges();
-      expect(dh.singleText('mat-card-header'))
-        .toContain(helper.products[0].name);
-    });
-
-    it('Should show 5 mat-card-header, 1 pr. product', () => {
-      component.products = helper.getProducts(5);
-      fixture.detectChanges();
-      expect(dh.count('mat-card-header')).toBe(5);
-    });*/
-    /*it('Should not show img tag when product does not have pictureId and is loaded async from ProductService',
-      () => {
-        productServiceMock.getProducts.and.returnValue(helper.getProducts(1));
-        helper.products[0].url = undefined;
-        fixture.detectChanges();
-        expect(dh.count('img')).toBe(0);
-      });*/
-  });
-
-  describe('logout', () =>
-  {
-    beforeEach(() =>
-    {
-      component.productToCart({id: 'product1', amount: 1, pictureId: 'picture'
-        , name: 'product', url: 'image', price: 300});
-    });
-    /*it('should call logout 1 time', () =>
-    {
-      expect(productCart.add).toHaveBeenCalledTimes(1);
-    });*/
-  });
 
   describe('delete', () => {
     beforeEach(() =>
@@ -190,6 +168,9 @@ describe('ShowproductComponent', () => {
   describe('logout', () => {
     beforeEach(() => {
       component.logut();
+    });
+    it('auth sigout', () => {
+      expect(afAuthMock.auth.signOut).toHaveBeenCalledTimes(1);
     });
   });
 });

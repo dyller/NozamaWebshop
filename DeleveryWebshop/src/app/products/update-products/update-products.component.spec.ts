@@ -79,11 +79,12 @@ describe('UpdateProductsComponent', () => {
 
   describe('UpdateProduct ngOnInit', () => {
     beforeEach(() => {
-    });
-    it('should call productService.getFileUrl 1 time', () => {
-      expect(psMockSub.subscribe).toHaveBeenCalledTimes(1);
-    });
-
   });
+  it('should call productService.getFileUrl 1 time', () => {
+    expect(psMockSub.subscribe).toHaveBeenCalledTimes(1);
+  });
+});
+
+
 
 });

@@ -134,14 +134,15 @@ describe('ProductService', () => {
     });
 
   });
-  /*describe('update product', () => {
+  describe('update product', () => {
     beforeEach(() => {
-      service.deleteProduct('test');
+      service.deleteProduct({id: 'product1', amount: 1, pictureId: 'picture'
+        , name: 'product', url: 'image', price: 300});
     });
 
     it('should call update', () => {
       expect(dbColDoc.get).toHaveBeenCalledTimes(1);
     });
 
-  });*/
+  });
 });

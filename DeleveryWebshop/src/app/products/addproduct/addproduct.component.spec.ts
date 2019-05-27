@@ -15,6 +15,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HttpClientModule} from '@angular/common/http';
+import {Router} from "@angular/router";
 
 describe('AddproductComponent', () =>
 {
@@ -23,15 +24,14 @@ describe('AddproductComponent', () =>
   let str: any;
   let something: any;
   let storeDis: any;
-
+let rou: any;
   beforeEach(async(() =>
   {
     str = jasmine.createSpyObj('Store', ['dispatch']);
     something = jasmine.createSpyObj('addProduct', ['store']);
     storeDis = jasmine.createSpyObj('dispatch', ['subscribe']);
     str.dispatch.and.returnValue(storeDis);
-   // str.dispatch.and.callThrough(something);
-
+    storeDis.subscribe.and.returnValue(true);
     TestBed.configureTestingModule({
       declarations: [ AddproductComponent ],
       imports: [ ReactiveFormsModule,
@@ -74,6 +74,7 @@ describe('AddproductComponent', () =>
     {
       expect(storeDis.subscribe).toHaveBeenCalledTimes(1);
     });
+
   });
 
 
