@@ -14,8 +14,9 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {Product} from '../../shared/entities/product';
-import {NgxsModule, Select, Store} from "@ngxs/store";
-import {CartState} from "../../shared/statemangement/cart/cart.state";
+import {NgxsModule, Select, Store} from '@ngxs/store';
+import {CartState} from '../../shared/statemangement/cart/cart.state';
+
 describe('OrderComponent', () => {
   let component: OrderComponent;
   let fixture: ComponentFixture<OrderComponent>;
@@ -24,12 +25,17 @@ describe('OrderComponent', () => {
   let str: any;
   let strDisp: any;
   let store: Store;
-  beforeEach(async(() => {
+
+  beforeEach(async(() =>
+  {
     productCart = jasmine.createSpyObj('CartService', ['getAllProduts', 'addToFB', 'clear']);
     productCart.getAllProduts.and.returnValue([]);
+
     str = jasmine.createSpyObj('Store', ['dispatch', 'select']);
     strDisp = jasmine.createSpyObj('dispatch', ['subscribe']);
+
     str.dispatch.and.returnValue(strDisp);
+
     TestBed.configureTestingModule({
       declarations: [OrderComponent],
       imports: [

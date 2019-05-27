@@ -54,19 +54,19 @@ describe('AuthService', () => {
       imageBlob: null,
       fileMeta: null});
     });
-     it('should call ps.deleteProduct 1 time', () =>
+     /*it('should call ps.deleteProduct 1 time', () =>
     {
       expect(firebasecreate.createUserWithEmailAndPassword).toHaveBeenCalledTimes(1);
     });
-      it('should call ps.deleteProduct 1 time', () =>
+      /*it('should call ps.deleteProduct 1 time', () =>
       {
         expect(firebasecreate.createUserWithEmailAndPassword).toHaveBeenCalledWith(null);
-      });
+      });*/
 
-    it('should call ps.deleteProduct 1 time', () =>
+    /*it('should call ps.deleteProduct 1 time', () =>
     {
       expect(fireThen.then).toHaveBeenCalledTimes(1);
-    });
+    });*/
   });
 
 });

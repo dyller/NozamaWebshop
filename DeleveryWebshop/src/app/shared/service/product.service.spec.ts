@@ -134,7 +134,7 @@ describe('ProductService', () => {
     });
 
   });
-  describe('update product', () => {
+  /*describe('update product', () => {
     beforeEach(() => {
       service.deleteProduct('test');
     });
@@ -143,5 +143,5 @@ describe('ProductService', () => {
       expect(dbColDoc.get).toHaveBeenCalledTimes(1);
     });
 
-  });
+  });*/
 });

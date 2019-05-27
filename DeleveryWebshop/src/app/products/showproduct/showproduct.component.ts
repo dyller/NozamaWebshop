@@ -35,39 +35,11 @@ export class ShowproductComponent implements OnInit {
  ngOnInit() {
 
    this.store.dispatch(new ReadAllProduct());
-   this.prods.subscribe(sas =>
-   {
-
-   });
-    /*this.products = this.ps.getProducts()
-      .pipe(
-        tap(products => {
-          products.forEach(product => {
-            if (product.pictureId) {
-              this.fs.getFileUrl(product.pictureId)
-                .subscribe(url => {
-                  product.url = url;
-                });
-            }
-          });
-        })
-      );*/
-
-   this.prods.subscribe(some => {
-     some.map(sad => {
-       console.log('and map? ' + JSON.stringify(sad.name) + ' and img? ' + JSON.stringify(sad.url));
-     });
-   });
   }
 
-  deleteProduct(product: Product) {
-    try {
-      const obs = this.store.dispatch(new RemoveProduct(product))
-      console.log('What is the prodId: ' + product.id);
-      console.log(obs);
-    }catch (e) {
-      console.log('deleteProd error, in component: ' + e);
-    }
+  deleteProduct(product: Product)
+  {
+    const obs = this.store.dispatch(new RemoveProduct(product));
   }
 
   logut() {
@@ -75,8 +47,6 @@ export class ShowproductComponent implements OnInit {
   }
 
   productToCart(product) {
-    this.store.dispatch(new AddToCart(product)).
-      subscribe();
-
+    this.store.dispatch(new AddToCart(product));
   }
 }

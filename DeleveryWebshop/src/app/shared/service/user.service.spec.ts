@@ -12,7 +12,7 @@ describe('UserService', () => {
   let fsCollectionMock: any;
   let httpMock: HttpTestingController;
   let service: UserService;
-  let dbDoc : any;
+  let dbDoc: any;
   let dbGetPipe: any ;
   let dbUpdate: any ;
   beforeEach(() => {
