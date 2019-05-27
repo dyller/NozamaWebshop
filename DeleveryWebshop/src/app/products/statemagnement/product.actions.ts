@@ -12,12 +12,12 @@ export class AddProduct
 export class RemoveProduct {
   static readonly type = '[products] Remove';
 
-  constructor(public payload: string) {}
+  constructor(public payload: Product) {}
 }
 export class UpdateProduct {
   static readonly type = '[products] Update';
 
-  constructor(public payload: Product) {}
+  constructor(public newName: Product, public prevName) {}
 }
 
   export class ReadAllProduct {

@@ -113,19 +113,18 @@ export class ProductService {
       );
   }
 
-  deleteProduct(id: string): Observable<Product> {
-    return this.db.doc<Product>(collection_path + '/' + id)
+  deleteProduct(id: Product): Observable<Product> {
+    console.log(' what is id ' + id);
+    return this.db.doc<Product>(collection_path + '/' + id.id)
       .get()
       .pipe(
         first(),
-        tap(productDocument => {
-        }),
         switchMap(productDocument => {
           if (!productDocument || !productDocument.data()) {
             throw new Error('Product not found');
           } else {
             return from(
-              this.db.doc<Product>(collection_path + '/' + id)
+              this.db.doc<Product>(collection_path + '/' + id.id)
                 .delete()
             ).pipe(
               map(() => {

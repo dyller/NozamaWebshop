@@ -17,6 +17,7 @@ export class UpdateProductsComponent implements OnInit {
 
   productFormGroup: FormGroup;
   id: string;
+  prevName: any;
   products: Product;
   constructor(private router: Router,
               private prodService: ProductService,
@@ -30,7 +31,7 @@ export class UpdateProductsComponent implements OnInit {
 
   ngOnInit() {
     this.id =  this.activatedRoute.snapshot.paramMap.get('id');
-    this.prodService.getProductById(this.id)
+    this.prevName = this.prodService.getProductById(this.id)
       .subscribe(prd => {
         console.log(prd);
         if (prd.pictureId) {
@@ -51,7 +52,7 @@ export class UpdateProductsComponent implements OnInit {
    const prodData = this.productFormGroup.value;
     this.products.name = prodData.name;
     console.log('What is the prod name inside updateProduct.com: ' + this.products.name);
-    this.store.dispatch(new UpdateProduct(this.products))
+    this.store.dispatch(new UpdateProduct(this.products, this.prevName))
       .subscribe(() => {
           this.router.navigate([''],
             {relativeTo: this.activatedRoute});

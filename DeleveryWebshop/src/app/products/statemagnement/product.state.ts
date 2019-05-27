@@ -1,16 +1,11 @@
-import {User} from '../../shared/entities/user';
 import {Action, NgxsOnInit, Selector, State, StateContext} from '@ngxs/store';
-import {UserService} from '../../shared/service/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AddUser, RemoveUser} from '../../shared/statemangement/action/user.actions';
 import {Product} from '../../shared/entities/product';
 import {AddProduct, ReadAllProduct, RemoveProduct, UpdateProduct} from './product.actions';
 import {ProductService} from '../../shared/service/product.service';
-import {log} from 'util';
-import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
-import {Observable, of} from "rxjs";
-import {tap} from "rxjs/operators";
-import {FileService} from "../../shared/service/file.service";
+import {tap} from 'rxjs/operators';
+import {FileService} from '../../shared/service/file.service';
+import {patch, removeItem, updateItem} from '@ngxs/store/operators';
 
 export interface ProductStateModel {
   products: Product[];
@@ -65,22 +60,31 @@ export class ProductState
   }
 
   @Action(RemoveProduct)
-  remove({getState }: StateContext<ProductStateModel>, { payload }: RemoveProduct) {
+  remove(ctx: StateContext<ProductStateModel>, { payload }: RemoveProduct)
+  {
     console.log('RemoveProduct, inside prod state: ' + payload);
-    const state = getState();
+    ctx.setState(
+      patch({
+        products: removeItem<Product>(name => name === payload)
+      })
+    );
     this.ps.deleteProduct(payload)
-      .subscribe(productFromFirebase => {
-      window.alert('product');
-    }, error1 => {
-      window.alert('product not found');
-    });
+      .subscribe(rPrd => {
+        console.log('Remove obj complete: ' + rPrd.name);
+      });
   }
 
 
  @Action(UpdateProduct)
-  update({getState }: StateContext<ProductStateModel>, { payload }: UpdateProduct) {
-    const state = getState();
-          this.ps.updateProduct(payload);
+  update(ctx: StateContext<ProductStateModel>, { newName, prevName }: UpdateProduct)
+  {
+    ctx.setState(
+      patch( {
+        products: updateItem<Product>(name => name === newName, prevName)
+      })
+    );
+    console.log('Does update work for the state: ' + newName.name);
+    this.ps.updateProduct(newName);
   }
 
   @Action(ReadAllProduct)
@@ -106,20 +110,6 @@ export class ProductState
           });
         })
       ).subscribe();
-
-     /* sas.map(prd =>
-      {
-         state = ctx.getState();
-        console.log('Prod name: ' + prd.name + ' price: ' + prd.price + ' img? ' + prd.url);
-
-
-        ctx.setState({
-          ...state,
-          products: [prd]
-
-        });
-      });*/
-
   }
 
 }
