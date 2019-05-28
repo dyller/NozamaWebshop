@@ -24,12 +24,15 @@ describe('UpdateProductsComponent', () => {
   let fsMockSub: any;
   let str: any;
   let something: any;
+  let strDispatch: any;
   beforeEach(async(() => {
     psMock = jasmine.createSpyObj('ProductService', ['getProductById', 'updateProduct']);
     psMockSub = jasmine.createSpyObj('getProductById', ['subscribe']);
 
     str = jasmine.createSpyObj('Store', ['dispatch']);
-    something = jasmine.createSpyObj('updateProduct', ['store']);
+    strDispatch = jasmine.createSpyObj('dispatch', ['subscribe']);
+    something = jasmine.createSpyObj('updateProduct', ['subscribe']);
+    str.dispatch.and.returnValue(strDispatch);
     //str.dispatch.and.callThrough(something);
 
     psMock.getProductById.and.returnValue(psMockSub);
@@ -70,11 +73,13 @@ describe('UpdateProductsComponent', () => {
   });
   describe('UpdateProduct Update', () => {
     beforeEach(() => {
+      component.products = {id: 'product1', amount: 1, pictureId: 'picture'
+        , name: 'product', url: 'image', price: 300};
       component.updateProduct();
     });
-    /*it('should call prodService.updateProduct 1 time', () => {
+    it('should call prodService.updateProduct 1 time', () => {
       expect(psMockSub.subscribe).toHaveBeenCalledTimes(1);
-    });*/
+    });
   });
 
   describe('UpdateProduct ngOnInit', () => {

@@ -8,7 +8,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Store} from '@ngxs/store';
 import {AngularFireStorageModule} from '@angular/fire/storage';
-import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {MatButtonModule, MatCardModule, MatGridListModule, MatTooltipModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import * as firebase from 'firebase';
@@ -29,8 +29,13 @@ let str: any;
 let something: any;
 let storeDis: any;
 let rou: any;
+let afAuthMock: any;
 beforeEach(async(() =>
 {
+  afAuthMock = {};
+  afAuthMock.auth = jasmine.createSpyObj('auth',
+    ['signOut']);
+  str = jasmine.createSpyObj('store', ['dispath']);
   TestBed.configureTestingModule({
     declarations: [ AppComponent, NvbarComponent ],
     imports: [ ReactiveFormsModule,
@@ -42,6 +47,8 @@ beforeEach(async(() =>
       AngularFirestoreModule // imports firebase/firestore, only needed for database features
     ],
     providers: [
+      {provide: AngularFireAuth, useValue: afAuthMock},
+      {provide: Store, useValue: str}
     ]
   })
     .compileComponents();
