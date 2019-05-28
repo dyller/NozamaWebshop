@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {AngularFireAuth} from "@angular/fire/auth";
+import {FormControl, FormGroup} from '@angular/forms';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
-  selector:'app-login',
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
     const userData = this.userFormGroup.value;
     this.auth.auth.signInWithEmailAndPassword(userData.email, userData.password)
         .then((credential) => {
-          /*  console.log(credential.user.uid);
-          this.userId = credential.user.uid;*/
+          window.alert('Succes');
         }).catch(error =>
         window.alert('Bad stuff happened: ' + error)
       );

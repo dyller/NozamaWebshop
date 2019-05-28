@@ -6,7 +6,6 @@ import {Router} from '@angular/router';
 import {AddUser, RemoveUser} from '../statemangement/action/user.actions';
 import {Store} from '@ngxs/store';
 import {ImageMetadata} from '../entities/image-metadata';
-import * as firebase from "firebase";
 
 @Injectable({
   providedIn: 'root'

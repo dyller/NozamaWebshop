@@ -4,7 +4,6 @@ import {Product} from '../../shared/entities/product';
 import {ProductService} from '../../shared/service/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FileService} from '../../shared/service/file.service';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {Store} from '@ngxs/store';
 import {UpdateProduct} from '../statemagnement/product.actions';
 
@@ -31,6 +30,7 @@ export class UpdateProductsComponent implements OnInit {
 
   ngOnInit() {
     this.id =  this.activatedRoute.snapshot.paramMap.get('id');
+
     this.prevName = this.prodService.getProductById(this.id)
       .subscribe(prd => {
         if (prd.pictureId) {

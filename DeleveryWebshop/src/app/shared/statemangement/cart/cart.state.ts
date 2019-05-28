@@ -42,14 +42,6 @@ export class CartState  {
           action.prod,
         ]
       });
-      /*
-      ctx.setState({
-      ...state,
-        productsCart: [
-        ...state.productsCart,
-          action.prod,
-      ]
-    });*/
     }
     else {
       ctx.setState({

@@ -1,7 +1,7 @@
 
 describe('cypress test', function() {
   it('routing add product', function() {
-    cy.visit('http://localhost:4200/')
+    cy.visit('https://nozamafinal.firebaseapp.com/')
     cy.contains('+').click()
 
     cy.url().should('include', '/add-product')
@@ -25,7 +25,7 @@ describe('cypress test', function() {
     })
   })
   it('logout', function () {
-    cy.visit('http://localhost:4200/')
+    cy.visit('https://nozamafinal.firebaseapp.com/')
     cy.contains('Main screen').click();
     cy.contains('logout').click()
 
@@ -38,12 +38,12 @@ describe('cypress test', function() {
     cy.get('[formControlName="email"]').type('facejs@live.dk')
       .should('have.value', 'facejs@live.dk')
     cy.get('#login').click()
-    cy.contains('facejs@live.dk')
+    cy.contains('123456')
     cy.contains('Main screen').click();
   })
 
     it('add to cart', function() {
-      cy.visit('http://localhost:4200/')
+      cy.visit('https://nozamafinal.firebaseapp.com/')
       cy.contains('Add to cart').click();
       it("increse cart number to 1", () => {
 
@@ -55,13 +55,13 @@ describe('cypress test', function() {
       cy.contains('Main screen').click();
     })
   it('routing add user', function() {
-    cy.visit('http://localhost:4200/')
+    cy.visit('https://nozamafinal.firebaseapp.com/')
     cy.contains('Show user').click();
     cy.url().should('include', '/users')
     cy.contains('Main screen').click();
     })
   it('add user contains 5 forms', function() {
-    cy.visit('http://localhost:4200/')
+    cy.visit('https://nozamafinal.firebaseapp.com/')
     cy.contains('Add User').click();
     cy.get('[formControlName="Username"]').type('123456')
       .should('have.value', '123456')
@@ -76,7 +76,7 @@ describe('cypress test', function() {
     cy.contains('Main screen').click();
   })
   it('go to order by clicking Order', function() {
-    cy.visit('http://localhost:4200/')
+    cy.visit('https://nozamafinal.firebaseapp.com/')
     cy.contains('Order').click();
     cy.url().should('include', '/orders')
     cy.contains('Main screen').click();

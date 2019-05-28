@@ -33,12 +33,12 @@ describe('UpdateProductsComponent', () => {
     strDispatch = jasmine.createSpyObj('dispatch', ['subscribe']);
     something = jasmine.createSpyObj('updateProduct', ['subscribe']);
     str.dispatch.and.returnValue(strDispatch);
-      strDispatch.subscribe.and.returnValue(of().subscribe());
+    psMock.getProductById.and.returnValue({ subscribe: () => {} });
 
 
     psMock.getProductById.and.returnValue(psMockSub);
-    psMockSub.subscribe.and.returnValue({id: 'product1', amount: 1, pictureId: 'picture'
-      , name: 'product', url: 'image', price: 300});
+    psMockSub.subscribe.and.returnValue(of({id: 'product1', amount: 1, pictureId: 'picture'
+      , name: 'product', url: 'image', price: 300}).subscribe());
     fsMock = jasmine.createSpyObj('FileService', ['getFileUrl']);
     rout = jasmine.createSpyObj('Router', ['navigate']);
 
@@ -68,7 +68,7 @@ describe('UpdateProductsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', async () => {
     expect(component).toBeTruthy();
   });
   describe('UpdateProduct Update', () => {

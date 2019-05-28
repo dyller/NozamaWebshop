@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
-import {Product} from "../../shared/entities/product";
-import {ProductService} from "../../shared/service/product.service";
-import {FileService} from "../../shared/service/file.service";
-import {tap} from "rxjs/operators";
-import {UserService} from "../../shared/service/user.service";
-import {User} from "../../shared/entities/user";
-import * as firebase from "firebase";
+import {Observable} from 'rxjs';
+import {UserService} from '../../shared/service/user.service';
+import {User} from '../../shared/entities/user';
 import {Store} from '@ngxs/store';
 import {RemoveUser} from '../../shared/statemangement/action/user.actions';
 

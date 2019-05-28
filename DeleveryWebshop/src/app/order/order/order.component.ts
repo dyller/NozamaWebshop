@@ -24,7 +24,7 @@ export class OrderComponent implements OnInit {
   }
 
   buyProducts() {
-    this.store.dispatch(new DeleteCart()).subscribe();
+    this.store.dispatch(new DeleteCart());
 
   }
 }
