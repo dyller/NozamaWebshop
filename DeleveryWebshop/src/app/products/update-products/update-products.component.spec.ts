@@ -6,7 +6,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {ProductService} from '../../shared/service/product.service';
 import {FileService} from '../../shared/service/file.service';
 import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {Store} from '@ngxs/store';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {HttpClientModule} from '@angular/common/http';
@@ -21,10 +21,10 @@ describe('UpdateProductsComponent', () => {
   let fsMock: any;
   let psMock: any;
   let psMockSub: any;
-  let fsMockSub: any;
   let str: any;
   let something: any;
   let strDispatch: any;
+  let rout: any;
   beforeEach(async(() => {
     psMock = jasmine.createSpyObj('ProductService', ['getProductById', 'updateProduct']);
     psMockSub = jasmine.createSpyObj('getProductById', ['subscribe']);
@@ -33,14 +33,14 @@ describe('UpdateProductsComponent', () => {
     strDispatch = jasmine.createSpyObj('dispatch', ['subscribe']);
     something = jasmine.createSpyObj('updateProduct', ['subscribe']);
     str.dispatch.and.returnValue(strDispatch);
-    //str.dispatch.and.callThrough(something);
+      strDispatch.subscribe.and.returnValue(of().subscribe());
+
 
     psMock.getProductById.and.returnValue(psMockSub);
-    psMockSub.subscribe.and.returnValue(of({id: 'product1', amount: 1, pictureId: 'picture'
-      , name: 'product', url: 'image', price: 300}));
+    psMockSub.subscribe.and.returnValue({id: 'product1', amount: 1, pictureId: 'picture'
+      , name: 'product', url: 'image', price: 300});
     fsMock = jasmine.createSpyObj('FileService', ['getFileUrl']);
-    fsMockSub = jasmine.createSpyObj('getFileUrl', ['subscribe']);
-    fsMock.getFileUrl.and.returnValue(fsMockSub);
+    rout = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
       declarations: [ UpdateProductsComponent ],
@@ -76,19 +76,21 @@ describe('UpdateProductsComponent', () => {
       component.products = {id: 'product1', amount: 1, pictureId: 'picture'
         , name: 'product', url: 'image', price: 300};
       component.updateProduct();
+
     });
     it('should call prodService.updateProduct 1 time', () => {
       expect(psMockSub.subscribe).toHaveBeenCalledTimes(1);
     });
+    it('should call store subcribe', () => {
+      expect(strDispatch.subscribe).toHaveBeenCalledTimes(1);
+    });
+    /*it('should call rout.navigate', () => {
+      expect(rout.navigate).toHaveBeenCalledTimes(1);
+    });*/
   });
 
-  describe('UpdateProduct ngOnInit', () => {
-    beforeEach(() => {
-  });
-  it('should call productService.getFileUrl 1 time', () => {
-    expect(psMockSub.subscribe).toHaveBeenCalledTimes(1);
-  });
-});
+
+
 
 
 

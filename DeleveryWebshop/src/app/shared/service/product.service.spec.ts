@@ -6,6 +6,7 @@ import {of, throwError} from "rxjs";
 import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/firestore";
 import {FileService} from "./file.service";
 import {error} from "selenium-webdriver";
+import {HttpClient} from "@angular/common/http";
 
 describe('ProductService', () => {
   let angularFirestoreMock: any;
@@ -15,7 +16,9 @@ describe('ProductService', () => {
   let service: ProductService;
   let dbColDoc: any;
   let dbPipe: any;
+  let httpSpy: any;
   beforeEach(() => {
+    httpSpy = jasmine.createSpyObj('HttpClient', ['post']);
     angularFirestoreMock = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc']);
     dbColDoc = jasmine.createSpyObj('doc', ['update', 'get']);
     dbPipe = jasmine.createSpyObj('get', ['pipe']);
@@ -34,7 +37,8 @@ describe('ProductService', () => {
       ],
       providers: [
         {provide: AngularFirestore, useValue: angularFirestoreMock},
-        {provide: FileService, useValue: fileServiceMock}
+        {provide: FileService, useValue: fileServiceMock},
+        {provide: HttpClient, useValue: httpSpy}
       ]
     });
     httpMock = TestBed.get(HttpTestingController);
@@ -74,13 +78,11 @@ describe('ProductService', () => {
           type: 'test',
           size: 123
         }
-      }).subscribe();
+      });
     });
 
-    it('https', () => {
-      const req = httpMock.expectOne('https://us-central1-nozamafinal.cloudfunctions.net/products');
-
-      expect(req.request.method).toEqual('POST');
+    it('https post', () => {
+      expect(httpSpy.post).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -89,11 +91,10 @@ describe('ProductService', () => {
       service.addProductWithImage( null, null
       ).subscribe();
     });
-        
-    /* it('throw error', () => {
-      *expect( function(){  service.addProductWithImage( null, null
-       ).subscribe(); } ).toThrowError();
-     });*/
+
+    it('should not call http post', () => {
+      expect(httpSpy.post).toHaveBeenCalledTimes(0);
+    });
   });
 
   describe('update product', () => {
@@ -107,23 +108,6 @@ describe('ProductService', () => {
     });
 
   });
-  /* describe('update product', () => {
-    beforeEach(() => {
-
-    });
-
-    it('should throw error', () => {
-     expect(function () {service.addProductWithImage({id: 'product1', amount: 1, pictureId: 'picture'
-        , name: 'product', url: 'image', price: 300}, {base64Image: 'hey',
-        imageBlob: null, fileMeta: null}); }).toThrowError();
-      expect(function ()
-      {service.addProductWithImage({id: 'product1', amount: 1, pictureId: 'picture'
-        , name: 'product', url: 'image', price: 300}, {base64Image: 'hey',
-        imageBlob: null, fileMeta: null}).subscribe(); })
-        .toThrowError('You need better metadata');
-    });
-
-  });*/
   describe('update product', () => {
     beforeEach(() => {
       service.getProductById('test');

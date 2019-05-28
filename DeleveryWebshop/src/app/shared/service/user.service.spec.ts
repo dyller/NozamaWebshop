@@ -1,10 +1,11 @@
 import {getTestBed, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {UserService} from './user.service';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 import {User} from '../entities/user';
 import * as firebase from 'firebase';
+import {HttpClient} from "@angular/common/http";
 
 
 describe('UserService', () => {
@@ -15,7 +16,9 @@ describe('UserService', () => {
   let dbDoc: any;
   let dbGetPipe: any ;
   let dbUpdate: any ;
+  let httpSpy: any;
   beforeEach(() => {
+    httpSpy = jasmine.createSpyObj('HttpClient', ['post']);
     angularFirestoreMock = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc']);
     dbDoc = jasmine.createSpyObj('doc', ['delete', 'get']);
     dbGetPipe = jasmine.createSpyObj('get', ['pipe']);
@@ -33,7 +36,8 @@ describe('UserService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        {provide: AngularFirestore, useValue: angularFirestoreMock}
+        {provide: AngularFirestore, useValue: angularFirestoreMock},
+        {provide: HttpClient, useValue: httpSpy},
       ]
     });
     httpMock = getTestBed().get(HttpTestingController);
@@ -41,6 +45,9 @@ describe('UserService', () => {
   });
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+  afterEach(() => {
+    httpMock.verify();
   });
   describe('getUsers', () => {
     beforeEach(() => {
@@ -108,6 +115,42 @@ describe('UserService', () => {
     });
     it('should call db collection', () => {
       expect(dbDoc.get).toHaveBeenCalledTimes(1);
+    });
+
+  });
+  describe('addUser', () => {
+    beforeEach(() => {
+      service.addUser({ id: 'user1',
+        Username: 'Steve',
+        Password: 'jkahdkjsandjksa',
+        Address: 'Esbjerg',
+        Phonenumber: '56567899',
+        PictureId: 'happy-face.png',
+        Email: 'steve@steve.com'  },{base64Image: 'test',
+        fileMeta: { name: 'test',
+          type: 'test',
+          size: 123
+        }
+      } );
+    });
+    it('should call http post', () => {
+
+      expect(httpSpy.post).toHaveBeenCalledTimes(1);
+    });
+
+  });
+  describe('addUser without data', () => {
+    beforeEach(() => {
+      service.addUser(null, { base64Image: 'test',
+        fileMeta: { name: 'test',
+          type: 'test',
+          size: 123
+        }
+      } );
+    });
+    it('should noy call http post', () => {
+
+      expect(httpSpy.post).toHaveBeenCalledTimes(0);
     });
 
   });

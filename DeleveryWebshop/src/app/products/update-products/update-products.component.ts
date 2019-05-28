@@ -38,7 +38,6 @@ export class UpdateProductsComponent implements OnInit {
             .subscribe(url => {
               prd.url = url;
               this.products = prd;
-              console.log(this.products.url);
             });
         }
         this.productFormGroup.patchValue({
