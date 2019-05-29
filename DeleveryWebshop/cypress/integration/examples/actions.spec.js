@@ -9,7 +9,7 @@ context('Actions', () => {
 
   it('.type() - type into a DOM element', () => {
     // https://on.cypress.io/type
-    cy.get('.action-email')
+    cy.get('.user-state-email')
       .type('fake@email.com').should('have.value', 'fake@email.com')
 
       // .type() with special character sequences
@@ -26,7 +26,7 @@ context('Actions', () => {
       .type('slow.typing@email.com', { delay: 100 })
       .should('have.value', 'slow.typing@email.com')
 
-    cy.get('.action-disabled')
+    cy.get('.user-state-disabled')
       // Ignore error checking prior to type
       // like whether the input is visible or disabled
       .type('disabled error checking', { force: true })
@@ -35,21 +35,21 @@ context('Actions', () => {
 
   it('.focus() - focus on a DOM element', () => {
     // https://on.cypress.io/focus
-    cy.get('.action-focus').focus()
+    cy.get('.user-state-focus').focus()
       .should('have.class', 'focus')
       .prev().should('have.attr', 'style', 'color: orange;')
   })
 
   it('.blur() - blur off a DOM element', () => {
     // https://on.cypress.io/blur
-    cy.get('.action-blur').type('About to blur').blur()
+    cy.get('.user-state-blur').type('About to blur').blur()
       .should('have.class', 'error')
       .prev().should('have.attr', 'style', 'color: red;')
   })
 
   it('.clear() - clears an input or textarea element', () => {
     // https://on.cypress.io/clear
-    cy.get('.action-clear').type('Clear this text')
+    cy.get('.user-state-clear').type('Clear this text')
       .should('have.value', 'Clear this text')
       .clear()
       .should('have.value', '')
@@ -57,15 +57,15 @@ context('Actions', () => {
 
   it('.submit() - submit a form', () => {
     // https://on.cypress.io/submit
-    cy.get('.action-form')
+    cy.get('.user-state-form')
       .find('[type="text"]').type('HALFOFF')
-    cy.get('.action-form').submit()
+    cy.get('.user-state-form').submit()
       .next().should('contain', 'Your form has been submitted!')
   })
 
   it('.click() - click on a DOM element', () => {
     // https://on.cypress.io/click
-    cy.get('.action-btn').click()
+    cy.get('.user-state-btn').click()
 
     // You can click on 9 specific positions of an element:
     //  -----------------------------------
@@ -81,21 +81,21 @@ context('Actions', () => {
     //  -----------------------------------
 
     // clicking in the center of the element is the default
-    cy.get('#action-canvas').click()
+    cy.get('#user-state-canvas').click()
 
-    cy.get('#action-canvas').click('topLeft')
-    cy.get('#action-canvas').click('top')
-    cy.get('#action-canvas').click('topRight')
-    cy.get('#action-canvas').click('left')
-    cy.get('#action-canvas').click('right')
-    cy.get('#action-canvas').click('bottomLeft')
-    cy.get('#action-canvas').click('bottom')
-    cy.get('#action-canvas').click('bottomRight')
+    cy.get('#user-state-canvas').click('topLeft')
+    cy.get('#user-state-canvas').click('top')
+    cy.get('#user-state-canvas').click('topRight')
+    cy.get('#user-state-canvas').click('left')
+    cy.get('#user-state-canvas').click('right')
+    cy.get('#user-state-canvas').click('bottomLeft')
+    cy.get('#user-state-canvas').click('bottom')
+    cy.get('#user-state-canvas').click('bottomRight')
 
     // .click() accepts an x and y coordinate
     // that controls where the click occurs :)
 
-    cy.get('#action-canvas')
+    cy.get('#user-state-canvas')
       .click(80, 75) // click 80px on x coord and 75px on y coord
       .click(170, 75)
       .click(80, 165)
@@ -105,10 +105,10 @@ context('Actions', () => {
       .click(170, 165)
 
     // click multiple elements by passing multiple: true
-    cy.get('.action-labels>.label').click({ multiple: true })
+    cy.get('.user-state-labels>.label').click({ multiple: true })
 
     // Ignore error checking prior to clicking
-    cy.get('.action-opacity>.btn').click({ force: true })
+    cy.get('.user-state-opacity>.btn').click({ force: true })
   })
 
   it('.dblclick() - double click on a DOM element', () => {
@@ -116,8 +116,8 @@ context('Actions', () => {
 
     // Our app has a listener on 'dblclick' event in our 'scripts.js'
     // that hides the div and shows an input on double click
-    cy.get('.action-div').dblclick().should('not.be.visible')
-    cy.get('.action-input-hidden').should('be.visible')
+    cy.get('.user-state-div').dblclick().should('not.be.visible')
+    cy.get('.user-state-input-hidden').should('be.visible')
   })
 
   it('.check() - check a checkbox or radio element', () => {
@@ -125,25 +125,25 @@ context('Actions', () => {
 
     // By default, .check() will check all
     // matching checkbox or radio elements in succession, one after another
-    cy.get('.action-checkboxes [type="checkbox"]').not('[disabled]')
+    cy.get('.user-state-checkboxes [type="checkbox"]').not('[disabled]')
       .check().should('be.checked')
 
-    cy.get('.action-radios [type="radio"]').not('[disabled]')
+    cy.get('.user-state-radios [type="radio"]').not('[disabled]')
       .check().should('be.checked')
 
     // .check() accepts a value argument
-    cy.get('.action-radios [type="radio"]')
+    cy.get('.user-state-radios [type="radio"]')
       .check('radio1').should('be.checked')
 
     // .check() accepts an array of values
-    cy.get('.action-multiple-checkboxes [type="checkbox"]')
+    cy.get('.user-state-multiple-checkboxes [type="checkbox"]')
       .check(['checkbox1', 'checkbox2']).should('be.checked')
 
     // Ignore error checking prior to checking
-    cy.get('.action-checkboxes [disabled]')
+    cy.get('.user-state-checkboxes [disabled]')
       .check({ force: true }).should('be.checked')
 
-    cy.get('.action-radios [type="radio"]')
+    cy.get('.user-state-radios [type="radio"]')
       .check('radio3', { force: true }).should('be.checked')
   })
 
@@ -152,22 +152,22 @@ context('Actions', () => {
 
     // By default, .uncheck() will uncheck all matching
     // checkbox elements in succession, one after another
-    cy.get('.action-check [type="checkbox"]')
+    cy.get('.user-state-check [type="checkbox"]')
       .not('[disabled]')
       .uncheck().should('not.be.checked')
 
     // .uncheck() accepts a value argument
-    cy.get('.action-check [type="checkbox"]')
+    cy.get('.user-state-check [type="checkbox"]')
       .check('checkbox1')
       .uncheck('checkbox1').should('not.be.checked')
 
     // .uncheck() accepts an array of values
-    cy.get('.action-check [type="checkbox"]')
+    cy.get('.user-state-check [type="checkbox"]')
       .check(['checkbox1', 'checkbox3'])
       .uncheck(['checkbox1', 'checkbox3']).should('not.be.checked')
 
     // Ignore error checking prior to unchecking
-    cy.get('.action-check [disabled]')
+    cy.get('.user-state-check [disabled]')
       .uncheck({ force: true }).should('not.be.checked')
   })
 
@@ -175,15 +175,15 @@ context('Actions', () => {
     // https://on.cypress.io/select
 
     // Select option(s) with matching text content
-    cy.get('.action-select').select('apples')
+    cy.get('.user-state-select').select('apples')
 
-    cy.get('.action-select-multiple')
+    cy.get('.user-state-select-multiple')
     .select(['apples', 'oranges', 'bananas'])
 
     // Select option(s) with matching value
-    cy.get('.action-select').select('fr-bananas')
+    cy.get('.user-state-select').select('fr-bananas')
 
-    cy.get('.action-select-multiple')
+    cy.get('.user-state-select-multiple')
       .select(['fr-apples', 'fr-oranges', 'fr-bananas'])
   })
 

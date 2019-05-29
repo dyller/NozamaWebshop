@@ -1,6 +1,6 @@
 
-import {Product} from '../../shared/entities/product';
-import {ImageMetadata} from '../../shared/entities/image-metadata';
+import {Product} from '../../entities/product';
+import {ImageMetadata} from '../../entities/image-metadata';
 
 export class AddProduct
 {

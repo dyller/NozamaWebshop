@@ -3,13 +3,17 @@ import {Observable, of, Subscription} from 'rxjs';
 import {Product} from '../../shared/entities/product';
 import {FileService} from '../../shared/service/file.service';
 import {ProductService} from '../../shared/service/product.service';
+import {switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
+import * as firebase from 'firebase';
 import {Select, Store} from '@ngxs/store';
-import {ReadAllProduct, RemoveProduct} from '../statemagnement/product.actions';
-import {ProductState} from '../statemagnement/product.state';
-import {AddToCart} from '../../shared/statemangement/cart/cart.actions';
+import {ReadAllProduct, RemoveProduct} from '../../shared/statemangement/product-state/product.actions';
+import {ProductState, ProductStateModel} from '../../shared/statemangement/product-state/product.state';
+import {AddToCart} from '../../shared/statemangement/cart-state/cart.actions';
+import {CartState} from '../../shared/statemangement/cart-state/cart.state';
+import {AuthService} from "../../shared/core/auth.service";
 
 @Component({
   selector: 'app-showproduct',
@@ -37,7 +41,7 @@ export class ShowproductComponent implements OnInit {
 
   deleteProduct(product: Product)
   {
-    this.store.dispatch(new RemoveProduct(product));
+    const obs = this.store.dispatch(new RemoveProduct(product));
   }
 
   logut() {

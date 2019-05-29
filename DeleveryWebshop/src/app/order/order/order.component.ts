@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../../shared/entities/product';
 import {Observable} from 'rxjs';
 import {Select, Store} from '@ngxs/store';
-import {DeleteCart} from '../../shared/statemangement/cart/cart.actions';
-import {CartState} from '../../shared/statemangement/cart/cart.state';
+import {DeleteCart} from '../../shared/statemangement/cart-state/cart.actions';
+import {CartState} from '../../shared/statemangement/cart-state/cart.state';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class OrderComponent implements OnInit {
   }
 
   buyProducts() {
-    this.store.dispatch(new DeleteCart());
+    this.store.dispatch(new DeleteCart()).subscribe();
 
   }
 }

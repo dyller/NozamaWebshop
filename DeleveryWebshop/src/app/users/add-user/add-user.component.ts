@@ -4,7 +4,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ImageMetadata} from '../../shared/entities/image-metadata';
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {UserService} from '../../shared/service/user.service';
-import {AuthService} from '../../shared/core/auth.service';
+import * as firebase from 'firebase';
+import {Store} from "@ngxs/store";
+import {AddUser} from "../../shared/statemangement/user-state/user.actions";
+import {AuthService} from "../../shared/core/auth.service";
 
 @Component({
   selector: 'app-add-user',

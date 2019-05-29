@@ -15,7 +15,7 @@ import {environment} from '../../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {Product} from '../../shared/entities/product';
 import {NgxsModule, Select, Store} from '@ngxs/store';
-import {CartState} from '../../shared/statemangement/cart/cart.state';
+import {CartState} from '../../shared/statemangement/cart-state/cart.state';
 
 describe('OrderComponent', () => {
   let component: OrderComponent;

@@ -40,8 +40,6 @@ export class UserState {
     getState().user = payload;
     this.us.addUser(state.user, payload2)
       .subscribe(() => {
-        this.router.navigate([''],
-          {relativeTo: this.activatedRoute});
       });
   }
 

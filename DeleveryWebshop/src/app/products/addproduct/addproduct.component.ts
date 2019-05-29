@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {FileService} from '../../shared/service/file.service';
+import {switchMap} from 'rxjs/operators';
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../../shared/service/product.service';
 import {ImageMetadata} from '../../shared/entities/image-metadata';
 import { Store } from '@ngxs/store';
-import {AddProduct} from '../statemagnement/product.actions';
+import {AddProduct} from '../../shared/statemangement/product-state/product.actions';
 
 
 @Component({
@@ -78,9 +81,12 @@ export class AddproductComponent implements OnInit {
 
   uploadFile(event) {
     this.imageChangedEvent = event;
+    // Going away soon.. Bye bye..
+    // this.fileToUpload = event.target.files[0];
   }
 
   imageCropped(event: ImageCroppedEvent) {
+    // Preview
     this.croppedImage = event.base64;
     this.croppedBlob = event.file;
   }

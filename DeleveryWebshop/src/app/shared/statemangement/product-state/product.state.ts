@@ -1,10 +1,10 @@
 import {Action, NgxsOnInit, Selector, State, StateContext} from '@ngxs/store';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Product} from '../../shared/entities/product';
+import {Product} from '../../entities/product';
 import {AddProduct, ReadAllProduct, RemoveProduct, UpdateProduct} from './product.actions';
-import {ProductService} from '../../shared/service/product.service';
+import {ProductService} from '../../service/product.service';
 import {tap} from 'rxjs/operators';
-import {FileService} from '../../shared/service/file.service';
+import {FileService} from '../../service/file.service';
 import {patch, removeItem, updateItem} from '@ngxs/store/operators';
 
 export interface ProductStateModel {
